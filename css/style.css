@@ -25,6 +25,7 @@ p{
 
 @media only screen and (max-width: 600px) {
   .card-task{
+    border: 1px solid yellowl;
     margin-bottom: 2rem;
   }
 }
