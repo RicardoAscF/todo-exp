@@ -16,3 +16,22 @@
 p{
   color: black;
 }
+
+
+.card{
+  border: 1px solid teal;
+  box-shadow: 2px -0.6px teal;
+}
+
+.card-buttons{
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+
+
+.icon-block p{
+  border: 2px solid red;
+  text-align: center;
+  
+}

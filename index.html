@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -13,18 +13,27 @@
 <body>
 
 
+  <!-- Nav -->
+
+
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Historico</a></li>
+        <p>Total EXP</p><span>400</span>
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
         <li><a href="#">Historico</a></li>
+        <li><a href="#">Total EXP</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+
+  <!-- Nav -->
+
+
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
@@ -57,13 +66,16 @@
             </div>
 
             
+            
             <div class="input-field col s12 m4">
               <select>
                 <option value=""  selected>It is for</option>
-                <option value="1">Work</option>
-                <option value="2">Personal Projects</option>
-                <option value="3">House Work</option>
-                <option value="3">Having FUn</option>
+                <option value="1">Cooking</option>
+                <option value="2">Exersice</option>
+                <option value="3">Having Fun</option>
+                <option value="4">Personal Projects</option>
+                <option value="5">Shopping</option>
+                <option value="6">Job</option>
               </select>
             </div>
           
@@ -75,13 +87,14 @@
       <!--Inputs -->
 
 
-
+      <!--Button AddTask-->
       <div class="row center">
         <a
           id="addTaskButton"
           onclick="addTask()"
           class="btn-large waves-effect waves-light orange">Add task</a>
       </div>
+      <!--Button AddTask-->
       <br><br>
 
     </div>
@@ -95,7 +108,7 @@
       <div class="row">
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+            <h2 class="center light-blue-text"><i class="material-icons">attach_money</i></h2>
             <h5 class="center">Study Oracle</h5>
 
             <p class="light">50 EXP</p>
@@ -104,7 +117,7 @@
 
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h2 class="center light-blue-text"><i class="material-icons">accessibility</i></h2>
             <h5 class="center">CCS Grid Course</h5>
 
             <p class="light">25 EXP</p>
@@ -113,13 +126,50 @@
 
         <div class="col s12 m4">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+            <h2 class="center light-blue-text"><i class="material-icons">shopping_cart</i></h2>
             <h5 class="center">Go to buy milk</h5>
 
             <p class="light">10 EXP</p>
           </div>
         </div>
-      </div>
+
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">insert_emoticon</i></h2>
+            <h5 class="center">See movies</h5>
+
+            <p class="light">10 EXP</p>
+          </div>
+        </div>
+
+
+
+        <div class="col s12 m4">
+          <div class="icon-block card">
+            <h2 class="center light-blue-text"><i class="material-icons">directions_bike</i></h2>
+            <h5 class="center">Exercise</h5>
+            <div class="card-buttons">
+              <a class="waves-effect waves-light btn-small"><i class="material-icons right">check_box</i>Done</a>
+              <a class="waves-effect waves-light btn-small red"><i class="material-icons right">cancel</i>Cancel</a>
+            </div>
+            <p class="light">10 EXP</p>
+          </div>
+        </div>
+
+
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">local_pizza</i></h2>
+            <h5 class="center">Cooking</h5>
+
+            <p class="light">10 EXP</p>
+          </div>
+        </div>
+
+
+      </div><!--Fin Row-->
 
     </div>
     <br><br>
