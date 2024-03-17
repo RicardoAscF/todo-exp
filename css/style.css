@@ -19,14 +19,13 @@ p{
 
 
 .card-task{
-  border: 1px solid red;
+  border: 1px solid teal;
   box-shadow: 3.5px 2px teal;
 }
 
 @media only screen and (max-width: 600px) {
   .card-task{
-    border: 1px solid teal;
-    margin-bottom: 10px;
+    margin-bottom: 2rem;
   }
 }
 
