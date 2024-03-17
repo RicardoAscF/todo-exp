@@ -19,9 +19,19 @@ p{
 
 
 .card-task{
-  border: 1px solid teal;
+  border: 1px solid red;
   box-shadow: 3.5px 2px teal;
 }
+
+@media only screen and (max-width: 600px) {
+  .card-task{
+    border: 1px solid teal;
+    margin-bottom: 10px;
+  }
+}
+
+
+
 
 .card-task-buttons{
   display: flex;
@@ -35,7 +45,6 @@ p{
 }
 
 .card-task p{
-  border: 2px solid bllue;
   text-align: center;
   font-size: 1.2rem;
 }
@@ -55,12 +64,6 @@ p{
 }
 
 
-.card .card-content p i{
-  color: blue;
-  margin-left: 2rem!important;
-  font-size: 1.5rem;
-}
-
 div.card-content p{
   margin-left: 1rem!important;
 }
@@ -70,6 +73,10 @@ div.col.l6.s12, div.col.s12.m7{
   padding-left: 0;
 }
 
+.card-exp.icon-block p i{
+  color: blue;
+  font-size: 1.2rem;
+}
 
 
 /*Fonts*/
@@ -77,10 +84,8 @@ div.col.l6.s12, div.col.s12.m7{
 .tektur{
   font-family: "Tektur", sans-serif;
   font-optical-sizing: auto;
-  font-weight: <weight>;
+  font-weight: bold;
   font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
 }
 
 
@@ -110,3 +115,6 @@ h1.title-h5{
   display: flex;
   justify-content: center;
 }
+
+
+
