@@ -29,13 +29,6 @@ p{
   
 }
 
-.padding-5px{
-  padding: 5px;
-}
-
-.margin-5px{
-  margin: 5px;
-}
 
 .card-exp p{
   text-align: right;
@@ -51,9 +44,49 @@ p{
   font-weight: bold;
 }
 
+.px{
+  margin-right: 1rem;
+}
+
 .card .card-content{
   padding: 0;
   padding-left: 5px;
   margin: 0;
-  border: 1px solid red;
+}
+
+
+.card .card-content p i{
+  color: blue;
+  margin-left: 2rem!important;
+  font-size: 1.5rem;
+}
+
+div.card-content p{
+  margin-left: 1rem!important;
+}
+
+
+div.col.l6.s12, div.col.s12.m7{
+  padding-left: 0;
+}
+
+
+
+/*Fonts*/
+
+.tektur{
+  font-family: "Tektur", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
+
+.titles {
+  font-family: "Madimi One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
