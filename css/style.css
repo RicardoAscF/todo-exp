@@ -90,3 +90,23 @@ div.col.l6.s12, div.col.s12.m7{
   font-weight: 400;
   font-style: normal;
 }
+
+
+h5.header.center.col.s12.light.titles{
+  width: auto;
+  margin: 0 auto;
+}
+
+
+
+.title-h5{
+ 
+  display: flex;
+  text-align: center;
+}
+
+h1.title-h5{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
