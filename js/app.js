@@ -65,10 +65,30 @@ async function insertDB(id,taskName,exp,selectedIcon){
         id: id,
         taskName: taskName,
         exp: exp,
-        selectedIcon, selectedIcon
+        selectedIcon, selectedIcon,
+        date: Date.now()
     })
     .then((docRef) => {
         displayToast('Task Added');
+    })
+    .catch((error) => {
+        
+    });
+}
+
+
+
+
+async function insertCompletedTasksDB(taskName,exp,selectedIcon,date){
+   
+    db.collection("completedTasks").add({
+        taskName: taskName,
+        exp: exp,
+        selectedIcon, selectedIcon,
+        date: date
+    })
+    .then((docRef) => {
+        
     })
     .catch((error) => {
         
@@ -101,6 +121,15 @@ function getData(){
         fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon);
     });
 }
+
+
+
+fillCompletedTasks();
+function fillCompletedTasks(){
+
+
+}
+
 
 function fillTasksTobeDone(id,taskName,exp,selectedIcon){
 
@@ -171,6 +200,10 @@ function fillTasksTobeDone(id,taskName,exp,selectedIcon){
     aDone.classList.add('waves-effect','waves-light','btn-small');
     aDone.innerText='Done';
     aDone.setAttribute('id', id);
+    aDone.setAttribute('taskName', taskName);
+    aDone.setAttribute('exp', exp);
+    aDone.setAttribute('selectedIcon', selectedIcon);
+    aDone.setAttribute('date', Date.now());
     aDone.addEventListener('click', (evt) =>{
         taskCompleted(evt);
     });
@@ -221,9 +254,23 @@ function fillTasksTobeDone(id,taskName,exp,selectedIcon){
 
 
 async function taskCompleted(evt){
-    displayToast('CONGRATS');
+   
     let idTask = evt.target.id;
+
+    let taskName        = evt.target.getAttribute('taskName');
+    let exp             = evt.target.getAttribute('exp');
+    let selectedIcon    = evt.target.getAttribute('selectedIcon');
+    let date            = evt.target.getAttribute('date');
+
+    console.log('atributes');
+    console.log(taskName);
+    console.log(exp);
+    console.log(selectedIcon);
+    console.log(date);
+    
     await deleteDoc(doc(dbGet, "tasks", idTask));
+    insertCompletedTasksDB(taskName, exp, selectedIcon, date);
+    //insertCompletedTasksDB*();
 }
 
 async function taskCanceled(evt){
