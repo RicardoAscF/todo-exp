@@ -68,7 +68,7 @@ async function insertDB(id,taskName,exp,selectedIcon){
         selectedIcon, selectedIcon
     })
     .then((docRef) => {
-        
+        displayToast('Task Added');
     })
     .catch((error) => {
         
@@ -89,6 +89,11 @@ const querySnapshot = await getDocs(collection(dbGet, "tasks"));
         
     }
 );
+
+function displayToast(test){
+    M.toast({html: test})
+}
+
 
 getData();
 function getData(){
