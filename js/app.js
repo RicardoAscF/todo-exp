@@ -1,7 +1,8 @@
  // Import the functions you need from the SDKs you need
  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
-
+ import { getFirestore,collection,addDoc,getDocs } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js'
+ 
 
  // TODO: Add SDKs for Firebase products that you want to use
  // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,11 +25,18 @@
    const analytics = getAnalytics(app);
    firebase.initializeApp(firebaseConfig);
    const db = firebase.firestore();
+   const dbGet = getFirestore(app); //conexion a la BD
 
+
+
+
+   
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems);
 });
+
+
 
 
 const addTaskBtn = document.getElementById('addTaskButton');
@@ -60,15 +68,34 @@ async function insertDB(id,taskName,exp,selectedIcon){
         selectedIcon, selectedIcon
     })
     .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
+        
     })
     .catch((error) => {
-        console.error("Error adding document: ", error);
+        
     });
 }
 
 
+let arrayTask = [];
+const querySnapshot = await getDocs(collection(dbGet, "tasks"));
+    querySnapshot.forEach((doc) => {
+            let objTasks = {
+                id:             doc.data().id,
+                taskName:       doc.data().taskName,
+                exp:            doc.data().exp,
+                selectedIcon:   doc.data().selectedIcon
+            }
+        arrayTask.push(objTasks);
+        
+    }
+);
 
+getData();
+function getData(){
+    arrayTask.forEach(element => {
+        fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon);
+    });
+}
 
 function fillTasksTobeDone(id,taskName,exp,selectedIcon){
 
