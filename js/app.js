@@ -1,7 +1,7 @@
  // Import the functions you need from the SDKs you need
  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
- import { getFirestore,collection,addDoc,getDocs } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js'
+ import { getFirestore,collection,addDoc,getDocs,doc,deleteDoc } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js'
  
 
  // TODO: Add SDKs for Firebase products that you want to use
@@ -80,7 +80,7 @@ let arrayTask = [];
 const querySnapshot = await getDocs(collection(dbGet, "tasks"));
     querySnapshot.forEach((doc) => {
             let objTasks = {
-                id:             doc.data().id,
+                id:             doc.id,
                 taskName:       doc.data().taskName,
                 exp:            doc.data().exp,
                 selectedIcon:   doc.data().selectedIcon
@@ -170,6 +170,10 @@ function fillTasksTobeDone(id,taskName,exp,selectedIcon){
     let aDone                   = document.createElement('a');
     aDone.classList.add('waves-effect','waves-light','btn-small');
     aDone.innerText='Done';
+    aDone.setAttribute('id', id);
+    aDone.addEventListener('click', (evt) =>{
+        taskCompleted(evt);
+    });
 
     let iDone = document.createElement('i');
     iDone.classList.add('material-icons', 'right');
@@ -179,6 +183,11 @@ function fillTasksTobeDone(id,taskName,exp,selectedIcon){
     let aCancel                 = document.createElement('a');
     aCancel.classList.add('waves-effect','waves-light','btn-small', 'red');
     aCancel.innerText='Cancel';
+    aCancel.setAttribute('id', id);
+
+    aCancel.addEventListener('click', (evt) =>{
+        taskCanceled(evt);
+    });
 
     let iCancel = document.createElement('i');
     iCancel.classList.add('material-icons', 'right');
@@ -209,6 +218,18 @@ function fillTasksTobeDone(id,taskName,exp,selectedIcon){
 
     taskToBeDone.appendChild(divColS12M4);
 }//fillTasksTobeDone
+
+
+async function taskCompleted(evt){
+    displayToast('CONGRATS');
+    let idTask = evt.target.id;
+    await deleteDoc(doc(dbGet, "tasks", idTask));
+}
+
+async function taskCanceled(evt){
+    let idTask = evt.target.id;
+    await deleteDoc(doc(dbGet, "tasks", idTask));
+}
 
 
 
