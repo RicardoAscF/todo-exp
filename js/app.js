@@ -126,6 +126,17 @@ function getData(){
 
 fillCompletedTasks();
 function fillCompletedTasks(){
+    let divDate_Container               = document.createElement('div');
+
+    let h5White_texttitles              = document.createElement('h5');
+    let divColL6S12                     = document.createElement('div');
+
+    let divColS12M7                     = document.createElement('div');
+
+    let divCardHorizontal               = document.createElement('div');
+
+    let divCardStacked                  = document.createElement('div');
+
 
 
 }
@@ -253,6 +264,9 @@ function fillTasksTobeDone(id,taskName,exp,selectedIcon){
 }//fillTasksTobeDone
 
 
+
+
+
 async function taskCompleted(evt){
    
     let idTask = evt.target.id;
@@ -271,12 +285,14 @@ async function taskCompleted(evt){
     await deleteDoc(doc(dbGet, "tasks", idTask));
     insertCompletedTasksDB(taskName, exp, selectedIcon, date);
     //insertCompletedTasksDB*();
-}
+
+}/// taskCompleted
+
+
+
+
 
 async function taskCanceled(evt){
     let idTask = evt.target.id;
     await deleteDoc(doc(dbGet, "tasks", idTask));
 }
-
-
-
