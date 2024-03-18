@@ -95,6 +95,7 @@ async function insertCompletedTasksDB(taskName,exp,selectedIcon,date){
 
 
 let arrayTask = [];
+let arrayCompletedTasks = [];
 const querySnapshot = await getDocs(collection(dbGet, "tasks"));
     querySnapshot.forEach((doc) => {
             let objTasks = {
@@ -109,13 +110,44 @@ const querySnapshot = await getDocs(collection(dbGet, "tasks"));
 );
 
 
+const querySnapshotCompleted = await getDocs(collection(dbGet, "completedTasks"));
+    querySnapshotCompleted.forEach((doc) => {
+            let objTasks2 = {
+                id:             doc.id,
+                taskName:       doc.data().taskName,
+                exp:            doc.data().exp,
+                selectedIcon:   doc.data().selectedIcon,
+                date:           doc.data().date
+            }
+        arrayCompletedTasks.push(objTasks2);
+        
+    }
+);
+
+
 
 getData();
+getCompletedData();
 function getData(){
+    console.log('task');
+    console.log(arrayTask.length);
     arrayTask.forEach(element => {
         fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon);
     });
 }
+
+
+
+function getCompletedData(){
+    console.log(arrayCompletedTasks.length);
+    arrayCompletedTasks.forEach(element => {
+        fillCompletedTasks(element.id, element.taskName, element.exp, element.selectedIcon, element.date);
+    });
+}
+
+
+
+
 
 
 
@@ -134,7 +166,7 @@ function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
 
     let divDate_Container               = document.getElementById('dateContainer');
     divDate_Container.classList.add('date-container');
-    divDate_Container.innerText= 'hello';
+    
   
 
         let h5White_texttitles              = document.createElement('h5');// Date Lunes
@@ -231,8 +263,19 @@ function reiniciarTaskToBeDone(){  // Cuando se Finaliza o Cancela una task
     while (taskToBeDone.firstChild) {
         taskToBeDone.removeChild(taskToBeDone.firstChild);
     }
-    
+    console.log('entre a normal');
     getData();
+}
+
+
+
+function reiniciarCompletedTask(){  // Cuando se Finaliza o Cancela una task
+    let taskToBeDone            = document.getElementById('dateContainer');
+    while (taskToBeDone.firstChild) {
+        taskToBeDone.removeChild(taskToBeDone.firstChild);
+    }
+    console.log('Entre a completed tasks');
+    getCompletedData();
 }
 
 
@@ -240,9 +283,6 @@ function fillTasksTobeDone(id,taskName,exp,selectedIcon){
 
     let taskToBeDone            = document.getElementById('tasksToBeDone');
     
-
-    
-
 
     let divColS12M4             = document.createElement('div');
     divColS12M4.classList.add('col', 's12', 'm4');
@@ -393,9 +433,11 @@ async function taskCompleted(evt){
     displayToast('Congrats');
     setTimeout(function() { 
         reiniciarTaskToBeDone();
+        reiniciarCompletedTask();
     }, 1500);
 
     fillCompletedTasks(idTask,taskName, exp, selectedIcon, date);
+
     
 }/// taskCompleted
 
