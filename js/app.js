@@ -26,23 +26,20 @@
    firebase.initializeApp(firebaseConfig);
    const db = firebase.firestore();
    const dbGet = getFirestore(app); //conexion a la BD
-
-
-
-
-   
+ 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems);
 });
 
 
-
-
 const addTaskBtn = document.getElementById('addTaskButton');
 addTaskBtn.addEventListener('click', ()=>{
     addTask();
 });
+
+
+
 
 function addTask(){
     let id              =   Date.now();
@@ -96,6 +93,7 @@ async function insertCompletedTasksDB(taskName,exp,selectedIcon,date){
 }
 
 
+
 let arrayTask = [];
 const querySnapshot = await getDocs(collection(dbGet, "tasks"));
     querySnapshot.forEach((doc) => {
@@ -110,9 +108,6 @@ const querySnapshot = await getDocs(collection(dbGet, "tasks"));
     }
 );
 
-function displayToast(test){
-    M.toast({html: test})
-}
 
 
 getData();
@@ -124,27 +119,129 @@ function getData(){
 
 
 
-fillCompletedTasks();
-function fillCompletedTasks(){
-    let divDate_Container               = document.createElement('div');
-
-    let h5White_texttitles              = document.createElement('h5');
-    let divColL6S12                     = document.createElement('div');
-
-    let divColS12M7                     = document.createElement('div');
-
-    let divCardHorizontal               = document.createElement('div');
-
-    let divCardStacked                  = document.createElement('div');
+function displayToast(test){
+    M.toast({html: test})
+}
 
 
 
+
+
+
+
+function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
+  
+
+    let divDate_Container               = document.getElementById('dateContainer');
+    divDate_Container.classList.add('date-container');
+    divDate_Container.innerText= 'hello';
+  
+
+        let h5White_texttitles              = document.createElement('h5');// Date Lunes
+        h5White_texttitles.classList.add('white-text', 'titles');/////Aqui va la logica del acomodo respecto a fechas
+        h5White_texttitles.innerText='hello';
+
+        let divColL6S12                     = document.createElement('div');
+        divColL6S12.classList.add('col', 'l6', 's12');
+
+            let divColS12M7                     = document.createElement('div');
+            divColS12M7.classList.add('col', 's12', 'm7');
+
+                let divCardHorizontal               = document.createElement('div');
+                divCardHorizontal.classList.add('card', 'horizontal');
+
+                    let divCardStacked                  = document.createElement('div');
+                    divCardStacked.classList.add('card-stacked');
+
+                        let divCard_expIcon_block                  = document.createElement('div');
+                        divCard_expIcon_block.classList.add('card-exp', 'icon-block');
+
+                            let pPx                                 = document.createElement('p');
+                            pPx.classList.add('titles');
+                            let timestamp = new Date(Number(date));
+                            pPx.innerText=`Date: ${ timestamp.getMonth() }`;
+                          
+
+                                let iMaterial_Icons                         = document.createElement('i');
+                                iMaterial_Icons.classList.add('material-icons');
+                                iMaterial_Icons.innerText=getSelectedIcon(selectedIcon);
+
+                            
+                                
+
+
+
+                        let divCard_content                  = document.createElement('div');
+                        divCard_content.classList.add('card-content');
+
+                            let pTitles                                     = document.createElement('p');
+                            pTitles.classList.add('titles');
+                            pTitles.innerText=taskName;
+
+
+                        let divCard_content2                  = document.createElement('div');
+                        divCard_content2.classList.add('card-content');
+                            let pLight                                     = document.createElement('p');
+                            pLight.classList.add('p','tektur');
+                            console.log('Aqui para ver el tipo');
+                        
+                        
+                            
+                            pLight.innerText=`${exp} px`;
+                            
+
+
+
+                    divCard_content2.appendChild(pLight);
+                    divCard_content.appendChild(pTitles);
+
+                    pLight.appendChild(iMaterial_Icons);
+                    divCard_expIcon_block.appendChild(pPx);
+
+
+                    divCardStacked.appendChild(divCard_expIcon_block);
+                    divCardStacked.appendChild(divCard_content);
+                    divCardStacked.appendChild(divCard_content2);
+
+
+                    divCardHorizontal.appendChild(divCardStacked);
+                    divColS12M7.appendChild(divCardHorizontal);
+                    divColL6S12.appendChild(divColS12M7);
+
+
+                    divDate_Container.appendChild(h5White_texttitles);
+                    divDate_Container.appendChild(divColL6S12);
+
+
+
+
+
+
+}// fillCompletedTasks
+
+
+
+//Terminar Card con JS
+// Primero crear metodo para anadir tarea terminada a la lista (sin BD)
+// LLnear Datos desde la BD al cargar pagina
+
+
+function reiniciarTaskToBeDone(){  // Cuando se Finaliza o Cancela una task
+    let taskToBeDone            = document.getElementById('tasksToBeDone');
+    while (taskToBeDone.firstChild) {
+        taskToBeDone.removeChild(taskToBeDone.firstChild);
+    }
+    
+    getData();
 }
 
 
 function fillTasksTobeDone(id,taskName,exp,selectedIcon){
 
     let taskToBeDone            = document.getElementById('tasksToBeDone');
+    
+
+    
 
 
     let divColS12M4             = document.createElement('div');
@@ -164,38 +261,7 @@ function fillTasksTobeDone(id,taskName,exp,selectedIcon){
     iMaterial_icons.classList.add('material-icons');
 
 
-    let icon='';
-
-    if(selectedIcon == '1'){
-        icon='local_pizza';
-    }
-
-
-    if(selectedIcon == '2'){
-        icon='directions_bike';
-    }
-
-
-    if(selectedIcon == '3'){
-        icon='insert_emoticon';
-    }
-
-
-    if(selectedIcon == '4'){
-        icon='accessibility';
-    }
-
-    if(selectedIcon == '5'){
-        icon='shopping_cart';
-    }
-
-
-    if(selectedIcon == '6'){
-    icon='attach_money';
-    }
-
-
-
+    let icon=getSelectedIcon(selectedIcon);
 
 
     iMaterial_icons.innerText=icon;//AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
@@ -266,6 +332,46 @@ function fillTasksTobeDone(id,taskName,exp,selectedIcon){
 
 
 
+function getSelectedIcon(selectedIcon){
+         
+
+    
+
+    if(selectedIcon == '1'){
+        return 'local_pizza';
+    }
+
+
+    if(selectedIcon == '2'){
+        return 'directions_bike';
+    }
+
+
+    if(selectedIcon == '3'){
+        return 'insert_emoticon';
+    }
+
+
+    if(selectedIcon == '4'){
+        return 'accessibility';
+    }
+
+    if(selectedIcon == '5'){
+        return 'shopping_cart';
+    }
+
+
+    if(selectedIcon == '6'){
+        return 'attach_money';
+    }
+
+
+
+}// getselectedIcon
+
+
+
+
 
 async function taskCompleted(evt){
    
@@ -276,23 +382,34 @@ async function taskCompleted(evt){
     let selectedIcon    = evt.target.getAttribute('selectedIcon');
     let date            = evt.target.getAttribute('date');
 
-    console.log('atributes');
-    console.log(taskName);
-    console.log(exp);
-    console.log(selectedIcon);
-    console.log(date);
+    
     
     await deleteDoc(doc(dbGet, "tasks", idTask));
     insertCompletedTasksDB(taskName, exp, selectedIcon, date);
     //insertCompletedTasksDB*();
 
+   
+
+    displayToast('Congrats');
+    setTimeout(function() { 
+        reiniciarTaskToBeDone();
+    }, 1500);
+
+    fillCompletedTasks(idTask,taskName, exp, selectedIcon, date);
+    
 }/// taskCompleted
-
-
 
 
 
 async function taskCanceled(evt){
     let idTask = evt.target.id;
     await deleteDoc(doc(dbGet, "tasks", idTask));
+
+    displayToast('Canceling');
+
+
+    setTimeout(function() { 
+        reiniciarTaskToBeDone();
+        displayToast('Canceled');
+    }, 1500);
 }
