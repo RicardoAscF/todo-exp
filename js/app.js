@@ -129,11 +129,16 @@ const querySnapshotCompleted = await getDocs(collection(dbGet, "completedTasks")
 getData();
 getCompletedData();
 function getData(){
-    console.log('task');
-    console.log(arrayTask.length);
+    
     arrayTask.forEach(element => {
         fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon);
     });
+}
+
+
+function sortArrayCompletedData(){
+    console.log('Sorting...');
+    
 }
 
 
@@ -171,7 +176,7 @@ function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
 
         let h5White_texttitles              = document.createElement('h5');// Date Lunes
         h5White_texttitles.classList.add('white-text', 'titles');/////Aqui va la logica del acomodo respecto a fechas
-        h5White_texttitles.innerText='hello';
+       
 
         let divColL6S12                     = document.createElement('div');
         divColL6S12.classList.add('col', 'l6', 's12');
@@ -191,7 +196,7 @@ function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
                             let pPx                                 = document.createElement('p');
                             pPx.classList.add('titles');
                             let timestamp = new Date(Number(date));
-                            pPx.innerText=`Date: ${ timestamp.getMonth() }`;
+                            pPx.innerText=`Finished on: ${getDayString(timestamp.getDay()) } ${timestamp.getDate()  } ${ getMonthString(timestamp.getMonth())} ${timestamp.getFullYear()}    `;
                           
 
                                 let iMaterial_Icons                         = document.createElement('i');
@@ -250,6 +255,96 @@ function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
 
 
 }// fillCompletedTasks
+
+
+function getMonthString(month){
+
+    if(month==0){
+        return 'Enero';
+    }
+
+
+    if(month==1){
+        return 'Febrero';
+    }
+
+    if(month==2){
+        return 'Marzo';
+    }
+
+    if(month==3){
+        return 'Abril';
+    }
+
+    if(month==4){
+        return 'Mayo';
+    }
+
+    if(month==5){
+        return 'Junio';
+    }
+
+
+    if(month==6){
+        return 'Julio';
+    }
+
+    if(month==7){
+        return 'Agosto';
+    }
+
+
+    if(month==8){
+        return 'Septiembre';
+    }
+
+    if(month==9){
+        return 'Octubre';
+    }
+
+    if(month==10){
+        return 'Noviembre';
+    }
+
+    if(month==11){
+        return 'Diciembre';
+    }
+
+}//getMothString
+
+
+function getDayString(day){
+    if(day==0){
+        return 'Domingo';
+    }
+
+
+    if(day==1){
+        return 'Lunes';
+    }
+
+    if(day==2){
+        return 'Martes';
+    }
+
+    if(day==3){
+        return 'Miercoles';
+    }
+
+    if(day==4){
+        return 'Juevesa';
+    }
+
+    if(day==5){
+        return 'Viernes';
+    }
+
+    if(day==6){
+        return 'Sabado';
+    }
+
+
+}//getDayString
 
 
 
@@ -378,7 +473,7 @@ function getSelectedIcon(selectedIcon){
     
 
     if(selectedIcon == '1'){
-        return 'local_pizza';
+        return 'restaurant';
     }
 
 
@@ -391,17 +486,22 @@ function getSelectedIcon(selectedIcon){
         return 'insert_emoticon';
     }
 
-
+    
     if(selectedIcon == '4'){
-        return 'accessibility';
+        return 'today';
     }
 
     if(selectedIcon == '5'){
-        return 'shopping_cart';
+        return 'computer';
     }
 
 
     if(selectedIcon == '6'){
+        return 'shopping_cart';
+    }
+
+
+    if(selectedIcon == '7'){
         return 'attach_money';
     }
 
