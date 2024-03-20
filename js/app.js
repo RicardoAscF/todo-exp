@@ -127,6 +127,7 @@ const querySnapshotCompleted = await getDocs(collection(dbGet, "completedTasks")
 
 
 getData();
+sortArrayCompletedData();
 getCompletedData();
 function getData(){
     
@@ -135,16 +136,20 @@ function getData(){
     });
 }
 
-
+//Codigo Ordenar Array
 function sortArrayCompletedData(){
-    console.log('Sorting...');
-    
+    arrayCompletedTasks.sort(function (b, a) {
+        return a.date - b.date;
+      });
+
 }
 
 
 
+
+
 function getCompletedData(){
-    console.log(arrayCompletedTasks.length);
+    console.log(arrayCompletedTasks);
     arrayCompletedTasks.forEach(element => {
         fillCompletedTasks(element.id, element.taskName, element.exp, element.selectedIcon, element.date);
     });
@@ -153,15 +158,9 @@ function getCompletedData(){
 
 
 
-
-
-
 function displayToast(test){
     M.toast({html: test})
 }
-
-
-
 
 
 
@@ -196,8 +195,8 @@ function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
                             let pPx                                 = document.createElement('p');
                             pPx.classList.add('titles');
                             let timestamp = new Date(Number(date));
-                            pPx.innerText=`Finished on: ${getDayString(timestamp.getDay()) } ${timestamp.getDate()  } ${ getMonthString(timestamp.getMonth())} ${timestamp.getFullYear()}    `;
-                          
+                            pPx.innerText=`${getDayString(timestamp.getDay()) } ${timestamp.getDate()  } ${ getMonthString(timestamp.getMonth())} ${timestamp.getFullYear()} ${timestamp.getHours()}:${timestamp.getMinutes()}`;
+                            //Date
 
                                 let iMaterial_Icons                         = document.createElement('i');
                                 iMaterial_Icons.classList.add('material-icons');
