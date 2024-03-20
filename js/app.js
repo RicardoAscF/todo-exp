@@ -210,6 +210,7 @@ function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
 
                         let divCard_content                  = document.createElement('div');
                         divCard_content.classList.add('card-content');
+                        
 
                             let pTitles                                     = document.createElement('p');
                             pTitles.classList.add('titles');
@@ -217,10 +218,10 @@ function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
 
 
                         let divCard_content2                  = document.createElement('div');
-                        divCard_content2.classList.add('card-content');
+                        divCard_content2.classList.add('card-content', 'titles-completed');
                             let pLight                                     = document.createElement('p');
                             pLight.classList.add('p','tektur');
-                            console.log('Aqui para ver el tipo');
+                          
                         
                         
                             
@@ -229,17 +230,25 @@ function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
 
 
 
-                    divCard_content2.appendChild(pLight);
+                    divCard_content2.appendChild(pLight);//Fecha
                     divCard_content.appendChild(pTitles);
+                    
+                    //divCard_content.appendChild(pTitles);
 
-                    pLight.appendChild(iMaterial_Icons);
+
+                    
+                    //pLight.appendChild(iMaterial_Icons);
                     divCard_expIcon_block.appendChild(pPx);
 
 
-                    divCardStacked.appendChild(divCard_expIcon_block);
-                    divCardStacked.appendChild(divCard_content);
-                    divCardStacked.appendChild(divCard_content2);
 
+                    divCard_content2.appendChild(iMaterial_Icons);
+
+                    
+                    divCardStacked.appendChild(divCard_content2);
+                    divCardStacked.appendChild(divCard_content);
+                    divCardStacked.appendChild( divCard_expIcon_block);
+                   
 
                     divCardHorizontal.appendChild(divCardStacked);
                     divColS12M7.appendChild(divCardHorizontal);
@@ -248,7 +257,8 @@ function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
 
                     divDate_Container.appendChild(h5White_texttitles);
                     divDate_Container.appendChild(divColL6S12);
-
+                   
+                   
 
 
 

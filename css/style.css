@@ -7,7 +7,7 @@
  */
 
 .icon-block {
-  padding: 0 15px;
+  padding: 0 18px;
 }
 .icon-block .material-icons {
 	font-size: inherit;
@@ -15,6 +15,12 @@
 
 p{
   color: black;
+}
+
+.card-exp p.titles {
+ 
+  margin-bottom: 0;
+  font-weight: normal;
 }
 
 
@@ -31,6 +37,13 @@ p{
   }
 }
 
+.titles-completed{
+  display: flex;
+  color: blue;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+}
+
 
 
 
@@ -41,9 +54,7 @@ p{
 }
 
 
-.card-exp p{
-  text-align: right;
-}
+
 
 .card-task p{
   text-align: center;
@@ -62,6 +73,13 @@ p{
   padding: 0;
   padding-left: 5px;
   margin: 0;
+ 
+}
+
+#iconCard{
+  border: 1px solid blue;
+  display: flex;
+  
 }
 
 
