@@ -11,9 +11,9 @@
     "lang": "es-MX",
     "icons": [
       {
-        "src": "./img/duties.jpg",
-        "sizes": "1280x720",
-        "type": "image/jpg"
+        "src": "./img/xp.png",
+        "sizes": "512x512",
+        "type": "image/png"
       }
       
     ]
