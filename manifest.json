@@ -9,6 +9,19 @@
     "start_url": "./?utm_source=web_app_manifest",
     "scope": "./",
     "lang": "es-MX",
+
+
+    "screenshots": [
+        {
+          "src": "./img/xp.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "form_factor": "narrow",
+          "label": "Wonder Widgets"
+        }
+    ],
+
+    
     "icons": [
       {
         "src": "./img/xp.png",
@@ -17,6 +30,9 @@
       }
       
     ]
+
   }
+
+  
 
   
