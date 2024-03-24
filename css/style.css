@@ -21,7 +21,22 @@ p{
  
   margin-bottom: 0;
   font-weight: normal;
+  
 }
+
+
+
+@media only screen and (min-width: 600px) {
+  .card-content p.titles{
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+  }
+
+}
+
+
 
 
 .card-task{
@@ -76,11 +91,6 @@ p{
  
 }
 
-#iconCard{
-  border: 1px solid blue;
-  display: flex;
-  
-}
 
 
 div.card-content p{
@@ -134,6 +144,5 @@ h1.title-h5{
   display: flex;
   justify-content: center;
 }
-
 
 

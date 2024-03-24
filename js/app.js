@@ -126,9 +126,10 @@ const querySnapshotCompleted = await getDocs(collection(dbGet, "completedTasks")
 
 
 
-getData();
+
+sortArrayGetData();
 sortArrayCompletedData();
-getCompletedData();
+
 function getData(){
     
     arrayTask.forEach(element => {
@@ -138,11 +139,26 @@ function getData(){
 
 //Codigo Ordenar Array
 function sortArrayCompletedData(){
+
     arrayCompletedTasks.sort(function (b, a) {
         return a.date - b.date;
-      });
+    });
 
-}
+
+    getCompletedData();
+    
+}//sortArrayCompletedData
+
+
+function sortArrayGetData(){
+   
+    arrayCompletedTasks.sort(function (a, b) {
+        return a.taskName - b.taskName;
+    });
+
+    console.log('sorted');
+    getData();
+}//sortArrayCompletedData
 
 
 
@@ -487,12 +503,12 @@ function getSelectedIcon(selectedIcon){
 
 
     if(selectedIcon == '2'){
-        return 'directions_bike';
+        return 'insert_emoticon';//exercise  
     }
 
 
     if(selectedIcon == '3'){
-        return 'insert_emoticon';
+        return 'favorite';//Havin fun
     }
 
     
@@ -540,13 +556,22 @@ async function taskCompleted(evt){
    
 
     displayToast('Congrats');
+
     setTimeout(function() { 
         reiniciarTaskToBeDone();
+    }, 500);
+
+    setTimeout(function() { 
         reiniciarCompletedTask();
-    }, 1500);
+    }, 500);
 
-    fillCompletedTasks(idTask,taskName, exp, selectedIcon, date);
 
+    setTimeout(function() { 
+        fillCompletedTasks(idTask,taskName, exp, selectedIcon, date);
+
+    }, 500);
+
+   
     
 }/// taskCompleted
 
@@ -562,5 +587,5 @@ async function taskCanceled(evt){
     setTimeout(function() { 
         reiniciarTaskToBeDone();
         displayToast('Canceled');
-    }, 1500);
+    }, 500);
 }
