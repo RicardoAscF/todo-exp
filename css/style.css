@@ -37,6 +37,16 @@ p{
 }
 
 
+div.card-stacked{
+  border: 1px solid red;
+  color: red;
+  background-color: white;
+}
+
+.red-text{
+  color: red!important;
+}
+
 
 
 .card-task{

@@ -54,6 +54,8 @@ function addTask(){
     insertDB(id,taskName,exp,selectedIcon);
     document.getElementById('icon_prefix').value='';
     document.getElementById('icon_time-exp').value='';
+    console.log(document.getElementById('selectedIcon').value = '0');
+    
 }//AddTask
 
 
@@ -210,10 +212,10 @@ function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
 
                             let pPx                                 = document.createElement('p');
                             pPx.classList.add('titles');
+                            
                             let timestamp = new Date(Number(date));
-                            pPx.innerText=`${getDayString(timestamp.getDay()) } ${timestamp.getDate()  } ${ getMonthString(timestamp.getMonth())} ${timestamp.getFullYear()} ${timestamp.getHours()}:${timestamp.getMinutes()}`;
+                            pPx.innerText=`${getDayString(timestamp.getDay())} ${timestamp.getDate()} ${ getMonthString(timestamp.getMonth())} ${timestamp.getFullYear()} - ${getHMString(timestamp.getHours())}:${getHMString(timestamp.getMinutes())}`;
                             //Date
-
                                 let iMaterial_Icons                         = document.createElement('i');
                                 iMaterial_Icons.classList.add('material-icons');
                                 iMaterial_Icons.innerText=getSelectedIcon(selectedIcon);
@@ -229,6 +231,8 @@ function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
 
                             let pTitles                                     = document.createElement('p');
                             pTitles.classList.add('titles');
+
+                            
                             pTitles.innerText=taskName;
 
 
@@ -273,7 +277,12 @@ function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
                     divDate_Container.appendChild(h5White_texttitles);
                     divDate_Container.appendChild(divColL6S12);
                    
-                   
+                    if(taskName=='x' || taskName=='X'){
+                        pTitles.classList.add('red-text');
+                        pPx.classList.add('red-text');
+                        pLight.classList.add('red-text');
+                        iMaterial_Icons.classList.add('red-text');
+                    }
 
 
 
@@ -338,6 +347,12 @@ function getMonthString(month){
 }//getMothString
 
 
+
+function getHMString(x){
+    return String(x).length==1 ? '0' + String(x) : x;
+}//Anade un 'Cero' al princpio a las horas y minutos de un digito: ejemplo convuerte 22:5 en 22:05
+
+
 function getDayString(day){
     if(day==0){
         return 'Domingo';
@@ -357,7 +372,7 @@ function getDayString(day){
     }
 
     if(day==4){
-        return 'Juevesa';
+        return 'Jueves';
     }
 
     if(day==5){
