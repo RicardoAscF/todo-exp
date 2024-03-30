@@ -143,6 +143,11 @@ sortArrayCompletedData();
 
 function getData(){
     
+    console.log(arrayTask.length);
+    let totalPendingTask = document.getElementById('totalPendingTask');
+    totalPendingTask.classList.add('blue-text');
+    totalPendingTask.innerText = `${arrayTask.length}`
+
     arrayTask.forEach(element => {
         fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon);
     });
@@ -175,11 +180,14 @@ function sortArrayGetData(){
 
 
 
+
 function getCompletedData(){
-    console.log(arrayCompletedTasks);
+    let totalExp=0;
     arrayCompletedTasks.forEach(element => {
+        totalExp+=Number(element.exp);
         fillCompletedTasks(element.id, element.taskName, element.exp, element.selectedIcon, element.date);
     });
+    displayExp(totalExp);
 }
 
 
@@ -190,11 +198,14 @@ function displayToast(test){
 }
 
 
-
+function displayExp(totalExp){
+    let h2TotalExp = document.getElementById('completedTask');
+    h2TotalExp.innerText = `Completed - Total Exp ${totalExp}`
+}
 
 function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
   
-
+    
     let divDate_Container               = document.getElementById('dateContainer');
     divDate_Container.classList.add('date-container');
     
@@ -537,7 +548,7 @@ function getSelectedIcon(selectedIcon){
 
     
     if(selectedIcon == '4'){
-        return 'today';
+        return 'home';
     }
 
     if(selectedIcon == '5'){
