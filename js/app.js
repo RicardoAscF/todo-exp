@@ -46,10 +46,19 @@ function addTask(){
     let taskName        =   document.getElementById('icon_prefix').value;
     let exp             =   document.getElementById('icon_time-exp').value;
     let selectedIcon    =   document.getElementById('selectedIcon').value;
+    let frequentTasks   =   document.getElementById('frequentTasks');
+    console.log(frequentTasks.value);
+
+    if(frequentTasks.value!='0'){
+        taskName = frequentTasks.value;
+    }
    
     fillTasksTobeDone(id,taskName,exp,selectedIcon);
     
     //FuncionInsertar en la BD
+
+
+    
 
     insertDB(id,taskName,exp,selectedIcon);
     document.getElementById('icon_prefix').value='';

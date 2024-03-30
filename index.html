@@ -67,9 +67,15 @@
       <div class="row">
         <form class="col s12">
           <div class="row">
+
+
+            
+
+
+
             <div class="input-field col s12 m8">
               <i class="material-icons prefix">edit</i>
-              <input id="icon_prefix" required type="text" class="validate" autocomplete="off" autofocus>
+              <input id="icon_prefix"  type="text" class="validate" autocomplete="off" autofocus>
               <label for="icon_prefix">Task</label>
             </div>
 
@@ -91,6 +97,16 @@
                 <option value="5">Personal Projects</option>
                 <option value="6">Shopping</option>
                 <option value="7">Job</option>
+              </select>
+
+
+              <select required id="frequentTasks">
+                <option value="0"  selected>Frequent Task</option>
+                <option value="Bañarme">Bañarme</option>
+                <option value="Ejercicio">Ejercicio</option>
+                <option value="Lavar Dientes">Lavar Dientes</option>
+                <option value="Lavar Ropa">Lavar Ropa</option>
+                <option value="Lavar Trastes">Lavar Trastes</option>
               </select>
             </div>
           
@@ -122,13 +138,16 @@
   <div class="container">
     <div class="section">
       <div class="row center">
-        <h3 class="header col s12 titles">I Have To:</h3>
+        <h3 class="header col s12 titles" id="totalPendingTask">I Have To:</h3>
       </div>
 
+
+      
       <!--   Icon Section   -->
       <div class="row" id="tasksToBeDone">
+        
         <!--
-
+      
         <div class="col s12 m4">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="material-icons">attach_money</i></h2>
