@@ -38,7 +38,12 @@ p{
 
 
 #datePicker{
-  color: blue
+  color: #03a9f4!important;
+  background: teal;
+}
+
+.datepicker-day-button{
+  color: black;
 }
 
 .picker__day.picker__day--today{
@@ -130,6 +135,10 @@ div.col.l6.s12, div.col.s12.m7{
   font-size: 1.2rem;
   border: 10px solid #03a9f4;
 }
+
+
+
+        
 
 
 /*Fonts*/
