@@ -128,7 +128,7 @@ div.col.l6.s12, div.col.s12.m7{
 .card-exp.icon-block p i{
   color: blue;
   font-size: 1.2rem;
-  border: 10px solid red;
+  border: 10px solid #03a9f4;
 }
 
 
@@ -142,7 +142,10 @@ div.col.l6.s12, div.col.s12.m7{
 }
 
 #getTasks{
-  border: 1px solid red;
+  border: 3px solid teal;
+  color: #ff9800 ;
+  background-color: white!important;
+  font-weight: bold;
 }
 
 
