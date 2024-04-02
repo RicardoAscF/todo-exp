@@ -26,17 +26,135 @@
    firebase.initializeApp(firebaseConfig);
    const db = firebase.firestore();
    const dbGet = getFirestore(app); //conexion a la BD
- 
+
+
+// ********************************************  Variables Globales ***********************************************
+let now = Date.now();
+let today = new Date(now)
+let currentMonth = today.getMonth().toString()+today.getFullYear().toString();
+let totalExpCurrentMonth = 0;
+let arrayTask = [];
+let arrayCompletedTasks = [];
+// Fin Variables Globales 
+// **************************************************************** Componentes ******************************************
+
+const addTaskBtn = document.getElementById('addTaskButton');
+let datePick = document.getElementById('datePicker');
+const getTaskBtn = document.getElementById('getTasks');
+let selectFrequent = document.getElementById('frequentTasks');
+//  Fin Componentes 
+// **************************************************************** Eventos ****************************************** 
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems);
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems, 'autoclose');
+});
 
-const addTaskBtn = document.getElementById('addTaskButton');
 addTaskBtn.addEventListener('click', ()=>{
     addTask();
 });
+
+
+getTaskBtn.addEventListener('click', ()=>{
+    getTask();
+});
+
+selectFrequent.addEventListener( 'change', (evt) => {
+    
+    let selectExp = document.getElementById('icon_time-exp');
+    switch (evt.target.value    ) {
+        case 'Bañarme':
+            selectExp.value = '10';
+        break;
+
+
+        case 'Cenar':
+            selectExp.value = '15';
+        break;
+
+        case 'Comer':
+            selectExp.value = '15';
+        break;
+
+        case 'Curso Linux':
+            selectExp.value = '30';
+        break;
+
+
+        case 'Desayunar':
+            selectExp.value = '15';
+        break;
+
+        case 'Ejercicio':
+            selectExp.value = '60';
+        break;
+
+
+        case 'Ir A Aurrera':
+            selectExp.value = '25';
+        break;
+
+        case 'Ir A Waldos':
+            selectExp.value = '20';
+        break;
+
+        case 'Ir Al Mercado':
+            selectExp.value = '25';
+        break;
+
+
+        case 'Lavar Baño':
+            selectExp.value = '5';
+        break;
+
+        case 'Lavar Dientes':
+            selectExp.value = '5';
+        break;
+
+        case 'Lavar Ropa':
+            selectExp.value = '15';
+        break;
+
+        case 'Lavar Trastes':
+            selectExp.value = '10';
+        break;
+
+        case 'Levantarme':
+            selectExp.value = '0';
+        break;
+
+        case 'Preparar Desayuno':
+            selectExp.value = '15';
+        break;
+
+        case 'Preparar Comida':
+            selectExp.value = '25';
+        break;
+
+        case 'Trapear':
+            selectExp.value = '5';
+        break;
+
+
+
+        default:
+            console.log('Nel');
+        break;
+    }
+    
+
+
+});//Evento Select Frequent Task
+// Fin Eventos 
+
+
+
+
+
 
 
 
@@ -66,6 +184,27 @@ function addTask(){
     console.log(document.getElementById('selectedIcon').value = '0');
     
 }//AddTask
+
+
+async function getTask(){
+console.log('get task');
+       
+    const querySnapshotCompleted = await getDocs(collection(dbGet, "completedTasks"));
+    querySnapshotCompleted.forEach((doc) => {
+        let objTasks2 = {
+            id:             doc.id,
+            taskName:       doc.data().taskName,
+            exp:            doc.data().exp,
+            selectedIcon:   doc.data().selectedIcon,
+            date:           doc.data().date
+        }
+        arrayCompletedTasks.push(objTasks2);
+    
+    }
+    );
+
+    sortArrayCompletedData();
+}//GetTask
 
 
 async function insertDB(id,taskName,exp,selectedIcon){
@@ -105,8 +244,7 @@ async function insertCompletedTasksDB(taskName,exp,selectedIcon,date){
 
 
 
-let arrayTask = [];
-let arrayCompletedTasks = [];
+
 const querySnapshot = await getDocs(collection(dbGet, "tasks"));
     querySnapshot.forEach((doc) => {
             let objTasks = {
@@ -121,29 +259,16 @@ const querySnapshot = await getDocs(collection(dbGet, "tasks"));
 );
 
 
-const querySnapshotCompleted = await getDocs(collection(dbGet, "completedTasks"));
-    querySnapshotCompleted.forEach((doc) => {
-            let objTasks2 = {
-                id:             doc.id,
-                taskName:       doc.data().taskName,
-                exp:            doc.data().exp,
-                selectedIcon:   doc.data().selectedIcon,
-                date:           doc.data().date
-            }
-        arrayCompletedTasks.push(objTasks2);
-        
-    }
-);
 
 
 
 
 sortArrayGetData();
-sortArrayCompletedData();
+
 
 function getData(){
     
-    console.log(arrayTask.length);
+    
     let totalPendingTask = document.getElementById('totalPendingTask');
     totalPendingTask.classList.add('blue-text');
     totalPendingTask.innerText = `${arrayTask.length}`
@@ -160,10 +285,14 @@ function sortArrayCompletedData(){
         return a.date - b.date;
     });
 
-
-    getCompletedData();
+     // Aqui se escoge si byMoth o todas
+    
+     getCompletedData();
     
 }//sortArrayCompletedData
+
+
+
 
 
 function sortArrayGetData(){
@@ -172,7 +301,7 @@ function sortArrayGetData(){
         return a.taskName - b.taskName;
     });
 
-    console.log('sorted');
+   
     getData();
 }//sortArrayCompletedData
 
@@ -180,28 +309,70 @@ function sortArrayGetData(){
 
 
 
-
 function getCompletedData(){
-    let totalExp=0;
-    arrayCompletedTasks.forEach(element => {
-        totalExp+=Number(element.exp);
-        fillCompletedTasks(element.id, element.taskName, element.exp, element.selectedIcon, element.date);
+    //byMonth trae el mes que mostrara
+
+    let totalExp=0; // ESte esta aqui por el momento pero deberia estar en su propio metodo porque calcula la EXP total
+    
+
+        arrayCompletedTasks.forEach(element => {
+        totalExp+=Number(element.exp); //Aqui hace la suma independientemente del mes
+        let taskMonth = new Date(Number(element.date));
+        if(currentMonth==taskMonth.getMonth().toString()+taskMonth.getFullYear().toString()){
+            totalExpCurrentMonth+=Number(element.exp);
+            fillCompletedTasks(element.id, element.taskName, element.exp, element.selectedIcon, element.date);
+        }else{
+            console.log('no');
+        }
     });
-    displayExp(totalExp);
+
+
+    displayExp(totalExp,totalExpCurrentMonth);
+
+
+
+}//GetcompletedData
+
+
+
+
+
+
+
+/// Una funcion similiar a esta para mostrar los mensuales
+function displayExp(totalExp,monthTotalExp){
+    let pTotalExp = document.getElementById('completedTask');
+    pTotalExp.innerText = ` ${totalExp} Exp`
+
+    let pTotalMonthExp = document.getElementById('completedMonthTask');
+    pTotalMonthExp.innerText = `Completed This Month - ${monthTotalExp} XP`;
+    
 }
 
 
+function displayMonthExp(totalExp,monthTotalExp){
+    let pTotalExp = document.getElementById('completedTask');
+    pTotalExp.innerText = ` ${totalExp} Exp`
 
-
-function displayToast(test){
-    M.toast({html: test})
+    let pTotalMonthExp = document.getElementById('completedMonthTask');
+    pTotalMonthExp.innerText = `Completed Selected Month - ${monthTotalExp} XP`;
+    
 }
 
 
-function displayExp(totalExp){
-    let h2TotalExp = document.getElementById('completedTask');
-    h2TotalExp.innerText = `Completed - Total Exp ${totalExp}`
-}
+/* 
+
+    function displayExp(totalExp){
+        let h2TotalExp = document.getElementById('completedTask');
+        h2TotalExp.innerText = `Completed - Total Exp ${totalExp}`
+    }
+
+*/
+
+
+
+
+
 
 function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
   
@@ -430,7 +601,7 @@ function reiniciarCompletedTask(){  // Cuando se Finaliza o Cancela una task
         taskToBeDone.removeChild(taskToBeDone.firstChild);
     }
     console.log('Entre a completed tasks');
-    getCompletedData();
+    
 }
 
 
@@ -594,17 +765,17 @@ async function taskCompleted(evt){
 
     setTimeout(function() { 
         reiniciarTaskToBeDone();
-    }, 500);
+    }, 1500);
 
     setTimeout(function() { 
         reiniciarCompletedTask();
-    }, 500);
+    }, 1500);
 
 
     setTimeout(function() { 
         fillCompletedTasks(idTask,taskName, exp, selectedIcon, date);
 
-    }, 500);
+    }, 1500);
 
    
     
@@ -624,3 +795,20 @@ async function taskCanceled(evt){
         displayToast('Canceled');
     }, 500);
 }
+
+
+function displayToast(test){
+    M.toast({html: test})
+}
+
+
+
+
+
+
+
+
+
+
+
+

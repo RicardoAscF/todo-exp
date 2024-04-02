@@ -37,6 +37,15 @@ p{
 }
 
 
+#datePicker{
+  color: blue
+}
+
+.picker__day.picker__day--today{
+  color: red;
+}
+
+
 div.card-stacked{
   color: red;
   background-color: white;
@@ -119,6 +128,7 @@ div.col.l6.s12, div.col.s12.m7{
 .card-exp.icon-block p i{
   color: blue;
   font-size: 1.2rem;
+  border: 10px solid red;
 }
 
 
@@ -129,6 +139,10 @@ div.col.l6.s12, div.col.s12.m7{
   font-optical-sizing: auto;
   font-weight: bold;
   font-style: normal;
+}
+
+#getTasks{
+  border: 1px solid red;
 }
 
 
