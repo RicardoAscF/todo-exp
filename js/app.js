@@ -29,12 +29,15 @@
 
 
 // ********************************************  Variables Globales ***********************************************
-let now = Date.now();
-let today = new Date(now)
-let currentMonth = today.getMonth().toString()+today.getFullYear().toString();
-let totalExpCurrentMonth = 0;
-let arrayTask = [];
-let arrayCompletedTasks = [];
+let now                     = Date.now();
+let today                   = new Date(now)
+let lastDay                 = 0; // Se obtiene desde firebase 
+let lastDayId               = 0;
+let currentMonth            = today.getMonth().toString()+today.getFullYear().toString();
+let totalExpCurrentMonth    = 0;
+let arrayTask               = [];
+let arrayCompletedTasks     = [];
+
 // Fin Variables Globales 
 // **************************************************************** Componentes ******************************************
 
@@ -249,10 +252,11 @@ datePick.addEventListener('change', (evt) =>{
                 setTimeout(function() { 
                     reiniciarTaskToBeDone();
                     displayToast('Canceled');
-                }, 500);
+                }, 1000);
             }
 // Fin Eventos Funciones eventos
 // **************************************************************** Funciones DB ****************************************** 
+
 
 
             async function insertDB(id,taskName,exp,selectedIcon){
@@ -270,6 +274,43 @@ datePick.addEventListener('change', (evt) =>{
                     
                 });
             }
+
+
+            async function insertDailyTasks(taskName,exp,selectedIcon2,date2){
+                console.log(taskName);
+                console.log(exp);
+                console.log(selectedIcon2);
+                console.log(date2);
+                db.collection("tasks").add({
+                    taskName: taskName,
+                    exp: exp,
+                    selectedIcon: selectedIcon2,
+                    date: date2
+                })
+                .then((docRef) => {
+                    displayToast(`${taskName} Added`);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }//insertDayliTaks
+
+
+
+            async function insertNewDay(){
+                await deleteDoc(doc(dbGet, "date", lastDayId));
+                db.collection("date").add({
+                    today: Date.now()
+                })
+                .then((docRef) => {
+                    displayToast('Adding Daily Tasks');
+                })
+                .catch((error) => {
+                    
+                });
+            }
+
+
 
 
             async function insertCompletedTasksDB(taskName,exp,selectedIcon,date){
@@ -301,7 +342,19 @@ datePick.addEventListener('change', (evt) =>{
                     
                 }
             );
-// Fin FUnciones DB
+
+
+            //Obtiene Current Day
+            const queryGetDay = await getDocs(collection(dbGet, "date"));
+                queryGetDay.forEach((doc) => {
+                    lastDay = doc.data().today;
+                    lastDayId = doc.id;
+                }
+            );
+
+
+
+// Fin Funciones DB
 // **************************************************************** Funciones Date ****************************************** 
             function getMonthString(month){
 
@@ -394,6 +447,70 @@ datePick.addEventListener('change', (evt) =>{
 
 
             }//getDayString
+
+            function getToday(){
+                console.log("im in funcion get today");
+                let currentDay = new Date(Date.now());
+                let DBCurrentDay = new Date(Number(lastDay));
+                if(currentDay.getDate() == DBCurrentDay.getDate()){
+                    console.log("Yes same day");
+                    console.log(lastDayId);
+                }else{
+                    console.log("different day");
+                    insertNewDay();//aqui mando los datos como argumento
+                    
+
+                    setTimeout(function() { 
+                        insertDailyTasks("Cenar", "15", "2", Date.now());
+                    }, 50);
+
+                    setTimeout(function() { 
+                        insertDailyTasks("Comer", "15", "2", Date.now());
+                    }, 50);
+
+
+                    setTimeout(function() { 
+                        insertDailyTasks("Desayunar", "15", "2", Date.now());
+                    }, 50);
+
+                    setTimeout(function() {  
+                        insertDailyTasks("Ejercicio", "60", "2", Date.now());
+                    }, 50);
+
+                    setTimeout(function() {  
+                        insertDailyTasks("Lavar Dientes", "5", "2", Date.now());
+                    }, 50)
+                    
+                    setTimeout(function() {  
+                        insertDailyTasks("Lavar Ropa", "20", "4", Date.now());
+                    }, 50);
+
+                    setTimeout(function() {  
+                        insertDailyTasks("Lavar Trastes", "15", "4", Date.now());
+                    }, 50);
+
+                    setTimeout(function() {  
+                        insertDailyTasks("Levantarme", "0", "2", Date.now());
+                    }, 50);
+
+                    setTimeout(function() {  
+                        insertDailyTasks("Lavar Trastes", "15", "4", Date.now());
+                    }, 50);
+
+                    setTimeout(function() {  
+                        insertDailyTasks("Preparar Desayuno", "15", "1", Date.now());
+                    }, 50);
+
+                    setTimeout(function() {  
+                        insertDailyTasks("Preparar COmida", "25", "1", Date.now());
+                    }, 50);
+
+                }//ELSE
+
+              
+            }//GetToday
+
+
 // Fin FUnciones Date
 // **************************************************************** Funciones Manipular DOM ******************************************
             function displayExp(totalExp,monthTotalExp){
@@ -504,6 +621,15 @@ datePick.addEventListener('change', (evt) =>{
                                     pPx.classList.add('red-text');
                                     pLight.classList.add('red-text');
                                     iMaterial_Icons.classList.add('red-text');
+                                }
+
+                                
+                                
+                                if(taskName=='Ejercicio'){
+                                    pTitles.classList.add('blue-text');
+                                    pPx.classList.add('blue-text');
+                                    pLight.classList.add('blue-text');
+                                    iMaterial_Icons.classList.add('blue-text');
                                 }
 
 
@@ -637,9 +763,11 @@ function sortArrayGetData(){
 
    
     getData();
+    getToday(); //Es la funcion para determinar un nuevo dia
 }//sortArrayCompletedData
 
 function getData(){
+    
     
     
     let totalPendingTask = document.getElementById('totalPendingTask');
@@ -703,7 +831,6 @@ function getCompletedData(month){
 
 
 
-
 function getSelectedIcon(selectedIcon){
          
 
@@ -745,9 +872,6 @@ function getSelectedIcon(selectedIcon){
 
 
 }// getselectedIcon
-
-
-
 
 
 

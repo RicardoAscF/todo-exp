@@ -57,8 +57,13 @@ div.card-stacked{
 }
 
 .red-text{
-  color: red!important;
+  color: red;
 }
+
+.green-text{
+  color: green;
+}
+
 
 
 .blue-text{
