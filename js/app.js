@@ -502,7 +502,7 @@ datePick.addEventListener('change', (evt) =>{
                     }, 50);
 
                     setTimeout(function() {  
-                        insertDailyTasks("Preparar COmida", "25", "1", Date.now());
+                        insertDailyTasks("Preparar Comida", "25", "1", Date.now());
                     }, 50);
 
                 }//ELSE
