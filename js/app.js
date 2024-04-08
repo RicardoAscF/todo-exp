@@ -143,6 +143,9 @@ selectFrequent.addEventListener( 'change', (evt) => {
         break;
 
 
+        
+
+
 
         default:
             console.log('Nel');
@@ -277,10 +280,6 @@ datePick.addEventListener('change', (evt) =>{
 
 
             async function insertDailyTasks(taskName,exp,selectedIcon2,date2){
-                console.log(taskName);
-                console.log(exp);
-                console.log(selectedIcon2);
-                console.log(date2);
                 db.collection("tasks").add({
                     taskName: taskName,
                     exp: exp,
@@ -632,6 +631,21 @@ datePick.addEventListener('change', (evt) =>{
                                     iMaterial_Icons.classList.add('blue-text');
                                 }
 
+                                if(taskName=='Ejercicio'){
+                                    pTitles.classList.add('blue-text');
+                                    pPx.classList.add('blue-text');
+                                    pLight.classList.add('blue-text');
+                                    iMaterial_Icons.classList.add('blue-text');
+                                }
+
+
+                                if(taskName.includes("X") && Number(exp)<0){
+                                    pTitles.classList.add('red-text');
+                                    pPx.classList.add('red-text');
+                                    pLight.classList.add('red-text');
+                                    iMaterial_Icons.classList.add('red-text');
+                                }
+
 
 
 
@@ -749,7 +763,9 @@ datePick.addEventListener('change', (evt) =>{
             }//fillTasksTobeDone
 
             function displayToast(test){
-                M.toast({html: test})
+                //var toastHTML = `<span class="card-panel teal lighten-2">${test}</span>`;
+               
+                M.toast({html: test, class: "rounded"})
             }
 // Fin Funciones Manipular DOM
 
@@ -867,6 +883,10 @@ function getSelectedIcon(selectedIcon){
 
     if(selectedIcon == '7'){
         return 'attach_money';
+    }
+
+    if(selectedIcon == '8'){
+        return 'do_not_disturb_alt';
     }
 
 
