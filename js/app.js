@@ -168,23 +168,24 @@ datePick.addEventListener('change', (evt) =>{
                 let exp             =   document.getElementById('icon_time-exp').value;
                 let selectedIcon    =   document.getElementById('selectedIcon').value;
                 let frequentTasks   =   document.getElementById('frequentTasks');
-                console.log(frequentTasks.value);
+                
 
                 if(frequentTasks.value!='0'){
                     taskName = frequentTasks.value;
                 }
             
-                fillTasksTobeDone(id,taskName,exp,selectedIcon,id);
+                
+                fillTasksTobeDone(id,taskName,exp,selectedIcon);
                 
                 //FuncionInsertar en la BD
 
 
                 
 
-                insertDB(id,taskName,exp,selectedIcon,0);
+                insertDB(id,taskName,exp,selectedIcon);
                 document.getElementById('icon_prefix').value='';
                 document.getElementById('icon_time-exp').value='';
-                console.log(document.getElementById('selectedIcon').value = '0');
+                
             }//AddTask
 
             //Completed Tasks
@@ -198,7 +199,8 @@ datePick.addEventListener('change', (evt) =>{
                         taskName:       doc.data().taskName,
                         exp:            doc.data().exp,
                         selectedIcon:   doc.data().selectedIcon,
-                        date:           doc.data().date
+                        date:           doc.data().date,
+                        dateFinished:   doc.data().dateFinished //es realidad es el satrted
                     }
                     arrayCompletedTasks.push(objTasks2);
                 
@@ -282,7 +284,7 @@ datePick.addEventListener('change', (evt) =>{
 
                 
                 displayToast('Task started');
-                insertDB(idTask,taskName,exp,icon,date);
+                insertDBStarted(idTask,taskName,exp,icon,date);
 
                
             }
@@ -294,7 +296,23 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-            async function insertDB(id,taskName,exp,selectedIcon,timeStart){
+            async function insertDB(id,taskName,exp,selectedIcon){
+                db.collection("tasks").add({
+                    id: id,
+                    taskName: taskName,
+                    exp: exp,
+                    selectedIcon, selectedIcon,
+                    date: Date.now()
+                })
+                .then((docRef) => {
+                    displayToast('Task Added');
+                })
+                .catch((error) => {
+                    
+                });
+            }
+
+            async function insertDBStarted(id,taskName,exp,selectedIcon,timeStart){
                 db.collection("tasks").add({
                     id: id,
                     taskName: taskName,
@@ -302,6 +320,7 @@ datePick.addEventListener('change', (evt) =>{
                     selectedIcon, selectedIcon,
                     date: Date.now(),
                     timeStart: timeStart
+
                 })
                 .then((docRef) => {
                     displayToast('Task Added');
@@ -369,11 +388,13 @@ datePick.addEventListener('change', (evt) =>{
                             id:             doc.id,
                             taskName:       doc.data().taskName,
                             exp:            doc.data().exp,
-                            selectedIcon:   doc.data().selectedIcon
+                            selectedIcon:   doc.data().selectedIcon,
+                            timeStart:           doc.data().timeStart
                         }
                     arrayTask.push(objTasks);
                     
                 }
+                
             );
 
 
@@ -557,7 +578,7 @@ datePick.addEventListener('change', (evt) =>{
                 
             }
 
-            function fillCompletedTasks(id,taskName,exp,selectedIcon,date){
+            function fillCompletedTasks(id,taskName,exp,selectedIcon,dateStarted,date){
             
                 
                 let divDate_Container               = document.getElementById('dateContainer');
@@ -587,8 +608,8 @@ datePick.addEventListener('change', (evt) =>{
                                         let pPx                                 = document.createElement('p');
                                         pPx.classList.add('titles');
                                         
-                                        let timestamp = new Date(Number(date));
-                                        pPx.innerText=`${getDayString(timestamp.getDay())} ${timestamp.getDate()} ${ getMonthString(timestamp.getMonth())} ${timestamp.getFullYear()} - ${getHMString(timestamp.getHours())}:${getHMString(timestamp.getMinutes())}`;
+                                        let timestamp = new Date(Number(dateStarted));
+                                        pPx.innerText=`${getDayString(timestamp.getDay())} ${timestamp.getDate()} ${ getMonthString(timestamp.getMonth())} ${timestamp.getFullYear()} - ${getHMString(timestamp.getHours())}:${getHMString(timestamp.getMinutes())}h`;
                                         //Date
                                             let iMaterial_Icons                         = document.createElement('i');
                                             iMaterial_Icons.classList.add('material-icons');
@@ -615,8 +636,10 @@ datePick.addEventListener('change', (evt) =>{
                                         let pTitles                                     = document.createElement('p');
                                         pTitles.classList.add('titles');
 
-                                        
-                                        pTitles.innerText=taskName;
+                                        console.log("eval");    
+                                        let startDate = new Date(Number(date));
+                                       
+                                        pTitles.innerText=`${taskName} -- ${startDate.getDate()} at ${getHMString(startDate.getHours())}: ${getHMString(startDate.getMinutes())}h`;
 
 
                                     let divCard_content2                  = document.createElement('div');
@@ -692,10 +715,6 @@ datePick.addEventListener('change', (evt) =>{
                                     iMaterial_Icons.classList.add('red-text');
                                 }
 
-
-
-
-
             }// fillCompletedTasks
 
             function reiniciarTaskToBeDone(){  // Cuando se Finaliza o Cancela una task
@@ -717,10 +736,9 @@ datePick.addEventListener('change', (evt) =>{
                 
             }
 
-            function fillTasksTobeDone(id,taskName,exp,selectedIcon,date){
+            function fillTasksTobeDone(id,taskName,exp,selectedIcon,date,dateStarted){
 
-                console.log("hereeeeee i am ");
-                console.log(date);
+                
                 let taskToBeDone            = document.getElementById('tasksToBeDone');
                 
 
@@ -752,10 +770,10 @@ datePick.addEventListener('change', (evt) =>{
                 iMaterial_icons.innerText=icon;//AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
                 iMaterial_iconsStart.innerText=getSelectedIcon("10");
 
-                if(date!="0"){
-                    iMaterial_iconsStart.innerText=getSelectedIcon("10");
+                if(date!=undefined){
+                    iMaterial_iconsStart.innerText=getSelectedIcon("11");
                 }else{
-                    iMaterial_iconsStart.innerText=getSelectedIcon("2");
+                    iMaterial_iconsStart.innerText=getSelectedIcon("10");
                 }
 
                 iMaterial_iconsStart.classList.add("start-task", "blue-text");
@@ -866,9 +884,11 @@ function getData(){
     let totalPendingTask = document.getElementById('totalPendingTask');
     totalPendingTask.classList.add('blue-text');
     totalPendingTask.innerText = `${arrayTask.length}`
-
+    
     arrayTask.forEach(element => {
-        fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.date);
+        console.log("GetData");
+        console.log(element);
+        fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart);
     });
 }
 
@@ -896,7 +916,7 @@ function getCompletedData(month){
             let taskMonth = new Date(Number(element.date));
             if(currentMonth==taskMonth.getMonth().toString()+taskMonth.getFullYear().toString()){
                 totalExpCurrentMonth+=Number(element.exp);
-                fillCompletedTasks(element.id, element.taskName, element.exp, element.selectedIcon, element.date);
+                fillCompletedTasks(element.id, element.taskName, element.exp, element.selectedIcon, element.date, element.dateFinished);
             }
         });
     }else{
@@ -906,7 +926,7 @@ function getCompletedData(month){
             let taskMonth = new Date(Number(element.date));
             if(month==taskMonth.getMonth().toString()+taskMonth.getFullYear().toString()){
                 totalExpCurrentMonth+=Number(element.exp);
-                fillCompletedTasks(element.id, element.taskName, element.exp, element.selectedIcon, element.date);
+                fillCompletedTasks(element.id, element.taskName, element.exp, element.selectedIcon, element.date, element.dateFinished);
             }else{
             console.log('no');
         }
@@ -971,7 +991,12 @@ function getSelectedIcon(selectedIcon){
     }
 
     if(selectedIcon == '10'){
-        return 'power_settings_new';
+        return 'play_arrow';
+    }
+
+
+    if(selectedIcon == '11'){
+        return 'hourglass_full';
     }
 
 
