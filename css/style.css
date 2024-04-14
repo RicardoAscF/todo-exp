@@ -61,13 +61,21 @@ div.card-stacked{
 }
 
 .green-text{
-  color: green;
+  color: #26a69a;
 }
 
 
 
 .blue-text{
   color: #03a9f4!important;
+}
+
+.start-task{
+  font-size: 2rem!important;
+}
+
+.start-task:hover{
+  cursor: pointer;
 }
 
 
@@ -87,7 +95,7 @@ div.card-stacked{
 
 .titles-completed{
   display: flex;
-  color: #03a9f4;
+  color: #03a9f4!important;
   justify-content: space-around;
   flex-direction: row-reverse;
 }
@@ -188,6 +196,10 @@ h1.title-h5{
   text-align: center;
   display: flex;
   justify-content: center;
+}
+
+.icon-delete-completed-task:hover{
+  cursor: pointer;
 }
 
 

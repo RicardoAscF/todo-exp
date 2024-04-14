@@ -174,14 +174,14 @@ datePick.addEventListener('change', (evt) =>{
                     taskName = frequentTasks.value;
                 }
             
-                fillTasksTobeDone(id,taskName,exp,selectedIcon);
+                fillTasksTobeDone(id,taskName,exp,selectedIcon,id);
                 
                 //FuncionInsertar en la BD
 
 
                 
 
-                insertDB(id,taskName,exp,selectedIcon);
+                insertDB(id,taskName,exp,selectedIcon,0);
                 document.getElementById('icon_prefix').value='';
                 document.getElementById('icon_time-exp').value='';
                 console.log(document.getElementById('selectedIcon').value = '0');
@@ -216,11 +216,12 @@ datePick.addEventListener('change', (evt) =>{
                 let exp             = evt.target.getAttribute('exp');
                 let selectedIcon    = evt.target.getAttribute('selectedIcon');
                 let date            = evt.target.getAttribute('date');
+                let dateFinshed     = evt.target.getAttribute('dateFinished'); //posible undefineded
 
                 
                 
                 await deleteDoc(doc(dbGet, "tasks", idTask));
-                insertCompletedTasksDB(taskName, exp, selectedIcon, date);
+                insertCompletedTasksDB(taskName, exp, selectedIcon, date, dateFinshed);
                 //insertCompletedTasksDB*();
 
             
@@ -257,18 +258,50 @@ datePick.addEventListener('change', (evt) =>{
                     displayToast('Canceled');
                 }, 1000);
             }
+
+            async function completedTaskCanceled(evt){
+                let idTask = evt.target.id;
+                await deleteDoc(doc(dbGet, "completedTasks", idTask));
+
+                displayToast('Canceling');
+
+
+                setTimeout(function() { 
+                    displayToast('Deleted');
+                }, 500);
+            }
+
+            async function taskStarted(evt){
+                let taskName = evt.target.getAttribute("taskname");
+                let exp = evt.target.getAttribute("exp");
+                let icon = evt.target.getAttribute("selectedIcon");
+                let date = evt.target.getAttribute("date");           
+                let idTask = evt.target.id;
+               
+                await deleteDoc(doc(dbGet, "tasks", idTask));
+
+                
+                displayToast('Task started');
+                insertDB(idTask,taskName,exp,icon,date);
+
+               
+            }
+
+
+
 // Fin Eventos Funciones eventos
 // **************************************************************** Funciones DB ****************************************** 
 
 
 
-            async function insertDB(id,taskName,exp,selectedIcon){
+            async function insertDB(id,taskName,exp,selectedIcon,timeStart){
                 db.collection("tasks").add({
                     id: id,
                     taskName: taskName,
                     exp: exp,
                     selectedIcon, selectedIcon,
-                    date: Date.now()
+                    date: Date.now(),
+                    timeStart: timeStart
                 })
                 .then((docRef) => {
                     displayToast('Task Added');
@@ -312,13 +345,14 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-            async function insertCompletedTasksDB(taskName,exp,selectedIcon,date){
+            async function insertCompletedTasksDB(taskName,exp,selectedIcon,date,dateFinished){
             
                 db.collection("completedTasks").add({
                     taskName: taskName,
                     exp: exp,
                     selectedIcon, selectedIcon,
-                    date: date
+                    date: date,
+                    dateFinished:dateFinished
                 })
                 .then((docRef) => {
                     
@@ -492,9 +526,7 @@ datePick.addEventListener('change', (evt) =>{
                         insertDailyTasks("Levantarme", "0", "2", Date.now());
                     }, 50);
 
-                    setTimeout(function() {  
-                        insertDailyTasks("Lavar Trastes", "15", "4", Date.now());
-                    }, 50);
+                  
 
                     setTimeout(function() {  
                         insertDailyTasks("Preparar Desayuno", "15", "1", Date.now());
@@ -502,6 +534,10 @@ datePick.addEventListener('change', (evt) =>{
 
                     setTimeout(function() {  
                         insertDailyTasks("Preparar Comida", "25", "1", Date.now());
+                    }, 50);
+
+                    setTimeout(function() {  
+                        insertDailyTasks("Curso Linux 30 minutos", "30", "5", Date.now());
                     }, 50);
 
                 }//ELSE
@@ -558,6 +594,15 @@ datePick.addEventListener('change', (evt) =>{
                                             iMaterial_Icons.classList.add('material-icons');
                                             iMaterial_Icons.innerText=getSelectedIcon(selectedIcon);
 
+                                            let iMaterial_IconsX                         = document.createElement('i');
+                                            iMaterial_IconsX.classList.add('material-icons',"red-text", "icon-delete-completed-task");
+                                            iMaterial_IconsX.innerText=getSelectedIcon("9");
+                                            iMaterial_IconsX.setAttribute("id", id );
+
+                                            iMaterial_IconsX.addEventListener('click', (evt) =>{
+                                                completedTaskCanceled(evt);
+                                            });
+
                                         
                                             
 
@@ -587,7 +632,7 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-                                divCard_content2.appendChild(pLight);//Fecha
+                                divCard_content2.appendChild(pLight);
                                 divCard_content.appendChild(pTitles);
                                 
                                 //divCard_content.appendChild(pTitles);
@@ -598,8 +643,9 @@ datePick.addEventListener('change', (evt) =>{
                                 divCard_expIcon_block.appendChild(pPx);
 
 
-
+                                divCard_content2.appendChild(iMaterial_IconsX);
                                 divCard_content2.appendChild(iMaterial_Icons);
+                                
 
                                 
                                 divCardStacked.appendChild(divCard_content2);
@@ -631,7 +677,7 @@ datePick.addEventListener('change', (evt) =>{
                                     iMaterial_Icons.classList.add('blue-text');
                                 }
 
-                                if(taskName=='Ejercicio'){
+                                if(taskName=='Lavar Dientes'){
                                     pTitles.classList.add('blue-text');
                                     pPx.classList.add('blue-text');
                                     pLight.classList.add('blue-text');
@@ -671,8 +717,10 @@ datePick.addEventListener('change', (evt) =>{
                 
             }
 
-            function fillTasksTobeDone(id,taskName,exp,selectedIcon){
+            function fillTasksTobeDone(id,taskName,exp,selectedIcon,date){
 
+                console.log("hereeeeee i am ");
+                console.log(date);
                 let taskToBeDone            = document.getElementById('tasksToBeDone');
                 
 
@@ -694,10 +742,37 @@ datePick.addEventListener('change', (evt) =>{
                 iMaterial_icons.classList.add('material-icons');
 
 
+                let iMaterial_iconsStart         = document.createElement('i');
+                iMaterial_iconsStart.classList.add('material-icons');
+
+
                 let icon=getSelectedIcon(selectedIcon);
 
 
                 iMaterial_icons.innerText=icon;//AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+                iMaterial_iconsStart.innerText=getSelectedIcon("10");
+
+                if(date!="0"){
+                    iMaterial_iconsStart.innerText=getSelectedIcon("10");
+                }else{
+                    iMaterial_iconsStart.innerText=getSelectedIcon("2");
+                }
+
+                iMaterial_iconsStart.classList.add("start-task", "blue-text");
+
+                iMaterial_iconsStart.setAttribute('id', id);
+                iMaterial_iconsStart.setAttribute('taskName', taskName);
+                iMaterial_iconsStart.setAttribute('exp', exp);
+                iMaterial_iconsStart.setAttribute('selectedIcon', selectedIcon);
+                iMaterial_iconsStart.setAttribute('date', Date.now());
+
+                iMaterial_iconsStart.addEventListener('click', (evt) =>{
+                    taskStarted(evt);
+                });
+
+               
+
+        
 
                 let h5CenterTitles          = document.createElement('h5');
                 h5CenterTitles.classList.add('center', 'titles');
@@ -714,6 +789,7 @@ datePick.addEventListener('change', (evt) =>{
                 aDone.setAttribute('exp', exp);
                 aDone.setAttribute('selectedIcon', selectedIcon);
                 aDone.setAttribute('date', Date.now());
+                aDone.setAttribute('dateFinished', date);
                 aDone.addEventListener('click', (evt) =>{
                     taskCompleted(evt);
                 });
@@ -722,7 +798,7 @@ datePick.addEventListener('change', (evt) =>{
                 iDone.classList.add('material-icons', 'right');
                 iDone.innerText='check_box';
 
-
+                ///////////////////////////////////////////////////////////////////////////////////////////// Evento
                 let aCancel                 = document.createElement('a');
                 aCancel.classList.add('waves-effect','waves-light','btn-small', 'red');
                 aCancel.innerText='Cancel';
@@ -751,6 +827,7 @@ datePick.addEventListener('change', (evt) =>{
 
                 h2CenterLight_blue_text.appendChild(iMaterial_icons);
 
+                divIcon_BlockCard_Task.appendChild(iMaterial_iconsStart);
                 divIcon_BlockCard_Task.appendChild(h2CenterLight_blue_text);
                 divIcon_BlockCard_Task.appendChild(h5CenterTitles);
                 divIcon_BlockCard_Task.appendChild(divCard_Task_Buttons);
@@ -791,7 +868,7 @@ function getData(){
     totalPendingTask.innerText = `${arrayTask.length}`
 
     arrayTask.forEach(element => {
-        fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon);
+        fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.date);
     });
 }
 
@@ -887,6 +964,14 @@ function getSelectedIcon(selectedIcon){
 
     if(selectedIcon == '8'){
         return 'do_not_disturb_alt';
+    }
+
+    if(selectedIcon == '9'){
+        return 'close';
+    }
+
+    if(selectedIcon == '10'){
+        return 'power_settings_new';
     }
 
 
