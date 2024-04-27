@@ -516,24 +516,24 @@ datePick.addEventListener('change', (evt) =>{
                     
 
                     setTimeout(function() { 
-                        insertDailyTasks("Cenar", "15", "2", Date.now());
+                        insertDailyTasks("Cenar", "15", "3", Date.now());
                     }, 50);
 
                     setTimeout(function() { 
-                        insertDailyTasks("Comer", "15", "2", Date.now());
+                        insertDailyTasks("Comer", "15", "3", Date.now());
                     }, 50);
 
 
                     setTimeout(function() { 
-                        insertDailyTasks("Desayunar", "15", "2", Date.now());
+                        insertDailyTasks("Desayunar", "15", "3", Date.now());
                     }, 50);
 
                     setTimeout(function() {  
-                        insertDailyTasks("Ejercicio", "60", "2", Date.now());
+                        insertDailyTasks("Ejercicio", "60", "3", Date.now());
                     }, 50);
 
                     setTimeout(function() {  
-                        insertDailyTasks("Lavar Dientes", "5", "2", Date.now());
+                        insertDailyTasks("Lavar Dientes", "5", "3", Date.now());
                     }, 50)
                     
                     setTimeout(function() {  
@@ -545,7 +545,7 @@ datePick.addEventListener('change', (evt) =>{
                     }, 50);
 
                     setTimeout(function() {  
-                        insertDailyTasks("Levantarme", "0", "2", Date.now());
+                        insertDailyTasks("Levantarme", "0", "3", Date.now());
                     }, 50);
 
                   
