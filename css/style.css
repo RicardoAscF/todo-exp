@@ -56,10 +56,6 @@ div.card-stacked{
   background-color: white;
 }
 
-.red-text{
-  color: red;
-}
-
 .green-text{
   color: #26a69a;
 }
@@ -68,6 +64,16 @@ div.card-stacked{
 
 .blue-text{
   color: #03a9f4!important;
+}
+
+
+.red-text{
+  color: red!important;
+}
+
+
+.black-text{
+  color: #000!important;
 }
 
 .start-task{
@@ -203,3 +209,11 @@ h1.title-h5{
 }
 
 
+
+.daysWD li:first-of-type{
+  font-size: 2rem;
+}
+
+.daysWD{
+  font-size: 1.4rem;
+}

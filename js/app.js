@@ -37,6 +37,10 @@ let currentMonth            = today.getMonth().toString()+today.getFullYear().to
 let totalExpCurrentMonth    = 0;
 let arrayTask               = [];
 let arrayCompletedTasks     = [];
+let arrayLastDone           = [
+    {name: "Ejercicio", last:0},
+    {name: "Lavar Baño", last:0}
+]
 
 // Fin Variables Globales 
 // **************************************************************** Componentes ******************************************
@@ -239,10 +243,7 @@ datePick.addEventListener('change', (evt) =>{
                 }, 1500);
 
 
-                setTimeout(function() { 
-                    fillCompletedTasks(idTask,taskName, exp, selectedIcon, date);
-
-                }, 1500);
+           
 
             
                 
@@ -568,6 +569,9 @@ datePick.addEventListener('change', (evt) =>{
 
 
 // Fin FUnciones Date
+
+//Actvidades para registrar last Day
+   
 // **************************************************************** Funciones Manipular DOM ******************************************
             function displayExp(totalExp,monthTotalExp){
                 let pTotalExp = document.getElementById('completedTask');
@@ -578,9 +582,47 @@ datePick.addEventListener('change', (evt) =>{
                 
             }
 
+
+            function taskActivityLog(){
+                let i = 0;
+                arrayLastDone.forEach(element => {
+                    console.log("for each activity log");
+                    console.log(element);
+
+                    //Aqui se soluciona el bug para las fechas que se repiten en la lista
+                    let last = new Date(Number(arrayLastDone[i].last))
+                    let li = document.createElement("li");
+                    li.classList.add("titles", "daysWD");
+                    li.innerText=`${element.name} - ${last.getDate()} ${getMonthString(last.getMonth())} ${last.getFullYear()} ${getHMString(last.getHours())}:${getHMString(last.getMinutes())}`;
+                    let listDaysWD = document.getElementById("listDaysWD");
+                    listDaysWD.appendChild(li);
+                    i++;
+                });
+                
+            }
+
             function fillCompletedTasks(id,taskName,exp,selectedIcon,dateStarted,date){
             
+                // AQUI solo llenar la uultima fecha, el metodo append debe estar fuera de aqui para que solo hay una "LI" por actividad
+                if(taskName=="Ejercicio"){
+                    console.log(arrayLastDone[0].last);
+                    if(dateStarted>arrayLastDone[0].last){
+                        arrayLastDone[0].last=dateStarted;
+                    }
                 
+                }
+
+
+                if(taskName=="Lavar Baño"){
+                    console.log(arrayLastDone[1].last);
+                    if(dateStarted>arrayLastDone[1].last){
+                        arrayLastDone[1].last=dateStarted;
+                    }
+                
+                }
+                
+            
+
                 let divDate_Container               = document.getElementById('dateContainer');
                 divDate_Container.classList.add('date-container');
                 
@@ -770,6 +812,8 @@ datePick.addEventListener('change', (evt) =>{
                 iMaterial_icons.innerText=icon;//AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
                 iMaterial_iconsStart.innerText=getSelectedIcon("10");
 
+              
+
                 if(date!=undefined){
                     iMaterial_iconsStart.innerText=getSelectedIcon("11");
                 }else{
@@ -834,7 +878,7 @@ datePick.addEventListener('change', (evt) =>{
                 p.classList.add('light', 'tektur');
                 p.innerText = `${exp} EXP`; //AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
 
-
+                
 
                 //////////////////////////////  Agrega los 'i' a los 'a'
                 aDone.appendChild(iDone);
@@ -851,6 +895,12 @@ datePick.addEventListener('change', (evt) =>{
                 divIcon_BlockCard_Task.appendChild(divCard_Task_Buttons);
                 divIcon_BlockCard_Task.appendChild(p);
 
+                console.log("SERA RED");
+                console.log(selectedIcon);
+                if( selectedIcon==="11"){
+                    iMaterial_iconsStart.classList.add("red-text");
+                    console.log("IIITTTT SSSS REEED");
+                }
 
                 divColS12M4.appendChild(divIcon_BlockCard_Task);
 
@@ -889,8 +939,10 @@ function getData(){
         console.log("GetData");
         console.log(element);
         fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart);
+        
     });
 }
+
 
 //Codigo Ordenar Array
 function sortArrayCompletedData(){
@@ -937,7 +989,9 @@ function getCompletedData(month){
     
     displayExp(totalExp,totalExpCurrentMonth);
     totalExpCurrentMonth=0;
+    taskActivityLog();
 }//GetcompletedData
+
 
 
 
@@ -968,17 +1022,17 @@ function getSelectedIcon(selectedIcon){
         return 'home';
     }
 
-    if(selectedIcon == '5'){
+    if(selectedIcon == '5'){ //personal projectas
         return 'computer';
     }
 
 
-    if(selectedIcon == '6'){
+    if(selectedIcon == '6'){ //shopping
         return 'shopping_cart';
     }
 
 
-    if(selectedIcon == '7'){
+    if(selectedIcon == '7'){ //job
         return 'attach_money';
     }
 
@@ -986,11 +1040,11 @@ function getSelectedIcon(selectedIcon){
         return 'do_not_disturb_alt';
     }
 
-    if(selectedIcon == '9'){
+    if(selectedIcon == '9'){  // X
         return 'close';
     }
 
-    if(selectedIcon == '10'){
+    if(selectedIcon == '10'){ 
         return 'play_arrow';
     }
 
@@ -1002,9 +1056,3 @@ function getSelectedIcon(selectedIcon){
 
 
 }// getselectedIcon
-
-
-
-
-
-
