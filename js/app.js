@@ -39,7 +39,16 @@ let arrayTask               = [];
 let arrayCompletedTasks     = [];
 let arrayLastDone           = [
     {name: "Ejercicio", last:0},
-    {name: "Lavar Baño", last:0}
+    {name: "Lavar Baño", last:0},
+    {name: "Lavar Dientes", last:0},
+    {name: "Barrer", last:0},
+    {name: "Trapear", last:0},
+    {name: "Levantarme", last:0},
+    {name: "Sin X", last:0},
+    {name: "Sin X Talk", last:0},
+    {name: "Curso ONE", last:0},
+    {name: "Curso Linux", last:0},
+    {name: "Mas de 2 horas en el celular", last:0},
 ]
 
 // Fin Variables Globales 
@@ -78,6 +87,9 @@ selectFrequent.addEventListener( 'change', (evt) => {
             selectExp.value = '10';
         break;
 
+        case 'Barrer':
+            selectExp.value = '10';
+        break;
 
         case 'Cenar':
             selectExp.value = '15';
@@ -117,23 +129,7 @@ selectFrequent.addEventListener( 'change', (evt) => {
         case 'Lavar Baño':
             selectExp.value = '5';
         break;
-
-        case 'Lavar Dientes':
-            selectExp.value = '5';
-        break;
-
-        case 'Lavar Ropa':
-            selectExp.value = '15';
-        break;
-
-        case 'Lavar Trastes':
-            selectExp.value = '10';
-        break;
-
-        case 'Levantarme':
-            selectExp.value = '0';
-        break;
-
+        
         case 'Preparar Desayuno':
             selectExp.value = '15';
         break;
@@ -562,6 +558,14 @@ datePick.addEventListener('change', (evt) =>{
                         insertDailyTasks("Curso Linux 30 minutos", "30", "5", Date.now());
                     }, 50);
 
+                    setTimeout(function() {  
+                        insertDailyTasks("Curso ONE 30 minutos", "30", "5", Date.now());
+                    }, 50);
+
+                    setTimeout(function() {  
+                        insertDailyTasks("Curso Shell 30 minutos", "30", "7", Date.now());
+                    }, 50);
+
                 }//ELSE
 
               
@@ -612,7 +616,7 @@ datePick.addEventListener('change', (evt) =>{
                 
                 }
 
-
+                //Hay un arreglo deobjetos al inicio llenar tarea ahi tambien
                 if(taskName=="Lavar Baño"){
                     console.log(arrayLastDone[1].last);
                     if(dateStarted>arrayLastDone[1].last){
@@ -620,8 +624,100 @@ datePick.addEventListener('change', (evt) =>{
                     }
                 
                 }
+
+                if(taskName=="Lavar Dientes"){
+                    console.log(arrayLastDone[2].last);
+                    if(dateStarted>arrayLastDone[2].last){
+                        arrayLastDone[2].last=dateStarted;
+                    }
                 
+                }
+
+                if(taskName=="Barrer"){
+                    console.log(arrayLastDone[3].last);
+                    if(dateStarted>arrayLastDone[3].last){
+                        arrayLastDone[3].last=dateStarted;
+                    }
+                
+                }
+
+
+                if(taskName=="Trapear"){
+                    console.log(arrayLastDone[4].last);
+                    if(dateStarted>arrayLastDone[4].last){
+                        arrayLastDone[4].last=dateStarted;
+                    }
+                
+                }
+
+
+                            
+                if(taskName.includes("Levantarme")){
+                    console.log(arrayLastDone[5].last);
+                    console.log("exp aquiiii");
+                    console.log(exp);
+                    let a = Number(exp);
+                    console.log(typeof a);
+                    console.log(a);
             
+                    if(a<0){
+                        if(dateStarted>arrayLastDone[5].last){
+                            arrayLastDone[5].last=dateStarted;
+                        }
+                    }
+                    
+                
+                }
+
+
+                if(taskName.includes("X")){
+                    if(dateStarted>arrayLastDone[6].last){
+                        arrayLastDone[6].last=dateStarted;
+                    }
+                }
+
+                if(taskName.includes("Talk")){
+                    if(dateStarted>arrayLastDone[7].last){
+                        arrayLastDone[7].last=dateStarted;
+                    }
+                }
+            
+                if(taskName.includes("Curso ONE")){
+                    console.log(arrayLastDone[8].last);
+                    if(dateStarted>arrayLastDone[8].last){
+                        arrayLastDone[8].last=dateStarted;
+                    }
+                
+                }
+
+                if(taskName.includes("Curso Linux")){
+                    console.log(arrayLastDone[9].last);
+                    if(dateStarted>arrayLastDone[9].last){
+                        arrayLastDone[9].last=dateStarted;
+                    }
+                
+                }
+
+
+                            
+                if(taskName.includes("Horas en el celular")){
+                    console.log(arrayLastDone[10].last);
+                    console.log("exp aquiiii");
+                    console.log(exp);
+                    let a = Number(exp);
+                    console.log(typeof a);
+                    console.log(a);
+            
+                    if(a<0){
+                        if(dateStarted>arrayLastDone[10].last){
+                            arrayLastDone[10].last=dateStarted;
+                        }
+                    }
+                    
+                
+                }
+
+
 
                 let divDate_Container               = document.getElementById('dateContainer');
                 divDate_Container.classList.add('date-container');
