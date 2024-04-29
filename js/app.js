@@ -567,7 +567,7 @@ datePick.addEventListener('change', (evt) =>{
                     }, 50);
 
                     setTimeout(function() {  
-                        insertDailyTasks("leer correos", "30", "7", Date.now());
+                        insertDailyTasks("leer correos Shell", "30", "7", Date.now());
                     }, 50);
 
                 }//ELSE
