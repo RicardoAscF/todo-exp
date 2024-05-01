@@ -609,9 +609,16 @@ datePick.addEventListener('change', (evt) =>{
                 
             }
 
-            function fillCompletedTasks(id,taskName,exp,selectedIcon,dateStarted,date){
-            
-                // AQUI solo llenar la uultima fecha, el metodo append debe estar fuera de aqui para que solo hay una "LI" por actividad
+
+            function fillLastDone(id,taskName,exp,selectedIcon,dateStarted,date){
+                if(taskName=="Ejercicio"){
+                    console.log(arrayLastDone[0].last);
+                    if(dateStarted>arrayLastDone[0].last){
+                        arrayLastDone[0].last=dateStarted;
+                    }
+                
+                }
+
                 if(taskName=="Ejercicio"){
                     console.log(arrayLastDone[0].last);
                     if(dateStarted>arrayLastDone[0].last){
@@ -720,6 +727,14 @@ datePick.addEventListener('change', (evt) =>{
                     
                 
                 }
+
+                
+            }
+
+            function fillCompletedTasks(id,taskName,exp,selectedIcon,dateStarted,date){
+            
+                // AQUI solo llenar la uultima fecha, el metodo append debe estar fuera de aqui para que solo hay una "LI" por actividad
+               
 
 
 
@@ -1025,7 +1040,7 @@ function sortArrayGetData(){
    
     getData();
     getToday(); //Es la funcion para determinar un nuevo dia
-}//sortArrayCompletedData
+}//
 
 function getData(){
     
@@ -1066,6 +1081,7 @@ function getCompletedData(month){
         arrayCompletedTasks.forEach(element => {
             totalExp+=Number(element.exp); //Aqui hace la suma independientemente del mes
             let taskMonth = new Date(Number(element.date));
+            fillLastDone(element.id, element.taskName, element.exp, element.selectedIcon, element.date, element.dateFinished);
             if(currentMonth==taskMonth.getMonth().toString()+taskMonth.getFullYear().toString()){
                 totalExpCurrentMonth+=Number(element.exp);
                 fillCompletedTasks(element.id, element.taskName, element.exp, element.selectedIcon, element.date, element.dateFinished);
@@ -1090,6 +1106,8 @@ function getCompletedData(month){
     displayExp(totalExp,totalExpCurrentMonth);
     totalExpCurrentMonth=0;
     taskActivityLog();
+    
+   
 }//GetcompletedData
 
 
