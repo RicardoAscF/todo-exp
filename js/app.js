@@ -49,6 +49,7 @@ let arrayLastDone           = [
     {name: "Curso ONE", last:0},
     {name: "Curso Linux", last:0},
     {name: "Mas de 2 horas en el celular", last:0},
+    {name: "Bañarme", last:0}
 ]
 
 // Fin Variables Globales 
@@ -69,6 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');
     var instances = M.Datepicker.init(elems, 'autoclose');
 });
+
+
 
 addTaskBtn.addEventListener('click', ()=>{
     addTask();
@@ -403,8 +406,7 @@ datePick.addEventListener('change', (evt) =>{
                 }
             );
 
-
-
+           
 // Fin Funciones DB
 // **************************************************************** Funciones Date ****************************************** 
             function getMonthString(month){
@@ -499,6 +501,18 @@ datePick.addEventListener('change', (evt) =>{
 
             }//getDayString
 
+            function isAlreadyAdded(taskActivityLog){
+                let task =  false;
+                alert("task activity lñog");
+                alert(taskActivityLog);
+                arrayTask.forEach(element => {
+                    if(element.taskName==taskActivityLog){
+                        task = true;
+                    }
+                });
+                return task;
+            }
+
             function getToday(){
                 console.log("im in funcion get today");
                 let currentDay = new Date(Date.now());
@@ -511,25 +525,84 @@ datePick.addEventListener('change', (evt) =>{
                     insertNewDay();//aqui mando los datos como argumento
                     
 
-                    setTimeout(function() { 
-                        insertDailyTasks("Cenar", "15", "3", Date.now());
+                    let arrayDailyTasks = [
+                        {taskName: "Cenar",exp:"15",icon:"3",date: Date.now()}
+                    ];
+
+                    //taskName,exp,selectedIcon2,date2
+                    arrayDailyTasks.forEach(element => {
+                        let a = isAlreadyAdded(element.taskName);
+                        alert("Eli");
+                        alert(a);
+                        if(!a){
+                            insertDailyTasks(element.taskName, element.exp, element.icon, Date.now());
+                           
+                        }else{
+                          
+                        }
+                    });
+
+                   
+
+
+                    /*
+                    
+                       setTimeout(function() { 
+                        let a = isAlreadyAdded("Cenar");
+                
+                        console.log(a);
+                        if(!isAlreadyAdded("Cenar")){
+                          
+                        }else{
+                            
+                            insertDailyTasks("Desayunar", "15", "3", Date.now());
+                        }
+                       
                     }, 50);
 
                     setTimeout(function() { 
-                        insertDailyTasks("Comer", "15", "3", Date.now());
+                        let a = isAlreadyAdded("Cenar");
+                
+                        console.log(a);
+                        if(!isAlreadyAdded("Cenar")){
+                          
+                        }else{
+                            
+                            insertDailyTasks("Desayunar", "15", "3", Date.now());
+                        }
+                       
+                    }, 50);
+
+                    setTimeout(function() { 
+                        let a = isAlreadyAdded("Cenar");
+                
+                        console.log(a);
+                        if(!isAlreadyAdded("Cenar")){
+                          
+                        }else{
+                            
+                            insertDailyTasks("Desayunar", "15", "3", Date.now());
+                        }
+                       
                     }, 50);
 
 
                     setTimeout(function() { 
-                        insertDailyTasks("Desayunar", "15", "3", Date.now());
+                        let a = isAlreadyAdded("Cenar");
+                
+                        console.log(a);
+                        if(!isAlreadyAdded("Cenar")){
+                          
+                        }else{
+                            
+                            insertDailyTasks("Lavar Dientes", "5", "3", Date.now());
+                        }
+                       
                     }, 50);
-
+                
+                
                     setTimeout(function() {  
-                        insertDailyTasks("Ejercicio", "60", "3", Date.now());
-                    }, 50);
-
-                    setTimeout(function() {  
-                        insertDailyTasks("Lavar Dientes", "5", "3", Date.now());
+                    
                     }, 50)
                     
                     setTimeout(function() {  
@@ -570,6 +643,16 @@ datePick.addEventListener('change', (evt) =>{
                         insertDailyTasks("leer correos Shell", "30", "7", Date.now());
                     }, 50);
 
+                    
+                    
+                    */
+                 
+
+                 
+                
+                 
+                    
+
                 }//ELSE
 
               
@@ -609,6 +692,8 @@ datePick.addEventListener('change', (evt) =>{
                 
             }
 
+        
+
 
             function fillLastDone(id,taskName,exp,selectedIcon,dateStarted,date){
                 if(taskName=="Ejercicio"){
@@ -619,13 +704,7 @@ datePick.addEventListener('change', (evt) =>{
                 
                 }
 
-                if(taskName=="Ejercicio"){
-                    console.log(arrayLastDone[0].last);
-                    if(dateStarted>arrayLastDone[0].last){
-                        arrayLastDone[0].last=dateStarted;
-                    }
-                
-                }
+
 
                 //Hay un arreglo deobjetos al inicio llenar tarea ahi tambien
                 if(taskName=="Lavar Baño"){
@@ -725,6 +804,15 @@ datePick.addEventListener('change', (evt) =>{
                         }
                     }
                     
+                
+                }
+
+
+                if(taskName.includes("Bañarme")){
+                    console.log(arrayLastDone[11].last);
+                    if(dateStarted>arrayLastDone[11].last){
+                        arrayLastDone[11].last=dateStarted;
+                    }
                 
                 }
 
