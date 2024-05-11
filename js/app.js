@@ -48,7 +48,7 @@ let arrayLastDone           = [
     {name: "Sin X Talk", last:0},
     {name: "Curso ONE", last:0},
     {name: "Curso Linux", last:0},
-    {name: "Mas de 2 horas en el celular", last:0},
+    {name: "Mas de 3 horas en el celular", last:0},
     {name: "Bañarme", last:0}
 ]
 
@@ -503,8 +503,6 @@ datePick.addEventListener('change', (evt) =>{
 
             function isAlreadyAdded(taskActivityLog){
                 let task =  false;
-                alert("task activity lñog");
-                alert(taskActivityLog);
                 arrayTask.forEach(element => {
                     if(element.taskName==taskActivityLog){
                         task = true;
@@ -526,133 +524,30 @@ datePick.addEventListener('change', (evt) =>{
                     
 
                     let arrayDailyTasks = [
-                        {taskName: "Cenar",exp:"15",icon:"3",date: Date.now()}
+                        {taskName: "Cenar",exp:"15",icon:"3",date: Date.now()},
+                        {taskName: "Desayunar",exp:"15",icon:"3",date: Date.now()},
+                        {taskName: "Lavar Dientes",exp:"5",icon:"3",date: Date.now()},
+                        {taskName: "Lavar Ropa",exp:"15",icon:"4",date: Date.now()},
+                        {taskName: "Lavar Trastes",exp:"15",icon:"4",date: Date.now()},
+                        {taskName: "Levantarme",exp:"0",icon:"3",date: Date.now()},
+                        {taskName: "Preparar Desayuno",exp:"15",icon:"1",date: Date.now()},
+                        {taskName: "Preparar Comida",exp:"25",icon:"1",date: Date.now()},
+                        {taskName: "Curso Linux 30 minutos",exp:"30",icon:"5",date: Date.now()},
+                        {taskName: "Curso ONE 30 minuto",exp:"30",icon:"5",date: Date.now()},
+                        {taskName: "Curso Shell 30 minutos",exp:"30",icon:"7",date: Date.now()},  
                     ];
 
                     //taskName,exp,selectedIcon2,date2
                     arrayDailyTasks.forEach(element => {
                         let a = isAlreadyAdded(element.taskName);
-                        alert("Eli");
-                        alert(a);
-                        if(!a){
-                            insertDailyTasks(element.taskName, element.exp, element.icon, Date.now());
-                           
-                        }else{
-                          
-                        }
+
+
+                        setTimeout(function() { 
+                            if(!a){
+                                insertDailyTasks(element.taskName, element.exp, element.icon, Date.now());
+                            }
+                        }, 50);
                     });
-
-                   
-
-
-                    /*
-                    
-                       setTimeout(function() { 
-                        let a = isAlreadyAdded("Cenar");
-                
-                        console.log(a);
-                        if(!isAlreadyAdded("Cenar")){
-                          
-                        }else{
-                            
-                            insertDailyTasks("Desayunar", "15", "3", Date.now());
-                        }
-                       
-                    }, 50);
-
-                    setTimeout(function() { 
-                        let a = isAlreadyAdded("Cenar");
-                
-                        console.log(a);
-                        if(!isAlreadyAdded("Cenar")){
-                          
-                        }else{
-                            
-                            insertDailyTasks("Desayunar", "15", "3", Date.now());
-                        }
-                       
-                    }, 50);
-
-                    setTimeout(function() { 
-                        let a = isAlreadyAdded("Cenar");
-                
-                        console.log(a);
-                        if(!isAlreadyAdded("Cenar")){
-                          
-                        }else{
-                            
-                            insertDailyTasks("Desayunar", "15", "3", Date.now());
-                        }
-                       
-                    }, 50);
-
-
-                    setTimeout(function() { 
-                        let a = isAlreadyAdded("Cenar");
-                
-                        console.log(a);
-                        if(!isAlreadyAdded("Cenar")){
-                          
-                        }else{
-                            
-                            insertDailyTasks("Lavar Dientes", "5", "3", Date.now());
-                        }
-                       
-                    }, 50);
-                
-                
-                    setTimeout(function() {  
-                    
-                    }, 50)
-                    
-                    setTimeout(function() {  
-                        insertDailyTasks("Lavar Ropa", "20", "4", Date.now());
-                    }, 50);
-
-                    setTimeout(function() {  
-                        insertDailyTasks("Lavar Trastes", "15", "4", Date.now());
-                    }, 50);
-
-                    setTimeout(function() {  
-                        insertDailyTasks("Levantarme", "0", "3", Date.now());
-                    }, 50);
-
-                  
-
-                    setTimeout(function() {  
-                        insertDailyTasks("Preparar Desayuno", "15", "1", Date.now());
-                    }, 50);
-
-                    setTimeout(function() {  
-                        insertDailyTasks("Preparar Comida", "25", "1", Date.now());
-                    }, 50);
-
-                    setTimeout(function() {  
-                        insertDailyTasks("Curso Linux 30 minutos", "30", "5", Date.now());
-                    }, 50);
-
-                    setTimeout(function() {  
-                        insertDailyTasks("Curso ONE 30 minutos", "30", "5", Date.now());
-                    }, 50);
-
-                    setTimeout(function() {  
-                        insertDailyTasks("Curso Shell 30 minutos", "30", "7", Date.now());
-                    }, 50);
-
-                    setTimeout(function() {  
-                        insertDailyTasks("leer correos Shell", "30", "7", Date.now());
-                    }, 50);
-
-                    
-                    
-                    */
-                 
-
-                 
-                
-                 
-                    
-
                 }//ELSE
 
               
