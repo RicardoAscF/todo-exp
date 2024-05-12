@@ -1,392 +1,437 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>Starter Template - Materialize</title>
 
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-  <!--Titulos-->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <title>Just Do It</title>
-  <link rel="manifest" href="manifest.json">
-</head>
-<body>
+    <!--Titulos-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
 
 
-  <!-- Nav -->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <title>Just Do It</title>
+    <link rel="manifest" href="manifest.json">
+  </head>
+  <body>
 
 
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Historico</a></li>
-        <li><a href="#">Total Exp</a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">Historico</a></li>
-        <li><a href="#">Total EXP</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-
-  <!-- Nav -->
+    <!-- Nav -->
 
 
-  <div class="section no-pad-bot" id="index-banner">
-   
-    <div class="container">
-      <div class="total-exp">
-        <p id="completedTask"></p>
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#">Historico</a></li>
+          <li><a href="#">Total Exp</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="#">Historico</a></li>
+          <li><a href="#">Total EXP</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
-      <br><br>
-      <h1 class="header center orange-text titles title-h5">Get Exp</h1>
-      <div class="row center title-h5">
-        <h5 class="header center col s12 light titles">By Completing Misions</h5>
-      </div>
+    </nav>
+
+    <!-- Nav -->
 
 
-      <div class="row center">
-        <h5 class="header col s12 light">New Task:</h5>
-      </div>
-
-
-
-      <!--Inputs -->
-      <div class="row">
-        <form class="col s12">
-          <div class="row">
-
-
-            
-
-
-
-            <div class="input-field col s12 m8">
-              <i class="material-icons prefix">edit</i>
-              <input id="icon_prefix"  type="text" class="validate" autocomplete="off" autofocus>
-              <label for="icon_prefix">Task</label>
-            </div>
-
-            <div class="input-field col s12 m2">  
-              <i class="material-icons prefix">access_time</i>
-              <input id="icon_time-exp" type="tel" class="validate" autocomplete="off" required value="0">
-              <label for="icon_telephone">Exp</label>
-            </div>
-
-            
-            
-            <div class="input-field col s12 m4">
-              <select required id="selectedIcon">
-                <option value="0"  selected>It is for</option>
-                <option value="1">Cooking</option>
-                <option value="2">Having Fun</option>
-                <option value="3">Healthcare</option>
-                <option value="4">House Work</option>
-                <option value="5">Personal Projects</option>
-                <option value="6">Shopping</option>
-                <option value="7">Job</option>
-                <option value="8">X</option>
-              </select>
-
-
-              <select required id="frequentTasks">
-                <option value="0"  selected>Frequent Task</option>
-                <option value="Bañarme">Bañarme</option>                      <!--10-->
-                <option value="Barrer">Bañarme</option>                       <!--10-->
-                <option value="Cenar">Cenar</option>                          <!--15-->
-                <option value="Comer">Comer</option>                          <!--15-->
-                <option value="Curso Linux">Curso Linux</option>              <!--30-->
-                <option value="Desayunar">Desayunar</option>                  <!--15-->
-                <option value="Ejercicio">Ejercicio</option>                  <!--60-->
-                <option value="Ir A Aurrera">Ir A Aurrera</option>            <!--25-->
-                <option value="Ir A Waldos">Ir A Waldos</option>             <!--20-->
-                <option value="Ir Al Mercado">Ir Al Mercado</option>          <!--25-->
-                <option value="Lavar Baño">Lavar Baño</option>                <!--5-->
-                <option value="Lavar Dientes">Lavar Dientes</option>          <!--5-->
-                <option value="Lavar Ropa">Lavar Ropa</option>                <!--15-->
-                <option value="Lavar Trastes">Lavar Trastes</option>          <!--10-->
-                <option value="Levantarme">Levantarme</option>                <!-- 0 -->
-                <option value="Preparar Desayuno">Preparar Desayuno</option>  <!--15-->
-                <option value="Preparar Comida">Preparar Comida</option>      <!--20-->
-                <option value="Trapear">Trapear</option>                      <!--10-->
-              </select>
-            </div>
-          
-          
-          
-
-
-          </div><!--Fin Form Rpw-->
-        </form>
-      </div>
-      <!--Inputs -->
-
-
-      <!--Button AddTask-->
-      <div class="row center">
-        <a
-          id="addTaskButton"
-          class="btn-large waves-effect waves-light orange">Add task</a>
-      </div>
-      <!--Button AddTask-->
-      <br><br>
-
-    </div>
-  </div>
-
-
-
-
-  <div class="container">
-    <div class="section">
-
-
-      <div class="row center">
-        <h3 class="header col s12 titles"><span>Remember To </span></h3>
-  
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center white-text"><i class="material-icons">mail_outline</i></h2>
-            <h5 class="center">Leer correos de Shell</h5>
-  
-          </div>
-        </div>
-  
-  
-  
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <div class="icons">
-              <h2 class="center light-blue-text"><i class="material-icons">border_color</i></h2>
-              <h2 class="center light-black-text"><i class="material-icons">brightness_3</i></h2>
-            </div>
-            <h5 class="center">Preparar lista de pendientes un dia antes</h5>
-  
-          </div>
-        </div>
-
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <div class="icons">
-              <h2 class="center "><i class="material-icons">watch</i></h2>
-              <h2 class="center green-text"><i class="material-icons">check</i></h2>
-            </div>
-            <h5 class="center">Usar cronometro para ser mas eficiente</h5>
-  
-          </div>
-        </div>
-
-  
-        <<div class="col s12 m4">
-          <div class="icon-block">
-            <div class="icons">
-              <h2 class="center light-black-text"><i class="material-icons">phone_android</i></h2>
-              <h2 class="center yellow-text"><i class="material-icons">warning</i></h2>
-            </div>
-            <h5 class="center">Tener cuidado al agarrar el cel de no distraerse</h5>
-  
-          </div>
-        </div>
-  
-      
-  
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center blue-text"><i class="material-icons">access_time</i></h2>
-            <h5 class="center">Empezar Ya, si es fácil que bueno, si es díficil, "Ey, tengo tiempo"</h5>
-  
-          </div>
-        </div>
-  
-  
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center black-text"><i class="material-icons">remove_red_eye</i></h2>
-            <h5 class="center">Ejercicios Visuales</h5>
-  
-          </div>
-        </div>
-  
-        
-      </div> <!---->
-
-
-
-    <div class="row center">
-      <h3 class="header col s12 titles"><span>I Have </span><span id="totalPendingTask"></span><span> Tasks To Do</span></h3>
-    </div>
-
-
-      
-      <!--   Icon Section   -->
-      <div class="row" id="tasksToBeDone">
-        
-        <!--
-      
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">attach_money</i></h2>
-            <h5 class="center">Study Oracle</h5>
-
-            <p class="light">50 EXP</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">accessibility</i></h2>
-            <h5 class="center">CCS Grid Course</h5>
-
-            <p class="light">25 EXP</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">shopping_cart</i></h2>
-            <h5 class="center">Go to buy milk</h5>
-
-            <p class="light">10 EXP</p>
-          </div>
-        </div>
-
-
-        <div class="col s12 m4">
-          <div class="icon-block card-task">
-            <h2 class="center light-blue-text"><i class="material-icons">insert_emoticon</i></h2>
-            <h5 class="center">See movies</h5>
-
-            <p class="light">10 EXP</p>
-          </div>
-        </div>
-
-
-
-        <div class="col s12 m4">
-          <div class="icon-block card-task">
-            <h2 class="center light-blue-text"><i class="material-icons">directions_bike</i></h2>
-            <h5 class="center tiles">Exercise</h5>
-            <div class="card-task-buttons">
-              <a class="waves-effect waves-light btn-small"><i class="material-icons right">check_box</i>Done</a>
-              <a class="waves-effect waves-light btn-small red"><i class="material-icons right">cancel</i>Cancel</a>
-            </div>
-            <p class="light tektur">10 EXP</p>
-          </div>
-        </div>
-
-
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">local_pizza</i></h2>
-            <h5 class="center">Cooking</h5>
-
-            <p class="light">10 EXP</p>
-          </div>
-        </div>
-
-
-
-
-
-
-          
-        -->
-
-  
-
-
-      </div><!--Fin Row-->
-
-    </div>
-    <br><br>
-
+    <div class="section no-pad-bot" id="index-banner">
     
-  </div>
+      <div class="container">
+        <div class="total-exp">
+          <p id="completedTask"></p>
+        </div>
+        <br><br>
+        <h1 class="header center orange-text titles title-h5">Get Exp</h1>
+        <div class="row center title-h5">
+          <h5 class="header center col s12 light titles">By Completing Misions</h5>
+        </div>
 
-  <footer class="page-footer orange">
 
-
-    <div class="container">
-      <div class="row">
-
-            <div class="activity-log">
-              <ul class="titles daysWD black-text" id="listDaysWD">
-                <li class="">Days witohut doing</li>
-                <li></li>
-              </ul>
-            </div>
-            <input type="text" class="datepicker" id="datePicker" placeholder="Select Month">
-            <h2 class="titles black-text" id="completedMonthTask">Completed</h2>
-            <div class="row center">
-              <a
-                id="getTasks"
-                class="btn-large waves-effect waves-light orange">Get Tasks</a>
-            </div>
-            <div class="date-container" id="dateContainer">
-              <!--
-
-                <h5 class="white-text titles">Date Lunes</h5>
-              <div class="col l6 s12">
-                <div class="col s12 m7">
-                  <div class="card horizontal">
-                    <div class="card-stacked">
-                      <div class="card-exp icon-block">
-                        <p class="px tektur">51 px <i class="material-icons">attach_money</i></p>
-                      </div>
-                      <div class="card-content">
-                        <p class="titles">Buy milkss</p>
-                      </div>
-                      <div class="card-content">
-                        <p class="light">Date</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div><!col 6 s12>-->
+        <div class="row center">
+          <h5 class="header col s12 light">New Task:</h5>
+        </div>
 
 
 
-
-
+        <!--Inputs -->
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
 
 
               
-            <div class="date-container"><!--date-container-->
-      </div><!--Row-->
-    </div><!--COntainer-->
-  </footer>
 
 
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
 
-  
-  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
-  <script type="module" src="js/app.js"></script>
-  
-  
+              <div class="input-field col s12 m8">
+                <i class="material-icons prefix">edit</i>
+                <input id="icon_prefix"  type="text" class="validate" autocomplete="off" autofocus>
+                <label for="icon_prefix">Task</label>
+              </div>
 
-  
-  </body>
-</html>
+              <div class="input-field col s12 m2">  
+                <i class="material-icons prefix">access_time</i>
+                <input id="icon_time-exp" type="tel" class="validate" autocomplete="off" required value="0">
+                <label for="icon_telephone">Exp</label>
+              </div>
+
+              
+              
+              <div class="input-field col s12 m4">
+                <select required id="selectedIcon">
+                  <option value="0"  selected>It is for</option>
+                  <option value="1">Cooking</option>
+                  <option value="2">Having Fun</option>
+                  <option value="3">Healthcare</option>
+                  <option value="4">House Work</option>
+                  <option value="5">Personal Projects</option>
+                  <option value="6">Shopping</option>
+                  <option value="7">Job</option>
+                  <option value="8">X</option>
+                </select>
+
+
+                <select required id="frequentTasks">
+                  <option value="0"  selected>Frequent Task</option>
+                  <option value="Bañarme">Bañarme</option>                      <!--10-->
+                  <option value="Barrer">Bañarme</option>                       <!--10-->
+                  <option value="Cenar">Cenar</option>                          <!--15-->
+                  <option value="Comer">Comer</option>                          <!--15-->
+                  <option value="Curso Linux">Curso Linux</option>              <!--30-->
+                  <option value="Desayunar">Desayunar</option>                  <!--15-->
+                  <option value="Ejercicio">Ejercicio</option>                  <!--60-->
+                  <option value="Ir A Aurrera">Ir A Aurrera</option>            <!--25-->
+                  <option value="Ir A Waldos">Ir A Waldos</option>             <!--20-->
+                  <option value="Ir Al Mercado">Ir Al Mercado</option>          <!--25-->
+                  <option value="Lavar Baño">Lavar Baño</option>                <!--5-->
+                  <option value="Lavar Dientes">Lavar Dientes</option>          <!--5-->
+                  <option value="Lavar Ropa">Lavar Ropa</option>                <!--15-->
+                  <option value="Lavar Trastes">Lavar Trastes</option>          <!--10-->
+                  <option value="Levantarme">Levantarme</option>                <!-- 0 -->
+                  <option value="Preparar Desayuno">Preparar Desayuno</option>  <!--15-->
+                  <option value="Preparar Comida">Preparar Comida</option>      <!--20-->
+                  <option value="Trapear">Trapear</option>                      <!--10-->
+                </select>
+              </div>
+            
+            
+            
+
+
+            </div><!--Fin Form Rpw-->
+          </form>
+        </div>
+        <!--Inputs -->
+
+
+        <!--Button AddTask-->
+        <div class="row center">
+          <a
+            id="addTaskButton"
+            class="btn-large waves-effect waves-light orange">Add task</a>
+        </div>
+        <!--Button AddTask-->
+        <br><br>
+
+      </div>
+    </div>
+
+
+
+
+    <div class="container">
+      <div class="section">
+
+
+        <div class="row center">
+          <h3 class="header col s12 titles"><span>Remember To </span></h3>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center black-text"><i class="material-icons">remove_red_eye</i></h2>
+              <h5 class="center">Ejercicios Visuales</h5>
+    
+            </div>
+          </div>
+
+
+        
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center white-text"><i class="material-icons">mail_outline</i></h2>
+              <h5 class="center">Leer correos de Shell</h5>
+    
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center red-text"><i class="material-icons">cancel</i></h2>
+              <h2 class="center red-text"><i class="material-icons">error</i></h2>
+              </div>
+              <h5 class="center">Los errores tienen consecuencias</h5>
+    
+            </div>
+          </div>
+
+
+
+    
+          
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center light-blue-text"><i class="material-icons">border_color</i></h2>
+                <h2 class="center light-black-text"><i class="material-icons">brightness_3</i></h2>
+              </div>
+              <h5 class="center">Preparar lista de pendientes un dia antes</h5>
+    
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center "><i class="material-icons">watch</i></h2>
+                <h2 class="center green-text"><i class="material-icons">check</i></h2>
+              </div>
+              <h5 class="center">Usar cronometro para ser mas eficiente</h5>
+    
+            </div>
+          </div>
+
+    
+          <<div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center light-black-text"><i class="material-icons">phone_android</i></h2>
+                <h2 class="center yellow-text"><i class="material-icons">warning</i></h2>
+              </div>
+              <h5 class="center">Tener cuidado al agarrar el cel de no distraerse</h5>
+    
+            </div>
+          </div>
+    
+        
+    
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center green-text"><i class="material-icons">access_time</i></h2>
+              <h5 class="center">Empezar Ya, si es fácil que bueno, si es díficil, "Ey, tengo tiempo"</h5>
+    
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center blue-text"><i class="material-icons">fast_forward</i></h2>
+                <h2 class="center yellow-text"><i class="material-icons">flash_auto</i></h2>
+              </div>
+              <h5 class="center">Tsuyoki De Ikou</h5>
+    
+            </div>
+          </div>
+
+    
+    
+          <div class="col s12 m4">
+            <div class="icon-block">
+
+              <div class="icons">
+                <h2 class="center red-text"><i class="material-icons">favorite_border</i></h2>
+                <h2 class="center black-text"><i class="material-icons">directions_run</i></h2>
+              </div>
+              <h5 class="center">El poder viene en respuesta a una necesidad, no a un deseo. Tienes que crear esa necesidads</h5>
+    
+            </div>
+          </div>
+
+        
+
+    
+          
+        </div> <!---->
+
+
+
+      <div class="row center">
+        <h3 class="header col s12 titles"><span>I Have </span><span id="totalPendingTask"></span><span> Tasks To Do</span></h3>
+      </div>
+
+
+        
+        <!--   Icon Section   -->
+        <div class="row" id="tasksToBeDone">
+          
+          <!--
+        
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center light-blue-text"><i class="material-icons">attach_money</i></h2>
+              <h5 class="center">Study Oracle</h5>
+
+              <p class="light">50 EXP</p>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center light-blue-text"><i class="material-icons">accessibility</i></h2>
+              <h5 class="center">CCS Grid Course</h5>
+
+              <p class="light">25 EXP</p>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center light-blue-text"><i class="material-icons">shopping_cart</i></h2>
+              <h5 class="center">Go to buy milk</h5>
+
+              <p class="light">10 EXP</p>
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block card-task">
+              <h2 class="center light-blue-text"><i class="material-icons">insert_emoticon</i></h2>
+              <h5 class="center">See movies</h5>
+
+              <p class="light">10 EXP</p>
+            </div>
+          </div>
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block card-task">
+              <h2 class="center light-blue-text"><i class="material-icons">directions_bike</i></h2>
+              <h5 class="center tiles">Exercise</h5>
+              <div class="card-task-buttons">
+                <a class="waves-effect waves-light btn-small"><i class="material-icons right">check_box</i>Done</a>
+                <a class="waves-effect waves-light btn-small red"><i class="material-icons right">cancel</i>Cancel</a>
+              </div>
+              <p class="light tektur">10 EXP</p>
+            </div>
+          </div>
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center light-blue-text"><i class="material-icons">local_pizza</i></h2>
+              <h5 class="center">Cooking</h5>
+
+              <p class="light">10 EXP</p>
+            </div>
+          </div>
+
+
+
+
+
+
+            
+          -->
+
+    
+
+
+        </div><!--Fin Row-->
+
+      </div>
+      <br><br>
+
+      
+    </div>
+
+    <footer class="page-footer orange">
+
+
+      <div class="container">
+        <div class="row">
+
+              <div class="activity-log">
+                <ul class="titles daysWD black-text" id="listDaysWD">
+                  <li class="">Days witohut doing</li>
+                  <li></li>
+                </ul>
+              </div>
+              <input type="text" class="datepicker" id="datePicker" placeholder="Select Month">
+              <h2 class="titles black-text" id="completedMonthTask">Completed</h2>
+              <div class="row center">
+                <a
+                  id="getTasks"
+                  class="btn-large waves-effect waves-light orange">Get Tasks</a>
+              </div>
+              <div class="date-container" id="dateContainer">
+                <!--
+
+                  <h5 class="white-text titles">Date Lunes</h5>
+                <div class="col l6 s12">
+                  <div class="col s12 m7">
+                    <div class="card horizontal">
+                      <div class="card-stacked">
+                        <div class="card-exp icon-block">
+                          <p class="px tektur">51 px <i class="material-icons">attach_money</i></p>
+                        </div>
+                        <div class="card-content">
+                          <p class="titles">Buy milkss</p>
+                        </div>
+                        <div class="card-content">
+                          <p class="light">Date</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!col 6 s12>-->
+
+
+
+
+
+
+
+                
+              <div class="date-container"><!--date-container-->
+        </div><!--Row-->
+      </div><!--COntainer-->
+    </footer>
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+
+    
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    <script type="module" src="js/app.js"></script>
+    
+    
+
+    
+    </body>
+  </html>
