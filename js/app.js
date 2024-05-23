@@ -36,6 +36,7 @@ let lastDayId               = 0;
 let currentMonth            = today.getMonth().toString()+today.getFullYear().toString();
 let totalExpCurrentMonth    = 0;
 let arrayTask               = [];
+let arrayDomesticTask       = [];
 let arrayCompletedTasks     = [];
 let arrayLastDone           = [
     {name: "Ejercicio", last:0},
@@ -151,7 +152,6 @@ selectFrequent.addEventListener( 'change', (evt) => {
 
 
         default:
-            console.log('Nel');
         break;
     }
     
@@ -248,7 +248,7 @@ datePick.addEventListener('change', (evt) =>{
                 
             }/// taskCompleted
 
-            async function taskCanceled(evt){
+            async function taskCanceled(evt,db){
                 let idTask = evt.target.id;
                 await deleteDoc(doc(dbGet, "tasks", idTask));
 
@@ -260,6 +260,11 @@ datePick.addEventListener('change', (evt) =>{
                     displayToast('Canceled');
                 }, 1000);
             }
+
+            
+
+
+
 
             async function completedTaskCanceled(evt){
                 let idTask = evt.target.id;
@@ -332,7 +337,7 @@ datePick.addEventListener('change', (evt) =>{
 
 
             async function insertDailyTasks(taskName,exp,selectedIcon2,date2){
-                db.collection("tasks").add({
+                db.collection("domesticTasks").add({
                     taskName: taskName,
                     exp: exp,
                     selectedIcon: selectedIcon2,
@@ -342,7 +347,6 @@ datePick.addEventListener('change', (evt) =>{
                     displayToast(`${taskName} Added`);
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
             }//insertDayliTaks
 
@@ -392,6 +396,23 @@ datePick.addEventListener('change', (evt) =>{
                             timeStart:           doc.data().timeStart
                         }
                     arrayTask.push(objTasks);
+                    
+                }
+                
+            );
+
+
+
+            const querySnapshotDomestic = await getDocs(collection(dbGet, "domesticTasks"));
+                querySnapshotDomestic.forEach((doc) => {
+                        let objTasks = {
+                            id:             doc.id,
+                            taskName:       doc.data().taskName,
+                            exp:            doc.data().exp,
+                            selectedIcon:   doc.data().selectedIcon,
+                            timeStart:           doc.data().timeStart
+                        }
+                    arrayDomesticTask.push(objTasks);
                     
                 }
                 
@@ -511,15 +532,15 @@ datePick.addEventListener('change', (evt) =>{
                 return task;
             }
 
+
+
+
             function getToday(){
-                console.log("im in funcion get today");
                 let currentDay = new Date(Date.now());
                 let DBCurrentDay = new Date(Number(lastDay));
                 if(currentDay.getDate() == DBCurrentDay.getDate()){
-                    console.log("Yes same day");
-                    console.log(lastDayId);
+                  
                 }else{
-                    console.log("different day");
                     insertNewDay();//aqui mando los datos como argumento
                     
 
@@ -572,8 +593,7 @@ datePick.addEventListener('change', (evt) =>{
             function taskActivityLog(){
                 let i = 0;
                 arrayLastDone.forEach(element => {
-                    console.log("for each activity log");
-                    console.log(element);
+                  
 
                     //Aqui se soluciona el bug para las fechas que se repiten en la lista
                     let last = new Date(Number(arrayLastDone[i].last))
@@ -592,7 +612,6 @@ datePick.addEventListener('change', (evt) =>{
 
             function fillLastDone(id,taskName,exp,selectedIcon,dateStarted,date){
                 if(taskName=="Ejercicio"){
-                    console.log(arrayLastDone[0].last);
                     if(dateStarted>arrayLastDone[0].last){
                         arrayLastDone[0].last=dateStarted;
                     }
@@ -603,7 +622,6 @@ datePick.addEventListener('change', (evt) =>{
 
                 //Hay un arreglo deobjetos al inicio llenar tarea ahi tambien
                 if(taskName=="Lavar Baño"){
-                    console.log(arrayLastDone[1].last);
                     if(dateStarted>arrayLastDone[1].last){
                         arrayLastDone[1].last=dateStarted;
                     }
@@ -611,7 +629,6 @@ datePick.addEventListener('change', (evt) =>{
                 }
 
                 if(taskName=="Lavar Dientes"){
-                    console.log(arrayLastDone[2].last);
                     if(dateStarted>arrayLastDone[2].last){
                         arrayLastDone[2].last=dateStarted;
                     }
@@ -619,7 +636,6 @@ datePick.addEventListener('change', (evt) =>{
                 }
 
                 if(taskName=="Barrer"){
-                    console.log(arrayLastDone[3].last);
                     if(dateStarted>arrayLastDone[3].last){
                         arrayLastDone[3].last=dateStarted;
                     }
@@ -628,7 +644,6 @@ datePick.addEventListener('change', (evt) =>{
 
 
                 if(taskName=="Trapear"){
-                    console.log(arrayLastDone[4].last);
                     if(dateStarted>arrayLastDone[4].last){
                         arrayLastDone[4].last=dateStarted;
                     }
@@ -638,12 +653,9 @@ datePick.addEventListener('change', (evt) =>{
 
                             
                 if(taskName.includes("Levantarme")){
-                    console.log(arrayLastDone[5].last);
-                    console.log("exp aquiiii");
-                    console.log(exp);
+                  
                     let a = Number(exp);
-                    console.log(typeof a);
-                    console.log(a);
+                
             
                     if(a<0){
                         if(dateStarted>arrayLastDone[5].last){
@@ -668,7 +680,6 @@ datePick.addEventListener('change', (evt) =>{
                 }
             
                 if(taskName.includes("Curso ONE")){
-                    console.log(arrayLastDone[8].last);
                     if(dateStarted>arrayLastDone[8].last){
                         arrayLastDone[8].last=dateStarted;
                     }
@@ -676,7 +687,6 @@ datePick.addEventListener('change', (evt) =>{
                 }
 
                 if(taskName.includes("Curso Linux")){
-                    console.log(arrayLastDone[9].last);
                     if(dateStarted>arrayLastDone[9].last){
                         arrayLastDone[9].last=dateStarted;
                     }
@@ -686,12 +696,9 @@ datePick.addEventListener('change', (evt) =>{
 
                             
                 if(taskName.includes("Horas en el celular")){
-                    console.log(arrayLastDone[10].last);
-                    console.log("exp aquiiii");
-                    console.log(exp);
+                   
                     let a = Number(exp);
-                    console.log(typeof a);
-                    console.log(a);
+                  
             
                     if(a<0){
                         if(dateStarted>arrayLastDone[10].last){
@@ -704,7 +711,6 @@ datePick.addEventListener('change', (evt) =>{
 
 
                 if(taskName.includes("Bañarme")){
-                    console.log(arrayLastDone[11].last);
                     if(dateStarted>arrayLastDone[11].last){
                         arrayLastDone[11].last=dateStarted;
                     }
@@ -776,7 +782,6 @@ datePick.addEventListener('change', (evt) =>{
                                         let pTitles                                     = document.createElement('p');
                                         pTitles.classList.add('titles');
 
-                                        console.log("eval");    
                                         let startDate = new Date(Number(date));
                                        
                                         pTitles.innerText=`${taskName} -- ${startDate.getDate()} at ${getHMString(startDate.getHours())}: ${getHMString(startDate.getMinutes())}h`;
@@ -862,17 +867,14 @@ datePick.addEventListener('change', (evt) =>{
                 while (taskToBeDone.firstChild) {
                     taskToBeDone.removeChild(taskToBeDone.firstChild);
                 }
-                console.log('entre a normal');
                 getData();
             }
 
             function reiniciarCompletedTask(){  
-                console.log('Reiniciando');
                 let taskToBeDone            = document.getElementById('dateContainer');
                 while (taskToBeDone.firstChild) {
                     taskToBeDone.removeChild(taskToBeDone.firstChild);
                 }
-                console.log('Entre a completed tasks');
                 
             }
 
@@ -880,6 +882,139 @@ datePick.addEventListener('change', (evt) =>{
 
                 
                 let taskToBeDone            = document.getElementById('tasksToBeDone');
+                
+
+                let divColS12M4             = document.createElement('div');
+                divColS12M4.classList.add('col', 's12', 'm4');
+                
+
+
+
+                let divIcon_BlockCard_Task  = document.createElement('div');
+                divIcon_BlockCard_Task.classList.add('icon-block', 'card-task');   
+
+
+
+                let h2CenterLight_blue_text = document.createElement('h2');
+                h2CenterLight_blue_text.classList.add('center', 'light-blue-text');
+
+                let iMaterial_icons         = document.createElement('i');
+                iMaterial_icons.classList.add('material-icons');
+
+
+                let iMaterial_iconsStart         = document.createElement('i');
+                iMaterial_iconsStart.classList.add('material-icons');
+
+
+                let icon=getSelectedIcon(selectedIcon);
+
+
+                iMaterial_icons.innerText=icon;//AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+                iMaterial_iconsStart.innerText=getSelectedIcon("10");
+
+              
+
+                if(date!=undefined){
+                    iMaterial_iconsStart.innerText=getSelectedIcon("11");
+                }else{
+                    iMaterial_iconsStart.innerText=getSelectedIcon("10");
+                }
+
+                iMaterial_iconsStart.classList.add("start-task", "blue-text");
+
+                iMaterial_iconsStart.setAttribute('id', id);
+                iMaterial_iconsStart.setAttribute('taskName', taskName);
+                iMaterial_iconsStart.setAttribute('exp', exp);
+                iMaterial_iconsStart.setAttribute('selectedIcon', selectedIcon);
+                iMaterial_iconsStart.setAttribute('date', Date.now());
+
+                iMaterial_iconsStart.addEventListener('click', (evt) =>{
+                    taskStarted(evt);
+                });
+
+               
+
+        
+
+                let h5CenterTitles          = document.createElement('h5');
+                h5CenterTitles.classList.add('center', 'titles');
+                h5CenterTitles.innerText=taskName;
+
+                let divCard_Task_Buttons    = document.createElement('div');
+                divCard_Task_Buttons.classList.add('card-task-buttons');
+
+                let aDone                   = document.createElement('a');
+                aDone.classList.add('waves-effect','waves-light','btn-small');
+                aDone.innerText='Done';
+                aDone.setAttribute('id', id);
+                aDone.setAttribute('taskName', taskName);
+                aDone.setAttribute('exp', exp);
+                aDone.setAttribute('selectedIcon', selectedIcon);
+                aDone.setAttribute('date', Date.now());
+                aDone.setAttribute('dateFinished', date);
+                aDone.addEventListener('click', (evt) =>{
+                    taskCompleted(evt);
+                });
+
+                let iDone = document.createElement('i');
+                iDone.classList.add('material-icons', 'right');
+                iDone.innerText='check_box';
+
+                ///////////////////////////////////////////////////////////////////////////////////////////// Evento
+                let aCancel                 = document.createElement('a');
+                aCancel.classList.add('waves-effect','waves-light','btn-small', 'red');
+                aCancel.innerText='Cancel';
+                aCancel.setAttribute('id', id);
+
+                aCancel.addEventListener('click', (evt) =>{
+                    taskCanceled(evt,"domesticTasks");
+                });
+
+                let iCancel = document.createElement('i');
+                iCancel.classList.add('material-icons', 'right');
+                iCancel.innerText = 'cancel';
+
+                let p                       = document.createElement('p');
+                p.classList.add('light', 'tektur');
+                p.innerText = `${exp} EXP`; //AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+                
+
+                //////////////////////////////  Agrega los 'i' a los 'a'
+                aDone.appendChild(iDone);
+                aCancel.appendChild(iCancel);
+
+                divCard_Task_Buttons.appendChild(aDone);
+                divCard_Task_Buttons.appendChild(aCancel);
+
+                h2CenterLight_blue_text.appendChild(iMaterial_icons);
+
+                divIcon_BlockCard_Task.appendChild(iMaterial_iconsStart);
+                divIcon_BlockCard_Task.appendChild(h2CenterLight_blue_text);
+                divIcon_BlockCard_Task.appendChild(h5CenterTitles);
+                divIcon_BlockCard_Task.appendChild(divCard_Task_Buttons);
+                divIcon_BlockCard_Task.appendChild(p);
+
+                if( selectedIcon==="11"){
+                    iMaterial_iconsStart.classList.add("red-text");
+                }
+
+                divColS12M4.appendChild(divIcon_BlockCard_Task);
+
+                taskToBeDone.appendChild(divColS12M4);
+            }//fillTasksTobeDone
+
+
+
+
+
+
+
+
+            function fillDomesticTasksTobeDone(id,taskName,exp,selectedIcon,date,dateStarted){
+
+                
+                let taskToBeDone            = document.getElementById('DomesticTasksToBeDone');
                 
 
                 let divColS12M4             = document.createElement('div');
@@ -993,17 +1128,20 @@ datePick.addEventListener('change', (evt) =>{
                 divIcon_BlockCard_Task.appendChild(divCard_Task_Buttons);
                 divIcon_BlockCard_Task.appendChild(p);
 
-                console.log("SERA RED");
-                console.log(selectedIcon);
                 if( selectedIcon==="11"){
                     iMaterial_iconsStart.classList.add("red-text");
-                    console.log("IIITTTT SSSS REEED");
                 }
 
                 divColS12M4.appendChild(divIcon_BlockCard_Task);
 
                 taskToBeDone.appendChild(divColS12M4);
             }//fillTasksTobeDone
+
+
+
+
+
+
 
             function displayToast(test){
                 //var toastHTML = `<span class="card-panel teal lighten-2">${test}</span>`;
@@ -1032,13 +1170,26 @@ function getData(){
     let totalPendingTask = document.getElementById('totalPendingTask');
     totalPendingTask.classList.add('blue-text');
     totalPendingTask.innerText = `${arrayTask.length}`
+
+
+    let totalPendingDomesticTask = document.getElementById('totalPendingDomesticTask');
+    totalPendingDomesticTask.classList.add('blue-text');
+    totalPendingDomesticTask.innerText = `${arrayDomesticTask.length}`
     
     arrayTask.forEach(element => {
-        console.log("GetData");
-        console.log(element);
         fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart);
         
     });
+
+
+    arrayDomesticTask.forEach(element => {
+        console.log("GetData");
+        console.log(element);
+        fillDomesticTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart);
+        
+    });
+
+
 }
 
 
@@ -1079,7 +1230,6 @@ function getCompletedData(month){
                 totalExpCurrentMonth+=Number(element.exp);
                 fillCompletedTasks(element.id, element.taskName, element.exp, element.selectedIcon, element.date, element.dateFinished);
             }else{
-            console.log('no');
         }
         });
 
