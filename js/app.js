@@ -250,7 +250,7 @@ datePick.addEventListener('change', (evt) =>{
 
             async function taskCanceled(evt,db){
                 let idTask = evt.target.id;
-                await deleteDoc(doc(dbGet, "tasks", idTask));
+                await deleteDoc(doc(dbGet, db, idTask));
 
                 displayToast('Canceling');
 
@@ -967,7 +967,7 @@ datePick.addEventListener('change', (evt) =>{
                 aCancel.setAttribute('id', id);
 
                 aCancel.addEventListener('click', (evt) =>{
-                    taskCanceled(evt,"domesticTasks");
+                    taskCanceled(evt,"tasks");
                 });
 
                 let iCancel = document.createElement('i');
@@ -1100,7 +1100,7 @@ datePick.addEventListener('change', (evt) =>{
                 aCancel.setAttribute('id', id);
 
                 aCancel.addEventListener('click', (evt) =>{
-                    taskCanceled(evt);
+                    taskCanceled(evt,"domesticTasks");
                 });
 
                 let iCancel = document.createElement('i');
