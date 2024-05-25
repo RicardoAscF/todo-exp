@@ -332,8 +332,8 @@ datePick.addEventListener('change', (evt) =>{
             }
 
 
-            async function insertDailyTasks(taskName,exp,selectedIcon2,date2){
-                db.collection("domesticTasks").add({
+            async function insertDailyTasks(taskName,exp,selectedIcon2,date2,table){
+                db.collection(table).add({
                     taskName: taskName,
                     exp: exp,
                     selectedIcon: selectedIcon2,
@@ -549,10 +549,17 @@ datePick.addEventListener('change', (evt) =>{
                         {taskName: "Levantarme",exp:"0",icon:"3",date: Date.now()},
                         {taskName: "Preparar Desayuno",exp:"15",icon:"1",date: Date.now()},
                         {taskName: "Preparar Comida",exp:"25",icon:"1",date: Date.now()},
+                      
+                    ];
+
+                    let arrayCursosTasks = [
                         {taskName: "Curso Linux 30 minutos",exp:"30",icon:"5",date: Date.now()},
                         {taskName: "Curso ONE 30 minuto",exp:"30",icon:"5",date: Date.now()},
                         {taskName: "Curso Shell 30 minutos",exp:"30",icon:"7",date: Date.now()},  
+                       
                     ];
+
+
 
                     //taskName,exp,selectedIcon2,date2
                     arrayDailyTasks.forEach(element => {
@@ -561,10 +568,18 @@ datePick.addEventListener('change', (evt) =>{
 
                         setTimeout(function() { 
                             if(!a){
-                                insertDailyTasks(element.taskName, element.exp, element.icon, Date.now());
+                                insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                             }
                         }, 50);
                     });
+
+                    arrayCursosTasks.forEach(element => {
+                        setTimeout(function() { 
+                            insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"tasks");
+                        }, 50);
+                    });
+
+                    
                 }//ELSE
 
               
@@ -859,11 +874,25 @@ datePick.addEventListener('change', (evt) =>{
             }// fillCompletedTasks
 
             function reiniciarTaskToBeDone(){  // Cuando se Finaliza o Cancela una task
+                
+
                 let taskToBeDone            = document.getElementById('tasksToBeDone');
+                let domesticTaskToBeDone            = document.getElementById('DomesticTasksToBeDone');
                 while (taskToBeDone.firstChild) {
                     taskToBeDone.removeChild(taskToBeDone.firstChild);
                 }
-                getData();
+
+                while (domesticTaskToBeDone.firstChild) {
+                    taskToBeDone.removeChild(taskToBeDone.firstChild);
+                }
+
+
+                setTimeout(function() { 
+                    getData();
+                }, 2000);
+
+
+                
             }
 
             function reiniciarCompletedTask(){  
@@ -1002,11 +1031,6 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-
-
-
-
-
             function fillDomesticTasksTobeDone(id,taskName,exp,selectedIcon,date,dateStarted){
 
                 
@@ -1135,10 +1159,6 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-
-
-
-
             function displayToast(test){
                 //var toastHTML = `<span class="card-panel teal lighten-2">${test}</span>`;
                
@@ -1238,10 +1258,6 @@ function getCompletedData(month){
     
    
 }//GetcompletedData
-
-
-
-
 
 
 
