@@ -262,10 +262,6 @@ datePick.addEventListener('change', (evt) =>{
             }
 
             
-
-
-
-
             async function completedTaskCanceled(evt){
                 let idTask = evt.target.id;
                 await deleteDoc(doc(dbGet, "completedTasks", idTask));
@@ -278,18 +274,18 @@ datePick.addEventListener('change', (evt) =>{
                 }, 500);
             }
 
-            async function taskStarted(evt){
+            async function taskStarted(evt,db){
                 let taskName = evt.target.getAttribute("taskname");
                 let exp = evt.target.getAttribute("exp");
                 let icon = evt.target.getAttribute("selectedIcon");
                 let date = evt.target.getAttribute("date");           
                 let idTask = evt.target.id;
                
-                await deleteDoc(doc(dbGet, "tasks", idTask));
+                await deleteDoc(doc(dbGet, db, idTask));
 
                 
                 displayToast('Task started');
-                insertDBStarted(idTask,taskName,exp,icon,date);
+                insertDBStarted(idTask,taskName,exp,icon,date,db);
 
                
             }
@@ -317,8 +313,8 @@ datePick.addEventListener('change', (evt) =>{
                 });
             }
 
-            async function insertDBStarted(id,taskName,exp,selectedIcon,timeStart){
-                db.collection("tasks").add({
+            async function insertDBStarted(id,taskName,exp,selectedIcon,timeStart,dba){
+                db.collection(dba).add({
                     id: id,
                     taskName: taskName,
                     exp: exp,
@@ -921,7 +917,7 @@ datePick.addEventListener('change', (evt) =>{
                 }
 
                 iMaterial_iconsStart.classList.add("start-task", "blue-text");
-
+                
                 iMaterial_iconsStart.setAttribute('id', id);
                 iMaterial_iconsStart.setAttribute('taskName', taskName);
                 iMaterial_iconsStart.setAttribute('exp', exp);
@@ -929,7 +925,7 @@ datePick.addEventListener('change', (evt) =>{
                 iMaterial_iconsStart.setAttribute('date', Date.now());
 
                 iMaterial_iconsStart.addEventListener('click', (evt) =>{
-                    taskStarted(evt);
+                    taskStarted(evt,"tasks");
                 });
 
                
@@ -1062,7 +1058,7 @@ datePick.addEventListener('change', (evt) =>{
                 iMaterial_iconsStart.setAttribute('date', Date.now());
 
                 iMaterial_iconsStart.addEventListener('click', (evt) =>{
-                    taskStarted(evt);
+                    taskStarted(evt,"domesticTasks");
                 });
 
                
