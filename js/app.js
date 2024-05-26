@@ -957,6 +957,10 @@ datePick.addEventListener('change', (evt) =>{
                 pAvance.classList.add('light', 'tektur');
                 pAvance.innerText = `${avance}%`; 
 
+                if(avance=="0"){
+                    pAvance.classList.add("red-text");
+                }
+
               
 
                 if(date!=undefined){
