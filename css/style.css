@@ -231,3 +231,13 @@ h1.title-h5{
   display: flex;
   justify-content: space-evenly;
 }
+
+.div-title{
+  
+  display: flex;
+  justify-content: space-around;
+}
+
+.input-title{
+  width: 30px!important;
+}

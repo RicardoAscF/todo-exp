@@ -256,7 +256,7 @@ datePick.addEventListener('change', (evt) =>{
 
 
                 setTimeout(function() { 
-                    reiniciarTaskToBeDone();
+                   // reiniciarTaskToBeDone();
                     displayToast('Canceled');
                 }, 1000);
             }
@@ -303,7 +303,8 @@ datePick.addEventListener('change', (evt) =>{
                     taskName: taskName,
                     exp: exp,
                     selectedIcon, selectedIcon,
-                    date: Date.now()
+                    date: Date.now(),
+                    avance: "0"
                 })
                 .then((docRef) => {
                     displayToast('Task Added');
@@ -389,8 +390,11 @@ datePick.addEventListener('change', (evt) =>{
                             taskName:       doc.data().taskName,
                             exp:            doc.data().exp,
                             selectedIcon:   doc.data().selectedIcon,
-                            timeStart:           doc.data().timeStart
+                            timeStart:      doc.data().timeStart,
+                            avance:         doc.data().avance,
                         }
+                        
+                        
                     arrayTask.push(objTasks);
                     
                 }
@@ -883,7 +887,7 @@ datePick.addEventListener('change', (evt) =>{
                 }
 
                 while (domesticTaskToBeDone.firstChild) {
-                    taskToBeDone.removeChild(taskToBeDone.firstChild);
+                    domesticTaskToBeDone.removeChild(taskToBeDone.firstChild);
                 }
 
 
@@ -903,7 +907,7 @@ datePick.addEventListener('change', (evt) =>{
                 
             }
 
-            function fillTasksTobeDone(id,taskName,exp,selectedIcon,date,dateStarted){
+            function fillTasksTobeDone(id,taskName,exp,selectedIcon,date,avance){
 
                 
                 let taskToBeDone            = document.getElementById('tasksToBeDone');
@@ -916,7 +920,18 @@ datePick.addEventListener('change', (evt) =>{
 
 
                 let divIcon_BlockCard_Task  = document.createElement('div');
-                divIcon_BlockCard_Task.classList.add('icon-block', 'card-task');   
+                divIcon_BlockCard_Task.classList.add('icon-block', 'card-task');  
+                
+                let divIcon_Title  = document.createElement('div'); //Para el icono y el % de avance
+                divIcon_Title.classList.add("div-title");
+
+
+                /*
+                let input_Title  = document.createElement('input'); //Para el icono y el % de avance
+                input_Title.classList.add("input-title");
+                */
+
+ 
 
 
 
@@ -936,6 +951,11 @@ datePick.addEventListener('change', (evt) =>{
 
                 iMaterial_icons.innerText=icon;//AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
                 iMaterial_iconsStart.innerText=getSelectedIcon("10");
+
+
+                let pAvance                       = document.createElement('i');
+                pAvance.classList.add('light', 'tektur');
+                pAvance.innerText = `${avance}%`; 
 
               
 
@@ -1014,7 +1034,15 @@ datePick.addEventListener('change', (evt) =>{
 
                 h2CenterLight_blue_text.appendChild(iMaterial_icons);
 
+                
+                divIcon_Title.appendChild(iMaterial_iconsStart);
+               // divIcon_Title.appendChild(input_Title);
+                divIcon_Title.appendChild(pAvance);
+                /*
                 divIcon_BlockCard_Task.appendChild(iMaterial_iconsStart);
+                divIcon_BlockCard_Task.appendChild(pAvance);
+                */
+                divIcon_BlockCard_Task.appendChild(divIcon_Title);
                 divIcon_BlockCard_Task.appendChild(h2CenterLight_blue_text);
                 divIcon_BlockCard_Task.appendChild(h5CenterTitles);
                 divIcon_BlockCard_Task.appendChild(divCard_Task_Buttons);
@@ -1193,14 +1221,15 @@ function getData(){
     totalPendingDomesticTask.innerText = `${arrayDomesticTask.length}`
     
     arrayTask.forEach(element => {
-        fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart);
+        console.log("GetData 4");
+        console.log(element);
+        fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart,element.avance);
         
     });
 
 
     arrayDomesticTask.forEach(element => {
-        console.log("GetData");
-        console.log(element);
+        
         fillDomesticTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart);
         
     });
