@@ -50,7 +50,10 @@ let arrayLastDone           = [
     {name: "Curso ONE", last:0},
     {name: "Curso Linux", last:0},
     {name: "Mas de 3 horas en el celular", last:0},
-    {name: "Bañarme", last:0}
+    {name: "Bañarme", last:0},
+    {name: "Afeitarme", last:0},
+    {name: "Lavar trapeador", last:0},
+    {name: "Lavar toalla", last:0}
 ]
 
 // Fin Variables Globales 
@@ -84,6 +87,9 @@ getTaskBtn.addEventListener('click', ()=>{
 });
 
 selectFrequent.addEventListener( 'change', (evt) => {
+
+    let name = document.getElementById("icon_prefix");
+    name.value = evt.target.value;
     
     let selectExp = document.getElementById('icon_time-exp');
     switch (evt.target.value    ) {
@@ -131,7 +137,7 @@ selectFrequent.addEventListener( 'change', (evt) => {
 
 
         case 'Lavar Baño':
-            selectExp.value = '5';
+            selectExp.value = '20';
         break;
         
         case 'Preparar Desayuno':
@@ -165,31 +171,44 @@ datePick.addEventListener('change', (evt) =>{
 });
 // Fin Eventos 
 // **************************************************************** Funciones Eventos ****************************************** 
+            
+            
+
             function addTask(){
                 let id              =   Date.now();
                 let taskName        =   document.getElementById('icon_prefix').value;
                 let exp             =   document.getElementById('icon_time-exp').value;
                 let selectedIcon    =   document.getElementById('selectedIcon').value;
                 let frequentTasks   =   document.getElementById('frequentTasks');
+                let checkBtn        =   document.getElementById('isDomestic');
                 
+                let icon_prefix = document.getElementById("icon_prefix");
+
+                icon_prefix.addEventListener("change", (evt) =>{
+                icon_prefix.value = frequentTasks.value;
+                });
 
                 if(frequentTasks.value!='0'){
-                    taskName = frequentTasks.value;
+                    
+                    
+                    taskName =   icon_prefix.value
                 }
-            
-                
-                fillTasksTobeDone(id,taskName,exp,selectedIcon);
-                
-                //FuncionInsertar en la BD
-
 
                 
-
-                insertDB(id,taskName,exp,selectedIcon);
-                document.getElementById('icon_prefix').value='';
-                document.getElementById('icon_time-exp').value='';
-                
+             
+                ////Aquiiii para agregra domestic task
+                if(checkBtn.checked){
+                    insertDB_Domestic(id,taskName,exp,selectedIcon);
+                }else{
+                    fillTasksTobeDone(id,taskName,exp,selectedIcon);
+                    //FuncionInsertar en la BD
+                    insertDB(id,taskName,exp,selectedIcon);
+                    document.getElementById('icon_prefix').value='';
+                    document.getElementById('icon_time-exp').value='';
+                } 
             }//AddTask
+
+
 
             //Completed Tasks
             async function getTask(){
@@ -213,7 +232,7 @@ datePick.addEventListener('change', (evt) =>{
                 sortArrayCompletedData();
             }
 
-            async function taskCompleted(evt){
+            async function taskCompleted(evt,dbDelete){
             
                 let idTask = evt.target.id;
 
@@ -225,7 +244,9 @@ datePick.addEventListener('change', (evt) =>{
 
                 
                 
-                await deleteDoc(doc(dbGet, "tasks", idTask));
+                await deleteDoc(doc(dbGet, dbDelete, idTask));
+                
+
                 insertCompletedTasksDB(taskName, exp, selectedIcon, date, dateFinshed);
                 //insertCompletedTasksDB*();
 
@@ -233,6 +254,7 @@ datePick.addEventListener('change', (evt) =>{
 
                 displayToast('Congrats');
 
+                /*
                 setTimeout(function() { 
                     reiniciarTaskToBeDone();
                 }, 1500);
@@ -240,6 +262,7 @@ datePick.addEventListener('change', (evt) =>{
                 setTimeout(function() { 
                     reiniciarCompletedTask();
                 }, 1500);
+                */
 
 
            
@@ -255,10 +278,16 @@ datePick.addEventListener('change', (evt) =>{
                 displayToast('Canceling');
 
 
+                /*
+                
                 setTimeout(function() { 
                    // reiniciarTaskToBeDone();
                     displayToast('Canceled');
                 }, 1000);
+
+                */
+
+
             }
 
             
@@ -314,6 +343,24 @@ datePick.addEventListener('change', (evt) =>{
                 });
             }
 
+
+            async function insertDB_Domestic(id,taskName,exp,selectedIcon){
+                db.collection("domesticTasks").add({
+                    id: id,
+                    taskName: taskName,
+                    exp: exp,
+                    selectedIcon, selectedIcon,
+                    date: Date.now(),
+                    avance: "0"
+                })
+                .then((docRef) => {
+                    displayToast('Task Added');
+                })
+                .catch((error) => {
+                    
+                });
+            }
+
             async function insertDBStarted(id,taskName,exp,selectedIcon,timeStart,dba){
                 db.collection(dba).add({
                     id: id,
@@ -321,7 +368,8 @@ datePick.addEventListener('change', (evt) =>{
                     exp: exp,
                     selectedIcon, selectedIcon,
                     date: Date.now(),
-                    timeStart: timeStart
+                    timeStart: timeStart,
+                    avance: "25"
 
                 })
                 .then((docRef) => {
@@ -338,7 +386,8 @@ datePick.addEventListener('change', (evt) =>{
                     taskName: taskName,
                     exp: exp,
                     selectedIcon: selectedIcon2,
-                    date: date2
+                    date: date2,
+                    avance: 0
                 })
                 .then((docRef) => {
                     displayToast(`${taskName} Added`);
@@ -545,22 +594,32 @@ datePick.addEventListener('change', (evt) =>{
                     
 
                     let arrayDailyTasks = [
+                        {taskName: "Bañarme",exp:"5",icon:"3",date: Date.now()},
                         {taskName: "Cenar",exp:"15",icon:"3",date: Date.now()},
                         {taskName: "Desayunar",exp:"15",icon:"3",date: Date.now()},
+                        {taskName: "Lavar Dientes",exp:"5",icon:"3",date: Date.now()},
+                        {taskName: "Lavar Dientes",exp:"5",icon:"3",date: Date.now()},
                         {taskName: "Lavar Dientes",exp:"5",icon:"3",date: Date.now()},
                         {taskName: "Lavar Ropa",exp:"15",icon:"4",date: Date.now()},
                         {taskName: "Lavar Trastes",exp:"15",icon:"4",date: Date.now()},
                         {taskName: "Levantarme",exp:"0",icon:"3",date: Date.now()},
                         {taskName: "Preparar Desayuno",exp:"15",icon:"1",date: Date.now()},
                         {taskName: "Preparar Comida",exp:"25",icon:"1",date: Date.now()},
-                      
+                        {taskName: "Tomar Pastilla",exp:"5",icon:"3",date: Date.now()},
+                        {taskName: "Curso Linux 30 minutos",exp:"30",icon:"5",date: Date.now()},
+                        {taskName: "Curso ONE 30 minuto",exp:"30",icon:"5",date: Date.now()},
+                        {taskName: "Curso Shell 30 minutos",exp:"30",icon:"7",date: Date.now()},
+                        {taskName: "Curso Francés 30 minutos",exp:"30",icon:"5",date: Date.now()},
+                        {taskName: "Curso Portugues 30 minutos",exp:"30",icon:"5",date: Date.now()},  
+                        {taskName: "Ejercicios Visuales",exp:"15",icon:"3",date: Date.now()},
+                        {taskName: "Lavar Baño",exp:"15",icon:"3",date: Date.now()},
+                        
                     ];
 
                     let arrayCursosTasks = [
-                        {taskName: "Curso Linux 30 minutos",exp:"30",icon:"5",date: Date.now()},
-                        {taskName: "Curso ONE 30 minuto",exp:"30",icon:"5",date: Date.now()},
-                        {taskName: "Curso Shell 30 minutos",exp:"30",icon:"7",date: Date.now()},  
-                       
+                        
+                        {taskName: "Ejercicio",exp:"15",icon:"3",date: Date.now()},
+                        {taskName: "Preparar Ropa",exp:"15",icon:"3",date: Date.now()},
                     ];
 
 
@@ -569,12 +628,21 @@ datePick.addEventListener('change', (evt) =>{
                     arrayDailyTasks.forEach(element => {
                         let a = isAlreadyAdded(element.taskName);
 
+                        let thisDate = new Date(Date.now());
+                      
 
                         setTimeout(function() { 
                             if(!a){
-                                insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
+                                if(element.taskName=="Lavar Baño"){
+                                    if(thisDate.getDay()==3 || thisDate.getDay()==6 ){
+                                        insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
+                                    }
+                                }else{
+                                    insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
+                                }
                             }
                         }, 50);
+
                     });
 
                     arrayCursosTasks.forEach(element => {
@@ -634,8 +702,8 @@ datePick.addEventListener('change', (evt) =>{
                 }
 
 
-
-                //Hay un arreglo deobjetos al inicio llenar tarea ahi tambien
+                //Aqui se agregan last done
+                //Hay un arreglo de objetos al inicio llenar tarea ahi tambien
                 if(taskName=="Lavar Baño"){
                     if(dateStarted>arrayLastDone[1].last){
                         arrayLastDone[1].last=dateStarted;
@@ -731,6 +799,31 @@ datePick.addEventListener('change', (evt) =>{
                     }
                 
                 }
+
+                if(taskName.includes("Afeitarme")){
+                    if(dateStarted>arrayLastDone[12].last){
+                        arrayLastDone[12].last=dateStarted;
+                    }
+                
+                }
+
+
+                if(taskName.includes("Lavar trapeador")){
+                    if(dateStarted>arrayLastDone[13].last){
+                        arrayLastDone[13].last=dateStarted;
+                    }
+                
+                }
+
+                if(taskName.includes("Lavar toalla")){
+                    if(dateStarted>arrayLastDone[14].last){
+                        arrayLastDone[14].last=dateStarted;
+                    }
+                
+                }
+
+
+
 
                 
             }
@@ -887,7 +980,7 @@ datePick.addEventListener('change', (evt) =>{
                 }
 
                 while (domesticTaskToBeDone.firstChild) {
-                    domesticTaskToBeDone.removeChild(taskToBeDone.firstChild);
+                    domesticTaskToBeDone.removeChild(domesticTaskToBeDone.firstChild);
                 }
 
 
@@ -1002,7 +1095,7 @@ datePick.addEventListener('change', (evt) =>{
                 aDone.setAttribute('date', Date.now());
                 aDone.setAttribute('dateFinished', date);
                 aDone.addEventListener('click', (evt) =>{
-                    taskCompleted(evt);
+                    taskCompleted(evt,"tasks");
                 });
 
                 let iDone = document.createElement('i');
@@ -1138,7 +1231,7 @@ datePick.addEventListener('change', (evt) =>{
                 aDone.setAttribute('date', Date.now());
                 aDone.setAttribute('dateFinished', date);
                 aDone.addEventListener('click', (evt) =>{
-                    taskCompleted(evt);
+                    taskCompleted(evt,"domesticTasks");
                 });
 
                 let iDone = document.createElement('i');

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>To do</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+  <!--Titulos-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+
+
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <title>Just Do It</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="shortcut icon" href="img/hour.svg">
+</head>
+<body>
+
+
+  <!-- Nav -->
+
+
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="historico.html">Historico</a></li>
+        <li><a href="#">Total Exp</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="historico.html">Historico</a></li>
+        <li><a href="#">Total EXP</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <!-- Nav -->
+
+
+  <div class="section no-pad-bot" id="index-banner">
+  
+    <div class="container">
+      <div class="total-exp">
+        <p id="completedTask"></p>
+      </div>
+      
+
+
+
+
+  <div class="container">
+    <div class="section">
+
+
+      <div class="row center">
+        
+
+        <ul class="collection with-header">
+            <li class="collection-header"><h4>Months</h4></li>
+            <li class="collection-item">
+                <div>Marzo 2024<a href="#!" class="secondary-content"><i class="">1198px</i></a>
+            </div></li>
+
+            <li class="collection-item">
+                <div>Abril 2024<a href="#!" class="secondary-content"><i class="">-22px</i></a>
+            </div></li>
+
+            <li class="collection-item">
+                <div>Mayo 2024<a href="#!" class="secondary-content"><i class="">-34px</i></a>
+            </div></li>
+
+            <li class="collection-item">
+                <div>Junio 2024<a href="#!" class="secondary-content"><i class="">-300px</i></a>
+            </div></li>
+          
+        </ul>
+
+
+      </div> <!---->
+
+      </div>
+        
+     
+        
+
+
+      </div><!--Fin Row-->
+
+    </div>
+
+
+   
+
+
+
+    <br><br>
+
+    
+  </div>
+
+  <footer class="page-footer orange">
+
+
+    <div class="container">
+      <div class="row">
+
+            <div class="activity-log">
+              <ul class="titles daysWD black-text" id="listDaysWD">
+                <li class="">Days witohut doing</li>
+                <li></li>
+              </ul>
+            </div>
+            <input type="text" class="datepicker" id="datePicker" placeholder="Select Month">
+            <h2 class="titles black-text" id="completedMonthTask">Completed</h2>
+            <div class="row center">
+              <a
+                id="getTasks"
+                class="btn-large waves-effect waves-light orange">Get Tasks</a>
+            </div>
+            <div class="date-container" id="dateContainer">
+              <!--
+
+                <h5 class="white-text titles">Date Lunes</h5>
+              <div class="col l6 s12">
+                <div class="col s12 m7">
+                  <div class="card horizontal">
+                    <div class="card-stacked">
+                      <div class="card-exp icon-block">
+                        <p class="px tektur">51 px <i class="material-icons">attach_money</i></p>
+                      </div>
+                      <div class="card-content">
+                        <p class="titles">Buy milkss</p>
+                      </div>
+                      <div class="card-content">
+                        <p class="light">Date</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!col 6 s12>-->
+
+
+
+
+
+
+
+              
+            <div class="date-container"><!--date-container-->
+      </div><!--Row-->
+    </div><!--COntainer-->
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+  <script type="module" src="js/app.js"></script>
+  
+  
+
+  
+  </body>
+</html>
