@@ -94,7 +94,7 @@ selectFrequent.addEventListener( 'change', (evt) => {
     let selectExp = document.getElementById('icon_time-exp');
     switch (evt.target.value    ) {
         case 'Bañarme':
-            selectExp.value = '10';
+            selectExp.value = '5';
         break;
 
         case 'Barrer':
@@ -102,7 +102,7 @@ selectFrequent.addEventListener( 'change', (evt) => {
         break;
 
         case 'Cenar':
-            selectExp.value = '15';
+            selectExp.value = '20';
         break;
 
         case 'Comer':
@@ -585,6 +585,7 @@ datePick.addEventListener('change', (evt) =>{
 
 
             function getToday(){
+             
                 let currentDay = new Date(Date.now());
                 let DBCurrentDay = new Date(Number(lastDay));
                 if(currentDay.getDate() == DBCurrentDay.getDate()){
@@ -595,13 +596,9 @@ datePick.addEventListener('change', (evt) =>{
 
                     let arrayDailyTasks = [
                         {taskName: "Bañarme",exp:"5",icon:"3",date: Date.now()},
-                        {taskName: "Cenar",exp:"15",icon:"3",date: Date.now()},
-                        {taskName: "Desayunar",exp:"15",icon:"3",date: Date.now()},
-                        {taskName: "Lavar Dientes",exp:"5",icon:"3",date: Date.now()},
-                        {taskName: "Lavar Dientes",exp:"5",icon:"3",date: Date.now()},
-                        {taskName: "Lavar Dientes",exp:"5",icon:"3",date: Date.now()},
-                        {taskName: "Lavar Ropa",exp:"15",icon:"4",date: Date.now()},
-                        {taskName: "Lavar Trastes",exp:"15",icon:"4",date: Date.now()},
+                       
+                        
+                      
                         {taskName: "Levantarme",exp:"0",icon:"3",date: Date.now()},
                         {taskName: "Preparar Desayuno",exp:"15",icon:"1",date: Date.now()},
                         {taskName: "Preparar Comida",exp:"25",icon:"1",date: Date.now()},
@@ -613,13 +610,14 @@ datePick.addEventListener('change', (evt) =>{
                         {taskName: "Curso Portugues 30 minutos",exp:"30",icon:"5",date: Date.now()},  
                         {taskName: "Ejercicios Visuales",exp:"15",icon:"3",date: Date.now()},
                         {taskName: "Lavar Baño",exp:"15",icon:"3",date: Date.now()},
+                        {taskName: "Ejercicio",exp:"15",icon:"3",date: Date.now()},
+                        {taskName: "Preparar Ropa",exp:"15",icon:"3",date: Date.now()},
                         
                     ];
 
                     let arrayCursosTasks = [
                         
-                        {taskName: "Ejercicio",exp:"15",icon:"3",date: Date.now()},
-                        {taskName: "Preparar Ropa",exp:"15",icon:"3",date: Date.now()},
+                       
                     ];
 
 
@@ -634,7 +632,7 @@ datePick.addEventListener('change', (evt) =>{
                         setTimeout(function() { 
                             if(!a){
                                 if(element.taskName=="Lavar Baño"){
-                                    if(thisDate.getDay()==3 || thisDate.getDay()==6 ){
+                                    if(thisDate.getDay()==3  || thisDate.getDay()==6 ){
                                         insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                     }
                                 }else{
