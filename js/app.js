@@ -596,15 +596,10 @@ datePick.addEventListener('change', (evt) =>{
 
                     let arrayDailyTasks = [
                         {taskName: "Bañarme",exp:"5",icon:"3",date: Date.now()},
-                       
-                        
-                      
                         {taskName: "Levantarme",exp:"0",icon:"3",date: Date.now()},
-                        {taskName: "Preparar Desayuno",exp:"15",icon:"1",date: Date.now()},
-                        {taskName: "Preparar Comida",exp:"25",icon:"1",date: Date.now()},
                         {taskName: "Tomar Pastilla",exp:"5",icon:"3",date: Date.now()},
                         {taskName: "Curso Linux 30 minutos",exp:"30",icon:"5",date: Date.now()},
-                        {taskName: "Curso ONE 30 minuto",exp:"30",icon:"5",date: Date.now()},
+                    //  {taskName: "Curso ONE 30 minuto",exp:"30",icon:"5",date: Date.now()},
                         {taskName: "Curso Shell 30 minutos",exp:"30",icon:"7",date: Date.now()},
                         {taskName: "Curso Francés 30 minutos",exp:"30",icon:"5",date: Date.now()},
                         {taskName: "Curso Portugues 30 minutos",exp:"30",icon:"5",date: Date.now()},  
@@ -612,6 +607,8 @@ datePick.addEventListener('change', (evt) =>{
                         {taskName: "Lavar Baño",exp:"15",icon:"3",date: Date.now()},
                         {taskName: "Ejercicio",exp:"15",icon:"3",date: Date.now()},
                         {taskName: "Preparar Ropa",exp:"15",icon:"3",date: Date.now()},
+                        {taskName: "Afeitarme",exp:"10",icon:"3",date: Date.now()},
+                        {taskName: "Preparar Lista de pendientes de mañana",exp:"15",icon:"5",date: Date.now()},
                         
                     ];
 
@@ -625,17 +622,24 @@ datePick.addEventListener('change', (evt) =>{
                     //taskName,exp,selectedIcon2,date2
                     arrayDailyTasks.forEach(element => {
                         let a = isAlreadyAdded(element.taskName);
-
                         let thisDate = new Date(Date.now());
-                      
 
                         setTimeout(function() { 
                             if(!a){
                                 if(element.taskName=="Lavar Baño"){
-                                    if(thisDate.getDay()==3  || thisDate.getDay()==6 ){
+                                    alert(element.taskName);
+                                    alert(thisDate.getDay());
+                                    if(thisDate.getDay()==2  || thisDate.getDay()==6 ){
+                                        insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
+                                    }
+                                }else if(element.taskName=="Afeitarme"){
+                                    alert(element.taskName);
+                                    alert(thisDate.getDay());
+                                    if(thisDate.getDay()==0  || thisDate.getDay()==2 ){
                                         insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                     }
                                 }else{
+                                    alert("No")
                                     insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                 }
                             }
