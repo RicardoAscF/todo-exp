@@ -627,19 +627,17 @@ datePick.addEventListener('change', (evt) =>{
                         setTimeout(function() { 
                             if(!a){
                                 if(element.taskName=="Lavar Baño"){
-                                    alert(element.taskName);
-                                    alert(thisDate.getDay());
+                           
                                     if(thisDate.getDay()==2  || thisDate.getDay()==6 ){
                                         insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                     }
                                 }else if(element.taskName=="Afeitarme"){
-                                    alert(element.taskName);
-                                    alert(thisDate.getDay());
+                                
                                     if(thisDate.getDay()==0  || thisDate.getDay()==2 ){
                                         insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                     }
                                 }else{
-                                    alert("No")
+                                
                                     insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                 }
                             }
