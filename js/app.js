@@ -609,6 +609,8 @@ datePick.addEventListener('change', (evt) =>{
                         {taskName: "Preparar Ropa",exp:"15",icon:"3",date: Date.now()},
                         {taskName: "Afeitarme",exp:"10",icon:"3",date: Date.now()},
                         {taskName: "Preparar Lista de pendientes de mañana",exp:"15",icon:"5",date: Date.now()},
+                        {taskName: "Lavar Trapeador",exp:"15",icon:"4",date: Date.now()},
+                        {taskName: "Lavar Toalla",exp:"15",icon:"4",date: Date.now()},
                         
                     ];
 
@@ -634,6 +636,14 @@ datePick.addEventListener('change', (evt) =>{
                                 }else if(element.taskName=="Afeitarme"){
                                 
                                     if(thisDate.getDay()==0  || thisDate.getDay()==2 ){
+                                        insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
+                                    }
+                                }else if(element.taskName=="Lavar Trapeador"){
+                                    if(thisDate.getDay()==6 ){
+                                        insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
+                                    }
+                                }else if(element.taskName=="Lavar Toalla"){
+                                    if(thisDate.getDay()==6){
                                         insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                     }
                                 }else{
@@ -954,14 +964,22 @@ datePick.addEventListener('change', (evt) =>{
                                 }
 
                                 if(taskName=='Lavar Dientes'){
-                                    pTitles.classList.add('blue-text');
-                                    pPx.classList.add('blue-text');
-                                    pLight.classList.add('blue-text');
-                                    iMaterial_Icons.classList.add('blue-text');
+                                    pTitles.classList.add('green-text');
+                                    pPx.classList.add('green-text');
+                                    pLight.classList.add('green-text');
+                                    iMaterial_Icons.classList.add('green-text');
                                 }
 
 
                                 if(taskName.includes("X") && Number(exp)<0){
+                                    pTitles.classList.add('red-text');
+                                    pPx.classList.add('red-text');
+                                    pLight.classList.add('red-text');
+                                    iMaterial_Icons.classList.add('red-text');
+                                }
+
+
+                                if(taskName.includes("Levantarme") && Number(exp)<0){
                                     pTitles.classList.add('red-text');
                                     pPx.classList.add('red-text');
                                     pLight.classList.add('red-text');
@@ -1207,7 +1225,7 @@ datePick.addEventListener('change', (evt) =>{
                 iMaterial_iconsStart.setAttribute('date', Date.now());
 
                 iMaterial_iconsStart.addEventListener('click', (evt) =>{
-                    taskStarted(evt,"domesticTasks");
+                    taskStarted(evt,"domesticTasks  ");
                 });
 
                
