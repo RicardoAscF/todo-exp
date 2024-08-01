@@ -53,7 +53,8 @@ let arrayLastDone           = [
     {name: "Bañarme", last:0},
     {name: "Afeitarme", last:0},
     {name: "Lavar trapeador", last:0},
-    {name: "Lavar toalla", last:0}
+    {name: "Lavar toalla gris", last:0},
+    {name: "Lavar toalla blanca", last:0},
 ]
 
 // Fin Variables Globales 
@@ -582,8 +583,6 @@ datePick.addEventListener('change', (evt) =>{
             }
 
 
-
-
             function getToday(){
              
                 let currentDay = new Date(Date.now());
@@ -605,12 +604,14 @@ datePick.addEventListener('change', (evt) =>{
                         {taskName: "Curso Portugues 30 minutos",exp:"30",icon:"5",date: Date.now()},  
                         {taskName: "Ejercicios Visuales",exp:"15",icon:"3",date: Date.now()},
                         {taskName: "Lavar Baño",exp:"15",icon:"3",date: Date.now()},
-                        {taskName: "Ejercicio",exp:"15",icon:"3",date: Date.now()},
+                        {taskName: "Ejercicio",exp:"45",icon:"3",date: Date.now()},
                         {taskName: "Preparar Ropa",exp:"15",icon:"3",date: Date.now()},
                         {taskName: "Afeitarme",exp:"10",icon:"3",date: Date.now()},
                         {taskName: "Preparar Lista de pendientes de mañana",exp:"15",icon:"5",date: Date.now()},
                         {taskName: "Lavar Trapeador",exp:"15",icon:"4",date: Date.now()},
-                        {taskName: "Lavar Toalla",exp:"15",icon:"4",date: Date.now()},
+                        {taskName: "Lavar Toalla Gris",exp:"15",icon:"4",date: Date.now()},
+                        {taskName: "Lavar Toalla Blanca",exp:"15",icon:"4",date: Date.now()},
+                        {taskName: "Tender cama",exp:"15",icon:"4",date: Date.now()},
                         
                     ];
 
@@ -638,15 +639,21 @@ datePick.addEventListener('change', (evt) =>{
                                     if(thisDate.getDay()==0  || thisDate.getDay()==2 ){
                                         insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                     }
-                                }else if(element.taskName=="Lavar Trapeador"){
-                                    if(thisDate.getDay()==6 ){
+                                }else if(element.taskName.includes("Lavar Trapeador")){
+                                    if(thisDate.getDay()==4 ){
                                         insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                     }
-                                }else if(element.taskName=="Lavar Toalla"){
+                                }else if(element.taskName=="Lavar Toalla Gris"){
+                                    alert("A    qui G");
+                                    if(thisDate.getDay()==0){
+                                        insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
+                                    }
+                                }else if(element.taskName=="Lavar Toalla Blanca"){
+                                    alert("A    qui B")
                                     if(thisDate.getDay()==6){
                                         insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                     }
-                                }else{
+                                }{
                                 
                                     insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                 }
@@ -825,7 +832,7 @@ datePick.addEventListener('change', (evt) =>{
                 
                 }
 
-                if(taskName.includes("Lavar toalla")){
+                if(taskName.includes("Lavar toalla blanca")){
                     if(dateStarted>arrayLastDone[14].last){
                         arrayLastDone[14].last=dateStarted;
                     }
@@ -1225,7 +1232,7 @@ datePick.addEventListener('change', (evt) =>{
                 iMaterial_iconsStart.setAttribute('date', Date.now());
 
                 iMaterial_iconsStart.addEventListener('click', (evt) =>{
-                    taskStarted(evt,"domesticTasks  ");
+                    taskStarted(evt,"domesticTasks");
                 });
 
                
