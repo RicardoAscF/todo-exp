@@ -39,22 +39,23 @@ let arrayTask               = [];
 let arrayDomesticTask       = [];
 let arrayCompletedTasks     = [];
 let arrayLastDone           = [
-    {name: "Ejercicio", last:0},
-    {name: "Lavar Baño", last:0},
-    {name: "Lavar Dientes", last:0},
-    {name: "Barrer", last:0},
-    {name: "Trapear", last:0},
-    {name: "Levantarme", last:0},
-    {name: "Sin X", last:0},
-    {name: "Sin X Talk", last:0},
-    {name: "Curso ONE", last:0},
-    {name: "Curso Linux", last:0},
-    {name: "Mas de 3 horas en el celular", last:0},
-    {name: "Bañarme", last:0},
-    {name: "Afeitarme", last:0},
-    {name: "Lavar trapeador", last:0},
-    {name: "Lavar toalla gris", last:0},
-    {name: "Lavar toalla blanca", last:0},
+        {name: "Ejercicio", last:0},
+        {name: "Lavar Baño", last:0},
+        {name: "Lavar Dientes", last:0},
+        {name: "Barrer", last:0},
+        {name: "Trapear", last:0},
+        {name: "Levantarme", last:0},
+        {name: "Sin X", last:0},
+        {name: "Sin X Talk", last:0},
+        {name: "Curso ONE", last:0},
+        {name: "Curso Linux", last:0},
+        {name: "Mas de 2 horas en el celular", last:0},
+        {name: "Bañarme", last:0},
+        {name: "Afeitarme", last:0},
+        {name: "Lavar trapeador", last:0},
+        {name: "Lavar Toalla Gris", last:0},
+        {name: "Lavar Toalla Blanca", last:0},
+        {name: "Tomar Pastilla", last:0},
 ]
 
 // Fin Variables Globales 
@@ -95,7 +96,7 @@ selectFrequent.addEventListener( 'change', (evt) => {
     let selectExp = document.getElementById('icon_time-exp');
     switch (evt.target.value    ) {
         case 'Bañarme':
-            selectExp.value = '5';
+            selectExp.value = '15';
         break;
 
         case 'Barrer':
@@ -116,7 +117,7 @@ selectFrequent.addEventListener( 'change', (evt) => {
 
 
         case 'Desayunar':
-            selectExp.value = '15';
+            selectExp.value = '20';
         break;
 
         case 'Ejercicio':
@@ -138,7 +139,7 @@ selectFrequent.addEventListener( 'change', (evt) => {
 
 
         case 'Lavar Baño':
-            selectExp.value = '20';
+            selectExp.value = '10';
         break;
         
         case 'Preparar Desayuno':
@@ -153,6 +154,30 @@ selectFrequent.addEventListener( 'change', (evt) => {
             selectExp.value = '5';
         break;
 
+        case 'Lavar Dientes':
+            selectExp.value = '5';
+        break;
+
+        case 'Pensamiento X':
+            selectExp.value = '-5';
+        break;
+
+        case 'Pensamiento F':
+            selectExp.value = '-10';
+        break;
+
+        case 'Divagar':
+            selectExp.value = '-5';
+        break;
+
+        case 'No agregue':
+            selectExp.value = '-50';
+        break;
+
+
+        case 'No tire':
+            selectExp.value = '-10';
+        break;
 
         
 
@@ -604,7 +629,7 @@ datePick.addEventListener('change', (evt) =>{
                         {taskName: "Curso Portugues 30 minutos",exp:"30",icon:"5",date: Date.now()},  
                         {taskName: "Ejercicios Visuales",exp:"15",icon:"3",date: Date.now()},
                         {taskName: "Lavar Baño",exp:"15",icon:"3",date: Date.now()},
-                        {taskName: "Ejercicio",exp:"45",icon:"3",date: Date.now()},
+                        {taskName: "Ejercicio",exp:"60",icon:"3",date: Date.now()},
                         {taskName: "Preparar Ropa",exp:"15",icon:"3",date: Date.now()},
                         {taskName: "Afeitarme",exp:"10",icon:"3",date: Date.now()},
                         {taskName: "Preparar Lista de pendientes de mañana",exp:"15",icon:"5",date: Date.now()},
@@ -612,6 +637,11 @@ datePick.addEventListener('change', (evt) =>{
                         {taskName: "Lavar Toalla Gris",exp:"15",icon:"4",date: Date.now()},
                         {taskName: "Lavar Toalla Blanca",exp:"15",icon:"4",date: Date.now()},
                         {taskName: "Tender cama",exp:"15",icon:"4",date: Date.now()},
+                        {taskName: "Lavar Ropa",exp:"20",icon:"4",date: Date.now()},
+                        {taskName: "Clase Flauta",exp:"30",icon:"5",date: Date.now()},
+                        {taskName: "Tirar Basura",exp:"10",icon:"4",date: Date.now()},
+                        {taskName: "No agregué Levantarme",exp:"-50",icon:"3",date: Date.now()},
+                        {taskName: "Cumpli más de 3 días sin ejercicio",exp:"-50",icon:"3",date: Date.now()},
                         
                     ];
 
@@ -635,27 +665,34 @@ datePick.addEventListener('change', (evt) =>{
                                         insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                     }
                                 }else if(element.taskName=="Afeitarme"){
-                                
+                                    
                                     if(thisDate.getDay()==0  || thisDate.getDay()==2 ){
                                         insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                     }
                                 }else if(element.taskName.includes("Lavar Trapeador")){
-                                    if(thisDate.getDay()==4 ){
-                                        insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
-                                    }
-                                }else if(element.taskName=="Lavar Toalla Gris"){
-                                    alert("A    qui G");
-                                    if(thisDate.getDay()==0){
-                                        insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
-                                    }
-                                }else if(element.taskName=="Lavar Toalla Blanca"){
-                                    alert("A    qui B")
                                     if(thisDate.getDay()==6){
                                         insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                     }
-                                }{
+                                }else if(element.taskName.includes("Lavar Toalla Gris")){
+                                    if(thisDate.getDay()==6){
+                                        insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
+                                    }
+                                }else if(element.taskName.includes("Lavar Toalla Blanca")){
+                                    
+                                    if(thisDate.getDay()==6){
+                                        insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
+                                    }
+                                }else if(element.taskName.includes("Lavar Ropa")){
+                                    if(thisDate.getDay()==6){
+                                        insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
+                                    }
+                                }else if(element.taskName.includes("Tirar Basura")){
+                                    if(thisDate.getDay()==6){
+                                        insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
+                                    }
+                                }else{
                                 
-                                    insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
+                                  insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"domesticTasks");
                                 }
                             }
                         }, 50);
@@ -795,7 +832,7 @@ datePick.addEventListener('change', (evt) =>{
 
 
                             
-                if(taskName.includes("Horas en el celular")){
+                if(taskName.includes("horas en el celular")){
                    
                     let a = Number(exp);
                   
@@ -829,12 +866,28 @@ datePick.addEventListener('change', (evt) =>{
                     if(dateStarted>arrayLastDone[13].last){
                         arrayLastDone[13].last=dateStarted;
                     }
+                    
+                }
+
+                if(taskName.includes("Lavar Toalla Gris")){
+                    if(dateStarted>arrayLastDone[14].last){
+                        arrayLastDone[14].last=dateStarted;
+                    }
                 
                 }
 
-                if(taskName.includes("Lavar toalla blanca")){
-                    if(dateStarted>arrayLastDone[14].last){
-                        arrayLastDone[14].last=dateStarted;
+
+                if(taskName.includes("Lavar Toalla Blanca")){
+                    if(dateStarted>arrayLastDone[15].last){
+                        arrayLastDone[15].last=dateStarted;
+                    }
+                
+                }
+
+
+                if(taskName.includes("Tomar Pastilla")){
+                    if(dateStarted>arrayLastDone[16].last){
+                        arrayLastDone[16].last=dateStarted;
                     }
                 
                 }
@@ -1465,6 +1518,11 @@ function getSelectedIcon(selectedIcon){
 
     if(selectedIcon == '11'){
         return 'hourglass_full';
+    }
+
+
+    if(selectedIcon == '12'){
+        return 'lightbulb_outline';
     }
 
 
