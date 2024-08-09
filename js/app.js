@@ -56,6 +56,11 @@ let arrayLastDone           = [
         {name: "Lavar Toalla Gris", last:0},
         {name: "Lavar Toalla Blanca", last:0},
         {name: "Tomar Pastilla", last:0},
+        {name: "Meditar", last:0},
+        {name: "Pensamiento X", last:0},
+        {name: "Pensamiento F", last:0},
+        {name: "Pensamiento D", last:0},
+
 ]
 
 // Fin Variables Globales 
@@ -159,10 +164,15 @@ selectFrequent.addEventListener( 'change', (evt) => {
         break;
 
         case 'Pensamiento X':
-            selectExp.value = '-5';
+            selectExp.value = '-10';
         break;
 
         case 'Pensamiento F':
+            selectExp.value = '-10';
+        break;
+
+
+        case 'Pensamiento D':
             selectExp.value = '-10';
         break;
 
@@ -624,7 +634,7 @@ datePick.addEventListener('change', (evt) =>{
                         {taskName: "Tomar Pastilla",exp:"5",icon:"3",date: Date.now()},
                         {taskName: "Curso Linux 30 minutos",exp:"30",icon:"5",date: Date.now()},
                     //  {taskName: "Curso ONE 30 minuto",exp:"30",icon:"5",date: Date.now()},
-                        {taskName: "Curso Shell 30 minutos",exp:"30",icon:"7",date: Date.now()},
+                    //  {taskName: "Curso Shell 30 minutos",exp:"30",icon:"7",date: Date.now()},
                         {taskName: "Curso Francés 30 minutos",exp:"30",icon:"5",date: Date.now()},
                         {taskName: "Curso Portugues 30 minutos",exp:"30",icon:"5",date: Date.now()},  
                         {taskName: "Ejercicios Visuales",exp:"15",icon:"3",date: Date.now()},
@@ -641,7 +651,12 @@ datePick.addEventListener('change', (evt) =>{
                         {taskName: "Clase Flauta",exp:"30",icon:"5",date: Date.now()},
                         {taskName: "Tirar Basura",exp:"10",icon:"4",date: Date.now()},
                         {taskName: "No agregué Levantarme",exp:"-50",icon:"3",date: Date.now()},
-                        {taskName: "Cumpli más de 3 días sin ejercicio",exp:"-50",icon:"3",date: Date.now()},
+                        {taskName: "Cumpli más de 2 días sin ejercicio",exp:"-50",icon:"3",date: Date.now()},
+                        {taskName: "Meditar",exp:"10",icon:"12",date: Date.now()},
+                        {taskName: "Cumpli más de 2 días sin meditar",exp:"-50",icon:"12",date: Date.now()},
+                        
+
+                        
                         
                     ];
 
@@ -892,6 +907,35 @@ datePick.addEventListener('change', (evt) =>{
                 
                 }
 
+                if(taskName.includes("Meditar")){
+                    if(dateStarted>arrayLastDone[17].last){
+                        arrayLastDone[17].last=dateStarted;
+                    }
+                
+                }
+
+                if(taskName.includes("Pensamiento X")){
+                    if(dateStarted>arrayLastDone[18].last){
+                        arrayLastDone[18].last=dateStarted;
+                    }
+                
+                }
+
+
+                if(taskName.includes("Pensamiento F")){
+                    if(dateStarted>arrayLastDone[19].last){
+                        arrayLastDone[19].last=dateStarted;
+                    }
+                
+                }
+
+                if(taskName.includes("Pensamiento D")){
+                    if(dateStarted>arrayLastDone[20].last){
+                        arrayLastDone[20].last=dateStarted;
+                    }
+                
+                }
+
 
 
 
@@ -1040,6 +1084,21 @@ datePick.addEventListener('change', (evt) =>{
 
 
                                 if(taskName.includes("Levantarme") && Number(exp)<0){
+                                    pTitles.classList.add('red-text');
+                                    pPx.classList.add('red-text');
+                                    pLight.classList.add('red-text');
+                                    iMaterial_Icons.classList.add('red-text');
+                                }
+
+
+                                if(taskName.includes("Pensamiento F") && Number(exp)<0){
+                                    pTitles.classList.add('red-text');
+                                    pPx.classList.add('red-text');
+                                    pLight.classList.add('red-text');
+                                    iMaterial_Icons.classList.add('red-text');
+                                }
+
+                                if(taskName.includes("Pensamiento D") && Number(exp)<0){
                                     pTitles.classList.add('red-text');
                                     pPx.classList.add('red-text');
                                     pLight.classList.add('red-text');
