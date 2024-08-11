@@ -2,7 +2,9 @@
  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
  import { getFirestore,collection,addDoc,getDocs,doc,deleteDoc } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js'
- 
+ import {getDayString} from "./classSwitch.js";
+
+
 
  // TODO: Add SDKs for Firebase products that you want to use
  // https://firebase.google.com/docs/web/setup#available-libraries
@@ -574,38 +576,7 @@ datePick.addEventListener('change', (evt) =>{
                 return String(x).length==1 ? '0' + String(x) : x;
             }//Anade un 'Cero' al princpio a las horas y minutos de un digito: ejemplo convuerte 22:5 en 22:05
 
-            function getDayString(day){
-                if(day==0){
-                    return 'Domingo';
-                }
-
-
-                if(day==1){
-                    return 'Lunes';
-                }
-
-                if(day==2){
-                    return 'Martes';
-                }
-
-                if(day==3){
-                    return 'Miercoles';
-                }
-
-                if(day==4){
-                    return 'Jueves';
-                }
-
-                if(day==5){
-                    return 'Viernes';
-                }
-
-                if(day==6){
-                    return 'Sabado';
-                }
-
-
-            }//getDayString
+           
 
             function isAlreadyAdded(taskActivityLog){
                 let task =  false;
