@@ -2,7 +2,8 @@
  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
  import { getFirestore,collection,addDoc,getDocs,doc,deleteDoc } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js'
- import {getDayString} from "./classSwitch.js";
+ import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
+ import { arrayDailyTasks, arrayLastDone } from "./arrays.js";
 
 
 
@@ -40,30 +41,7 @@ let totalExpCurrentMonth    = 0;
 let arrayTask               = [];
 let arrayDomesticTask       = [];
 let arrayCompletedTasks     = [];
-let arrayLastDone           = [
-        {name: "Ejercicio", last:0},
-        {name: "Lavar Baño", last:0},
-        {name: "Lavar Dientes", last:0},
-        {name: "Barrer", last:0},
-        {name: "Trapear", last:0},
-        {name: "Levantarme", last:0},
-        {name: "Sin X", last:0},
-        {name: "Sin X Talk", last:0},
-        {name: "Curso ONE", last:0},
-        {name: "Curso Linux", last:0},
-        {name: "Mas de 2 horas en el celular", last:0},
-        {name: "Bañarme", last:0},
-        {name: "Afeitarme", last:0},
-        {name: "Lavar trapeador", last:0},
-        {name: "Lavar Toalla Gris", last:0},
-        {name: "Lavar Toalla Blanca", last:0},
-        {name: "Tomar Pastilla", last:0},
-        {name: "Meditar", last:0},
-        {name: "Pensamiento X", last:0},
-        {name: "Pensamiento F", last:0},
-        {name: "Pensamiento D", last:0},
 
-]
 
 // Fin Variables Globales 
 // **************************************************************** Componentes ******************************************
@@ -189,6 +167,16 @@ selectFrequent.addEventListener( 'change', (evt) => {
 
         case 'No tire':
             selectExp.value = '-10';
+        break;
+
+
+        case 'Comi Azucar':
+            selectExp.value = '-50';
+        break;
+
+
+        case 'Bebi Azucar':
+            selectExp.value = '-50';
         break;
 
         
@@ -517,60 +505,7 @@ datePick.addEventListener('change', (evt) =>{
            
 // Fin Funciones DB
 // **************************************************************** Funciones Date ****************************************** 
-            function getMonthString(month){
-
-                if(month==0){
-                    return 'Enero';
-                }
-
-
-                if(month==1){
-                    return 'Febrero';
-                }
-
-                if(month==2){
-                    return 'Marzo';
-                }
-
-                if(month==3){
-                    return 'Abril';
-                }
-
-                if(month==4){
-                    return 'Mayo';
-                }
-
-                if(month==5){
-                    return 'Junio';
-                }
-
-
-                if(month==6){
-                    return 'Julio';
-                }
-
-                if(month==7){
-                    return 'Agosto';
-                }
-
-
-                if(month==8){
-                    return 'Septiembre';
-                }
-
-                if(month==9){
-                    return 'Octubre';
-                }
-
-                if(month==10){
-                    return 'Noviembre';
-                }
-
-                if(month==11){
-                    return 'Diciembre';
-                }
-
-            }//getMothString
+            
 
             function getHMString(x){
                 return String(x).length==1 ? '0' + String(x) : x;
@@ -599,37 +534,7 @@ datePick.addEventListener('change', (evt) =>{
                     insertNewDay();//aqui mando los datos como argumento
                     
 
-                    let arrayDailyTasks = [
-                        {taskName: "Bañarme",exp:"5",icon:"3",date: Date.now()},
-                        {taskName: "Levantarme",exp:"0",icon:"3",date: Date.now()},
-                        {taskName: "Tomar Pastilla",exp:"5",icon:"3",date: Date.now()},
-                        {taskName: "Curso Linux 30 minutos",exp:"30",icon:"5",date: Date.now()},
-                    //  {taskName: "Curso ONE 30 minuto",exp:"30",icon:"5",date: Date.now()},
-                    //  {taskName: "Curso Shell 30 minutos",exp:"30",icon:"7",date: Date.now()},
-                        {taskName: "Curso Francés 30 minutos",exp:"30",icon:"5",date: Date.now()},
-                        {taskName: "Curso Portugues 30 minutos",exp:"30",icon:"5",date: Date.now()},  
-                        {taskName: "Ejercicios Visuales",exp:"15",icon:"3",date: Date.now()},
-                        {taskName: "Lavar Baño",exp:"15",icon:"3",date: Date.now()},
-                        {taskName: "Ejercicio",exp:"60",icon:"3",date: Date.now()},
-                        {taskName: "Preparar Ropa",exp:"15",icon:"3",date: Date.now()},
-                        {taskName: "Afeitarme",exp:"10",icon:"3",date: Date.now()},
-                        {taskName: "Preparar Lista de pendientes de mañana",exp:"15",icon:"5",date: Date.now()},
-                        {taskName: "Lavar Trapeador",exp:"15",icon:"4",date: Date.now()},
-                        {taskName: "Lavar Toalla Gris",exp:"15",icon:"4",date: Date.now()},
-                        {taskName: "Lavar Toalla Blanca",exp:"15",icon:"4",date: Date.now()},
-                        {taskName: "Tender cama",exp:"15",icon:"4",date: Date.now()},
-                        {taskName: "Lavar Ropa",exp:"20",icon:"4",date: Date.now()},
-                        {taskName: "Clase Flauta",exp:"30",icon:"5",date: Date.now()},
-                        {taskName: "Tirar Basura",exp:"10",icon:"4",date: Date.now()},
-                        {taskName: "No agregué Levantarme",exp:"-50",icon:"3",date: Date.now()},
-                        {taskName: "Cumpli más de 2 días sin ejercicio",exp:"-50",icon:"3",date: Date.now()},
-                        {taskName: "Meditar",exp:"10",icon:"12",date: Date.now()},
-                        {taskName: "Cumpli más de 2 días sin meditar",exp:"-50",icon:"12",date: Date.now()},
-                        
-
-                        
-                        
-                    ];
+                   
 
                     let arrayCursosTasks = [
                         
@@ -717,12 +622,17 @@ datePick.addEventListener('change', (evt) =>{
                 let i = 0;
                 arrayLastDone.forEach(element => {
                   
-
+                    let today = Date.now();
+                    
                     //Aqui se soluciona el bug para las fechas que se repiten en la lista
-                    let last = new Date(Number(arrayLastDone[i].last))
+                    let last = new Date(Number(arrayLastDone[i].last));
+                    let totalDiasSin = today - Number(arrayLastDone[i].last);   //es para sacar la resta de fechas entre last done y today
+                    totalDiasSin /= 86400000;
                     let li = document.createElement("li");
                     li.classList.add("titles", "daysWD");
-                    li.innerText=`${element.name} - ${last.getDate()} ${getMonthString(last.getMonth())} ${last.getFullYear()} ${getHMString(last.getHours())}:${getHMString(last.getMinutes())}`;
+                   
+                    
+                    li.innerText=`${element.name} - ${last.getDate()} ${getMonthString(last.getMonth())} ${last.getFullYear()} ${getHMString(last.getHours())}:${getHMString(last.getMinutes())}     -------------     || ${ Math.ceil(totalDiasSin) == 0 ? "Hoy" : Math.ceil(totalDiasSin) == 1 ? "Ayer" : "Hace " + Math.ceil(totalDiasSin)+ " Dias"}`;
                     let listDaysWD = document.getElementById("listDaysWD");
                     listDaysWD.appendChild(li);
                     i++;
@@ -1492,69 +1402,3 @@ function getCompletedData(month){
     
    
 }//GetcompletedData
-
-
-
-function getSelectedIcon(selectedIcon){
-         
-
-    
-
-    if(selectedIcon == '1'){
-        return 'restaurant';
-    }
-
-
-    if(selectedIcon == '2'){
-        return 'insert_emoticon';//exercise  
-    }
-
-
-    if(selectedIcon == '3'){
-        return 'favorite';//Havin fun
-    }
-
-    
-    if(selectedIcon == '4'){
-        return 'home';
-    }
-
-    if(selectedIcon == '5'){ //personal projectas
-        return 'computer';
-    }
-
-
-    if(selectedIcon == '6'){ //shopping
-        return 'shopping_cart';
-    }
-
-
-    if(selectedIcon == '7'){ //job
-        return 'attach_money';
-    }
-
-    if(selectedIcon == '8'){
-        return 'do_not_disturb_alt';
-    }
-
-    if(selectedIcon == '9'){  // X
-        return 'close';
-    }
-
-    if(selectedIcon == '10'){ 
-        return 'play_arrow';
-    }
-
-
-    if(selectedIcon == '11'){
-        return 'hourglass_full';
-    }
-
-
-    if(selectedIcon == '12'){
-        return 'lightbulb_outline';
-    }
-
-
-
-}// getselectedIcon
