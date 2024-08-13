@@ -1,6 +1,6 @@
 export  let arrayDailyTasks = [
     {taskName: "Bañarme",exp:"5",icon:"3",date: Date.now()},
-    {taskName: "¿Me levante en menos de 3 minutos?",exp:"100",icon:"12",date: Date.now()},
+    {taskName: "¿Me levante en menos de 3 minutos?",exp:"50",icon:"12",date: Date.now()},
     {taskName: "Tomar Pastilla",exp:"5",icon:"3",date: Date.now()},
     {taskName: "Curso Linux 30 minutos",exp:"30",icon:"5",date: Date.now()},
 //  {taskName: "Curso ONE 30 minuto",exp:"30",icon:"5",date: Date.now()},

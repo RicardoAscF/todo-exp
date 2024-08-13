@@ -179,6 +179,10 @@ selectFrequent.addEventListener( 'change', (evt) => {
             selectExp.value = '-50';
         break;
 
+        case 'Comi Pan':
+            selectExp.value = '-50';
+        break;
+
         
 
 
@@ -631,8 +635,8 @@ datePick.addEventListener('change', (evt) =>{
                     let li = document.createElement("li");
                     li.classList.add("titles", "daysWD");
                    
-                    
-                    li.innerText=`${element.name} - ${last.getDate()} ${getMonthString(last.getMonth())} ${last.getFullYear()} ${getHMString(last.getHours())}:${getHMString(last.getMinutes())}     -------------     || ${ Math.ceil(totalDiasSin) == 0 ? "Hoy" : Math.ceil(totalDiasSin) == 1 ? "Ayer" : "Hace " + Math.ceil(totalDiasSin)+ " Dias"}`;
+                    console.log(element.name + totalDiasSin);
+                    li.innerText=`${element.name} - ${last.getDate()} ${getMonthString(last.getMonth())} ${last.getFullYear()} ${getHMString(last.getHours())}:${getHMString(last.getMinutes())}     -------------     || ${ Math.floor(totalDiasSin) == 0 ? "Hoy" : Math.floor(totalDiasSin) == 1 ? "Ayer" : "Hace " + Math.ceil(totalDiasSin)+ " Dias"}`;
                     let listDaysWD = document.getElementById("listDaysWD");
                     listDaysWD.appendChild(li);
                     i++;

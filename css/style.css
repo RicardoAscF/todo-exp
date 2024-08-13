@@ -241,3 +241,7 @@ h1.title-h5{
 .input-title{
   width: 30px!important;
 }
+
+.margin-b{
+  border: 1px solid red;
+}
