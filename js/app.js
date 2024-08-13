@@ -40,6 +40,7 @@ let currentMonth            = today.getMonth().toString()+today.getFullYear().to
 let totalExpCurrentMonth    = 0;
 let arrayTask               = [];
 let arrayDomesticTask       = [];
+let arrayJobTask       = [];
 let arrayCompletedTasks     = [];
 
 
@@ -211,6 +212,7 @@ datePick.addEventListener('change', (evt) =>{
                 let selectedIcon    =   document.getElementById('selectedIcon').value;
                 let frequentTasks   =   document.getElementById('frequentTasks');
                 let checkBtn        =   document.getElementById('isDomestic');
+                let checkBtnJob        =   document.getElementById('isJob');
                 
                 let icon_prefix = document.getElementById("icon_prefix");
 
@@ -229,6 +231,8 @@ datePick.addEventListener('change', (evt) =>{
                 ////Aquiiii para agregra domestic task
                 if(checkBtn.checked){
                     insertDB_Domestic(id,taskName,exp,selectedIcon);
+                }else if(checkBtnJob.checked){
+                    insertDB_Job(id,taskName,exp,selectedIcon);
                 }else{
                     fillTasksTobeDone(id,taskName,exp,selectedIcon);
                     //FuncionInsertar en la BD
@@ -391,6 +395,27 @@ datePick.addEventListener('change', (evt) =>{
                 });
             }
 
+
+            async function insertDB_Job(id,taskName,exp,selectedIcon){
+                db.collection("jobTasks").add({
+                    id: id,
+                    taskName: taskName,
+                    exp: exp,
+                    selectedIcon, selectedIcon,
+                    date: Date.now(),
+                    avance: "0"
+                })
+                .then((docRef) => {
+                    displayToast('Task Added');
+                })
+                .catch((error) => {
+                    
+                });
+            }
+
+
+
+
             async function insertDBStarted(id,taskName,exp,selectedIcon,timeStart,dba){
                 db.collection(dba).add({
                     id: id,
@@ -479,6 +504,26 @@ datePick.addEventListener('change', (evt) =>{
                 }
                 
             );
+
+
+
+            const querySnapshotJob = await getDocs(collection(dbGet, "jobTasks"));
+            querySnapshotJob.forEach((doc) => {
+                    let objTasks = {
+                        id:             doc.id,
+                        taskName:       doc.data().taskName,
+                        exp:            doc.data().exp,
+                        selectedIcon:   doc.data().selectedIcon,
+                        timeStart:      doc.data().timeStart,
+                        avance:         doc.data().avance,
+                    }
+                    
+                    
+                arrayJobTask.push(objTasks);
+                
+            }
+            
+        );
 
 
 
@@ -1306,6 +1351,137 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
+
+            function fillJobTasksTobeDone(id,taskName,exp,selectedIcon,date,dateStarted){
+
+                
+                let jtaskToBeDone            = document.getElementById('JobTasksToBeDone');
+                
+
+                let divColS12M4             = document.createElement('div');
+                divColS12M4.classList.add('col', 's12', 'm4');
+                
+
+
+
+                let divIcon_BlockCard_Task  = document.createElement('div');
+                divIcon_BlockCard_Task.classList.add('icon-block', 'card-task');   
+
+
+
+                let h2CenterLight_blue_text = document.createElement('h2');
+                h2CenterLight_blue_text.classList.add('center', 'light-blue-text');
+
+                let iMaterial_icons         = document.createElement('i');
+                iMaterial_icons.classList.add('material-icons');
+
+
+                let iMaterial_iconsStart         = document.createElement('i');
+                iMaterial_iconsStart.classList.add('material-icons');
+
+
+                let icon=getSelectedIcon(selectedIcon);
+
+
+                iMaterial_icons.innerText=icon;//AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+                iMaterial_iconsStart.innerText=getSelectedIcon("10");
+
+              
+
+                if(date!=undefined){
+                    iMaterial_iconsStart.innerText=getSelectedIcon("11");
+                }else{
+                    iMaterial_iconsStart.innerText=getSelectedIcon("10");
+                }
+
+                iMaterial_iconsStart.classList.add("start-task", "blue-text");
+
+                iMaterial_iconsStart.setAttribute('id', id);
+                iMaterial_iconsStart.setAttribute('taskName', taskName);
+                iMaterial_iconsStart.setAttribute('exp', exp);
+                iMaterial_iconsStart.setAttribute('selectedIcon', selectedIcon);
+                iMaterial_iconsStart.setAttribute('date', Date.now());
+
+                iMaterial_iconsStart.addEventListener('click', (evt) =>{
+                    taskStarted(evt,"jobTasks");
+                });
+
+               
+
+        
+
+                let h5CenterTitles          = document.createElement('h5');
+                h5CenterTitles.classList.add('center', 'titles');
+                h5CenterTitles.innerText=taskName;
+
+                let divCard_Task_Buttons    = document.createElement('div');
+                divCard_Task_Buttons.classList.add('card-task-buttons');
+
+                let aDone                   = document.createElement('a');
+                aDone.classList.add('waves-effect','waves-light','btn-small');
+                aDone.innerText='Done';
+                aDone.setAttribute('id', id);
+                aDone.setAttribute('taskName', taskName);
+                aDone.setAttribute('exp', exp);
+                aDone.setAttribute('selectedIcon', selectedIcon);
+                aDone.setAttribute('date', Date.now());
+                aDone.setAttribute('dateFinished', date);
+                aDone.addEventListener('click', (evt) =>{
+                    taskCompleted(evt,"jobTasks");
+                });
+
+                let iDone = document.createElement('i');
+                iDone.classList.add('material-icons', 'right');
+                iDone.innerText='check_box';
+
+                ///////////////////////////////////////////////////////////////////////////////////////////// Evento
+                let aCancel                 = document.createElement('a');
+                aCancel.classList.add('waves-effect','waves-light','btn-small', 'red');
+                aCancel.innerText='Cancel';
+                aCancel.setAttribute('id', id);
+
+                aCancel.addEventListener('click', (evt) =>{
+                    taskCanceled(evt,"jobTasks");
+                });
+
+                let iCancel = document.createElement('i');
+                iCancel.classList.add('material-icons', 'right');
+                iCancel.innerText = 'cancel';
+
+                let p                       = document.createElement('p');
+                p.classList.add('light', 'tektur');
+                p.innerText = `${exp} EXP`; //AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
+                
+
+                //////////////////////////////  Agrega los 'i' a los 'a'
+                aDone.appendChild(iDone);
+                aCancel.appendChild(iCancel);
+
+                divCard_Task_Buttons.appendChild(aDone);
+                divCard_Task_Buttons.appendChild(aCancel);
+
+                h2CenterLight_blue_text.appendChild(iMaterial_icons);
+
+                divIcon_BlockCard_Task.appendChild(iMaterial_iconsStart);
+                divIcon_BlockCard_Task.appendChild(h2CenterLight_blue_text);
+                divIcon_BlockCard_Task.appendChild(h5CenterTitles);
+                divIcon_BlockCard_Task.appendChild(divCard_Task_Buttons);
+                divIcon_BlockCard_Task.appendChild(p);
+
+                if( selectedIcon==="11"){
+                    iMaterial_iconsStart.classList.add("red-text");
+                }
+
+                divColS12M4.appendChild(divIcon_BlockCard_Task);
+
+
+               
+                jtaskToBeDone.appendChild(divColS12M4);
+            }//fillTasksTobeDone
+
+
+
             function displayToast(test){
                 //var toastHTML = `<span class="card-panel teal lighten-2">${test}</span>`;
                
@@ -1338,18 +1514,38 @@ function getData(){
     let totalPendingDomesticTask = document.getElementById('totalPendingDomesticTask');
     totalPendingDomesticTask.classList.add('blue-text');
     totalPendingDomesticTask.innerText = `${arrayDomesticTask.length}`
+
+
+    let totalPendingJobTask = document.getElementById('totalPendingJobTask');
+    totalPendingJobTask.classList.add('blue-text');
+    totalPendingJobTask.innerText = `${arrayJobTask.length}`
+
+
+
     
     arrayTask.forEach(element => {
-        console.log("GetData 4");
-        console.log(element);
+        console.log("-------------- Tasks******* -----");
+        console.log(element.taskName);
+        
+        
         fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart,element.avance);
         
     });
 
 
     arrayDomesticTask.forEach(element => {
-        
+   
         fillDomesticTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart);
+        
+    });
+
+
+    arrayJobTask.forEach(element => {
+        console.log("-------------- JOB ******* -----");
+        console.log(element.taskName);
+        
+        
+        fillJobTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart);
         
     });
 

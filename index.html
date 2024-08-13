@@ -146,6 +146,13 @@
                     <span>Domestic  </span>
                   </label>
                 </p>
+                <p>
+                  <label>
+                    <input type="checkbox" id="isJob"/>
+                    <span>Job</span>
+                  </label>
+                  
+                </p>
               </div>
             </div><!--Fin Form Rpw-->
           </form>
@@ -347,18 +354,6 @@
             </div>
           </div>
 
-
-          <div class="col s12 m4">
-            <div class="icon-block">
-              <div class="icons">
-                <h2 class="center "><i class="material-icons">watch</i></h2>
-                <h2 class="center green-text"><i class="material-icons">check</i></h2>
-              </div>
-              <h5 class="center">Usar cronometro para ser mas eficiente</h5>
-    
-            </div>
-          </div>
-
           <div class="col s12 m4">
             <div class="icon-block">
 
@@ -371,12 +366,32 @@
             </div>
           </div>
 
+
           <div class="col s12 m4">
             <div class="icon-block">
-              <h2 class="center white-text"><i class="material-icons">mail_outline</i></h2>
-              <h5 class="center">Si tienes flojera empieza leyendo correos de Shell</h5>
+              <div class="icons">
+                <h2 class="center "><i class="material-icons">watch</i></h2>
+                <h2 class="center green-text"><i class="material-icons">check</i></h2>
+              </div>
+              <h5 class="center">Usar cronometro para ser mas eficiente</h5>
     
             </div>
+          </div>
+
+         
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center red-text"><i class="material-icons">favorite</i></h2>
+                <h2 class="center light-blue-text"><i class="material-icons">lightbulb_outline</i></h2>
+              </div>
+              <h5 class="center">La pastilla funciona, tómatela</h5>
+    
+            </div>
+
+            
           </div>
 
 
@@ -392,42 +407,60 @@
             </div>
           </div>
 
-    
 
-        
 
+
+          
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center white-text"><i class="material-icons">mail_outline</i></h2>
+              <h5 class="center">Si tienes flojera empieza leyendo correos de Shell</h5>
     
+            </div>
+          </div>
+
+
+
+
         </div> <!---->
 
 
+
+
+        <div class="row center">
+          <h3 class="header col s12 titles"><span>I Have </span><span id="totalPendingJobTask"></span><span> Job Tasks To Do</span></h3>
+        </div>
+        
+        <div class="row" id="JobTasksToBeDone">
+
+        </div>
+       
+
+     
 
         <div class="row center">
           <h3 class="header col s12 titles"><span>I Have </span><span id="totalPendingTask"></span><span> Tasks To Do</span></h3>
         </div>
 
-        <div class="row" id="tasksToBeDone"></div>
+        <div class="row" id="tasksToBeDone">
+
+        </div>
         
         <!--   Icon Section   -->
-        
-          
-       
-
-
+      
         </div><!--Fin Row-->
 
 
-
-
-     
+      
       
         <div class="row center">
           <h3 class="header col s12 titles"><span>I Have </span><span id="totalPendingDomesticTask"></span><span> Daily/Domestics Tasks To Do</span></h3>
         </div>
         
-        <div class="row" id="DomesticTasksToBeDone">
-
-
-        
+        <div class="row" id="DomesticTasksToBeDone">        
         </div>
           
        
