@@ -755,7 +755,7 @@ datePick.addEventListener('change', (evt) =>{
                     }
                 }
 
-                if(taskName.includes("Talk")){
+                if(taskName.includes("X talk")){
                     if(dateStarted>arrayLastDone[7].last){
                         arrayLastDone[7].last=dateStarted;
                     }

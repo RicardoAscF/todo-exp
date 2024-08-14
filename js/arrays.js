@@ -40,7 +40,7 @@ export let arrayLastDone           = [
     {name: "Trapear", last:0},
     {name: "Levantarme", last:0},
     {name: "Sin X", last:0},
-    {name: "Sin X Talk", last:0},
+    {name: "X Talk", last:0},
     {name: "Curso ONE", last:0},
     {name: "Curso Linux", last:0},
     {name: "Mas de 2 horas en el celular", last:0},
