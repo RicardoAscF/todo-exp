@@ -47,5 +47,27 @@
     }//get End Task
 
 
+    export async function insertDB(id,taskName,exp,selectedIcon,dbName){
+        
+        db.collection(dbName).add({
+            id: id,
+            taskName: taskName,
+            exp: exp,
+            selectedIcon, selectedIcon,
+            date: Date.now(),
+            avance: "0"
+        })
+        .then((docRef) => {
+            displayToast('Task Added');
+        })
+        .catch((error) => {
+            
+        });
+    }
+
+
+
+
+
 
  
