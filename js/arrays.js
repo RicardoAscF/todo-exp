@@ -56,3 +56,5 @@ export let arrayLastDone           = [
     {name: "Pensamiento D", last:0},
 
 ]
+
+export let arrayCompletedTasks     = [];

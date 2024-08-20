@@ -5,7 +5,8 @@
  
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
- import { arrayDailyTasks, arrayLastDone } from "./arrays.js";
+ import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
+ import { getTask } from "./db.js";
 
 
 
@@ -43,7 +44,7 @@ let totalExpCurrentMonth    = 0;
 let arrayTask               = [];
 let arrayDomesticTask       = [];
 let arrayJobTask       = [];
-let arrayCompletedTasks     = [];
+//
 
 
 // Fin Variables Globales 
@@ -246,28 +247,7 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-            //Completed Tasks
-            async function getTask(){
-            console.log('get task');
-                
-                const querySnapshotCompleted = await getDocs(collection(dbGet, "completedTasks"));
-                querySnapshotCompleted.forEach((doc) => {
-                    let objTasks2 = {
-                        id:             doc.id,
-                        taskName:       doc.data().taskName,
-                        exp:            doc.data().exp,
-                        selectedIcon:   doc.data().selectedIcon,
-                        date:           doc.data().date,
-                        dateFinished:   doc.data().dateFinished //es realidad es el satrted
-                    }
-                    arrayCompletedTasks.push(objTasks2);
-                
-                }
-                );
-
-                sortArrayCompletedData();
-            }
-
+            
             async function taskCompleted(evt,dbDelete){
             
                 let idTask = evt.target.id;
@@ -1556,7 +1536,7 @@ function getData(){
 
 
 //Codigo Ordenar Array
-function sortArrayCompletedData(){
+export function sortArrayCompletedData(){
 
     arrayCompletedTasks.sort(function (b, a) {
         return a.date - b.date;
