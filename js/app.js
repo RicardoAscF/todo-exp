@@ -6,7 +6,7 @@
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
  import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
- import { getTask, insertDB } from "./db.js";
+ import { getTask, insertDB, insertDBStarted } from "./db.js";
 
 
 
@@ -348,24 +348,7 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-            async function insertDBStarted(id,taskName,exp,selectedIcon,timeStart,dba){
-                db.collection(dba).add({
-                    id: id,
-                    taskName: taskName,
-                    exp: exp,
-                    selectedIcon, selectedIcon,
-                    date: Date.now(),
-                    timeStart: timeStart,
-                    avance: "25"
-
-                })
-                .then((docRef) => {
-                    displayToast('Task Added');
-                })
-                .catch((error) => {
-                    
-                });
-            }
+        
 
 
             async function insertDailyTasks(taskName,exp,selectedIcon2,date2,table){
