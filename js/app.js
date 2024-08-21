@@ -5,8 +5,8 @@
  
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
- import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
- import { getTask, insertDB, insertDBStarted } from "./db.js";
+ import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks, arrayTask, arrayJobTask, arrayDomesticTask } from "./arrays.js";
+ import { getTask, insertDB, insertDBStarted, insertCompletedTasksDB} from "./db.js";
 
 
 
@@ -41,9 +41,8 @@ let lastDay                 = 0; // Se obtiene desde firebase
 let lastDayId               = 0;
 let currentMonth            = today.getMonth().toString()+today.getFullYear().toString();
 let totalExpCurrentMonth    = 0;
-let arrayTask               = [];
-let arrayDomesticTask       = [];
-let arrayJobTask       = [];
+
+
 //
 
 
@@ -343,14 +342,6 @@ datePick.addEventListener('change', (evt) =>{
 
 
            
-
-           
-
-
-
-        
-
-
             async function insertDailyTasks(taskName,exp,selectedIcon2,date2,table){
                 db.collection(table).add({
                     taskName: taskName,
@@ -384,80 +375,23 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-            async function insertCompletedTasksDB(taskName,exp,selectedIcon,date,dateFinished){
-            
-                db.collection("completedTasks").add({
-                    taskName: taskName,
-                    exp: exp,
-                    selectedIcon, selectedIcon,
-                    date: date,
-                    dateFinished:dateFinished
-                })
-                .then((docRef) => {
-                    
-                })
-                .catch((error) => {
-                    
-                });
-            }
 
             //Obtiene Task to do
-            const querySnapshot = await getDocs(collection(dbGet, "tasks"));
-                querySnapshot.forEach((doc) => {
-                        let objTasks = {
-                            id:             doc.id,
-                            taskName:       doc.data().taskName,
-                            exp:            doc.data().exp,
-                            selectedIcon:   doc.data().selectedIcon,
-                            timeStart:      doc.data().timeStart,
-                            avance:         doc.data().avance,
-                        }
-                        
-                        
-                    arrayTask.push(objTasks);
-                    
-                }
-                
-            );
+           
 
 
 
-            const querySnapshotJob = await getDocs(collection(dbGet, "jobTasks"));
-            querySnapshotJob.forEach((doc) => {
-                    let objTasks = {
-                        id:             doc.id,
-                        taskName:       doc.data().taskName,
-                        exp:            doc.data().exp,
-                        selectedIcon:   doc.data().selectedIcon,
-                        timeStart:      doc.data().timeStart,
-                        avance:         doc.data().avance,
-                    }
-                    
-                    
-                arrayJobTask.push(objTasks);
-                
-            }
-            
-        );
+
+
+      
 
 
 
-            const querySnapshotDomestic = await getDocs(collection(dbGet, "domesticTasks"));
-                querySnapshotDomestic.forEach((doc) => {
-                        let objTasks = {
-                            id:             doc.id,
-                            taskName:       doc.data().taskName,
-                            exp:            doc.data().exp,
-                            selectedIcon:   doc.data().selectedIcon,
-                            timeStart:           doc.data().timeStart
-                        }
-                    arrayDomesticTask.push(objTasks);
-                    
-                }
-                
-            );
 
 
+
+          
+        
             //Obtiene Current Day
             const queryGetDay = await getDocs(collection(dbGet, "date"));
                 queryGetDay.forEach((doc) => {

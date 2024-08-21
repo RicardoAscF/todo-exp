@@ -58,3 +58,6 @@ export let arrayLastDone           = [
 ]
 
 export let arrayCompletedTasks     = [];
+export let arrayTask               = [];
+export let arrayJobTask            = [];
+export let arrayDomesticTask       = [];
