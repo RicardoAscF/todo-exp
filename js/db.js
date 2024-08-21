@@ -22,7 +22,7 @@
 
 
 
-  import {arrayCompletedTasks, arrayTask, arrayJobTask, arrayDomesticTask} from "./arrays.js";
+  import {arrayCompletedTasks} from "./arrays.js";
   import {sortArrayCompletedData} from "./app.js";
 
   export async function getTask(){
@@ -45,124 +45,6 @@
 
         sortArrayCompletedData();
     }//get End Task
-
-
-    export async function insertDB(id,taskName,exp,selectedIcon,dbName){
-        
-        db.collection(dbName).add({
-            id: id,
-            taskName: taskName,
-            exp: exp,
-            selectedIcon, selectedIcon,
-            date: Date.now(),
-            avance: "0"
-        })
-        .then((docRef) => {
-            displayToast('Task Added');
-        })
-        .catch((error) => {
-            
-        });
-    }
-
-
-    export async function insertDBStarted(id,taskName,exp,selectedIcon,timeStart,dba){
-        db.collection(dba).add({
-            id: id,
-            taskName: taskName,
-            exp: exp,
-            selectedIcon, selectedIcon,
-            date: Date.now(),
-            timeStart: timeStart,
-            avance: "25"
-
-        })
-        .then((docRef) => {
-            displayToast('Task Added');
-        })
-        .catch((error) => {
-            
-        });
-    }
-
-
-    export async function insertCompletedTasksDB(taskName,exp,selectedIcon,date,dateFinished){
-    
-        db.collection("completedTasks").add({
-            taskName: taskName,
-            exp: exp,
-            selectedIcon, selectedIcon,
-            date: date,
-            dateFinished:dateFinished
-        })
-        .then((docRef) => {
-            
-        })
-        .catch((error) => {
-            
-        });
-    }
-
-
-        export const querySnapshotTask = await getDocs(collection(dbGet, "tasks"));
-            querySnapshotTask.forEach((doc) => {
-                    let objTasks = {
-                        id:             doc.id,
-                        taskName:       doc.data().taskName,
-                        exp:            doc.data().exp,
-                        selectedIcon:   doc.data().selectedIcon,
-                        timeStart:      doc.data().timeStart,
-                        avance:         doc.data().avance,
-                    }
-                    
-                    
-                arrayTask.push(objTasks);
-                
-            }
-            
-        );
-
-
-
-
-        export const querySnapshotJob = await getDocs(collection(dbGet, "jobTasks"));
-        querySnapshotJob.forEach((doc) => {
-                let objTasks = {
-                    id:             doc.id,
-                    taskName:       doc.data().taskName,
-                    exp:            doc.data().exp,
-                    selectedIcon:   doc.data().selectedIcon,
-                    timeStart:      doc.data().timeStart,
-                    avance:         doc.data().avance,
-                }
-                
-                
-            arrayJobTask.push(objTasks);
-            
-            }
-        
-        );
-
-        export const querySnapshotDomestic = await getDocs(collection(dbGet, "domesticTasks"));
-        querySnapshotDomestic.forEach((doc) => {
-                let objTasks = {
-                    id:             doc.id,
-                    taskName:       doc.data().taskName,
-                    exp:            doc.data().exp,
-                    selectedIcon:   doc.data().selectedIcon,
-                    timeStart:      doc.data().timeStart,
-                    avance:         doc.data().avance,
-                }
-                
-                
-            arrayDomesticTask.push(objTasks);
-            
-        }
-        
-    );
-
-
-
 
 
 

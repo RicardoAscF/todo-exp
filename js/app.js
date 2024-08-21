@@ -5,8 +5,8 @@
  
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
- import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks, arrayTask, arrayJobTask, arrayDomesticTask } from "./arrays.js";
- import { getTask, insertDB, insertDBStarted, insertCompletedTasksDB} from "./db.js";
+ import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
+ import { getTask } from "./db.js";
 
 
 
@@ -41,8 +41,9 @@ let lastDay                 = 0; // Se obtiene desde firebase
 let lastDayId               = 0;
 let currentMonth            = today.getMonth().toString()+today.getFullYear().toString();
 let totalExpCurrentMonth    = 0;
-
-
+let arrayTask               = [];
+let arrayDomesticTask       = [];
+let arrayJobTask       = [];
 //
 
 
@@ -232,13 +233,13 @@ datePick.addEventListener('change', (evt) =>{
              
                 ////Aquiiii para agregra domestic task
                 if(checkBtn.checked){
-                    insertDB(id,taskName,exp,selectedIcon,"domesticTasks");
+                    insertDB_Domestic(id,taskName,exp,selectedIcon);
                 }else if(checkBtnJob.checked){
-                    insertDB(id,taskName,exp,selectedIcon,"jobTasks");
+                    insertDB_Job(id,taskName,exp,selectedIcon);
                 }else{
                     fillTasksTobeDone(id,taskName,exp,selectedIcon);
                     //FuncionInsertar en la BD
-                    insertDB(id,taskName,exp,selectedIcon,"tasks");
+                    insertDB(id,taskName,exp,selectedIcon);
                     document.getElementById('icon_prefix').value='';
                     document.getElementById('icon_time-exp').value='';
                 } 
@@ -341,7 +342,82 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-           
+            async function insertDB(id,taskName,exp,selectedIcon){
+                db.collection("tasks").add({
+                    id: id,
+                    taskName: taskName,
+                    exp: exp,
+                    selectedIcon, selectedIcon,
+                    date: Date.now(),
+                    avance: "0"
+                })
+                .then((docRef) => {
+                    displayToast('Task Added');
+                })
+                .catch((error) => {
+                    
+                });
+            }
+
+
+            async function insertDB_Domestic(id,taskName,exp,selectedIcon){
+                db.collection("domesticTasks").add({
+                    id: id,
+                    taskName: taskName,
+                    exp: exp,
+                    selectedIcon, selectedIcon,
+                    date: Date.now(),
+                    avance: "0"
+                })
+                .then((docRef) => {
+                    displayToast('Task Added');
+                })
+                .catch((error) => {
+                    
+                });
+            }
+
+
+            async function insertDB_Job(id,taskName,exp,selectedIcon){
+                db.collection("jobTasks").add({
+                    id: id,
+                    taskName: taskName,
+                    exp: exp,
+                    selectedIcon, selectedIcon,
+                    date: Date.now(),
+                    avance: "0"
+                })
+                .then((docRef) => {
+                    displayToast('Task Added');
+                })
+                .catch((error) => {
+                    
+                });
+            }
+
+
+
+
+            async function insertDBStarted(id,taskName,exp,selectedIcon,timeStart,dba){
+                db.collection(dba).add({
+                    id: id,
+                    taskName: taskName,
+                    exp: exp,
+                    selectedIcon, selectedIcon,
+                    date: Date.now(),
+                    timeStart: timeStart,
+                    avance: "25"
+
+                })
+                .then((docRef) => {
+                    displayToast('Task Added');
+                })
+                .catch((error) => {
+                    
+                });
+            }
+
+
             async function insertDailyTasks(taskName,exp,selectedIcon2,date2,table){
                 db.collection(table).add({
                     taskName: taskName,
@@ -375,23 +451,80 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
+            async function insertCompletedTasksDB(taskName,exp,selectedIcon,date,dateFinished){
+            
+                db.collection("completedTasks").add({
+                    taskName: taskName,
+                    exp: exp,
+                    selectedIcon, selectedIcon,
+                    date: date,
+                    dateFinished:dateFinished
+                })
+                .then((docRef) => {
+                    
+                })
+                .catch((error) => {
+                    
+                });
+            }
 
             //Obtiene Task to do
-           
+            const querySnapshot = await getDocs(collection(dbGet, "tasks"));
+                querySnapshot.forEach((doc) => {
+                        let objTasks = {
+                            id:             doc.id,
+                            taskName:       doc.data().taskName,
+                            exp:            doc.data().exp,
+                            selectedIcon:   doc.data().selectedIcon,
+                            timeStart:      doc.data().timeStart,
+                            avance:         doc.data().avance,
+                        }
+                        
+                        
+                    arrayTask.push(objTasks);
+                    
+                }
+                
+            );
 
 
 
+            const querySnapshotJob = await getDocs(collection(dbGet, "jobTasks"));
+            querySnapshotJob.forEach((doc) => {
+                    let objTasks = {
+                        id:             doc.id,
+                        taskName:       doc.data().taskName,
+                        exp:            doc.data().exp,
+                        selectedIcon:   doc.data().selectedIcon,
+                        timeStart:      doc.data().timeStart,
+                        avance:         doc.data().avance,
+                    }
+                    
+                    
+                arrayJobTask.push(objTasks);
+                
+            }
+            
+        );
 
 
-      
+
+            const querySnapshotDomestic = await getDocs(collection(dbGet, "domesticTasks"));
+                querySnapshotDomestic.forEach((doc) => {
+                        let objTasks = {
+                            id:             doc.id,
+                            taskName:       doc.data().taskName,
+                            exp:            doc.data().exp,
+                            selectedIcon:   doc.data().selectedIcon,
+                            timeStart:           doc.data().timeStart
+                        }
+                    arrayDomesticTask.push(objTasks);
+                    
+                }
+                
+            );
 
 
-
-
-
-
-          
-        
             //Obtiene Current Day
             const queryGetDay = await getDocs(collection(dbGet, "date"));
                 queryGetDay.forEach((doc) => {
