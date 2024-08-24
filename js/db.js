@@ -48,4 +48,25 @@
 
 
 
+    export async function insertDBStarted(id,taskName,exp,selectedIcon,timeStart,dba){
+        db.collection(dba).add({
+            id: id,
+            taskName: taskName,
+            exp: exp,
+            selectedIcon, selectedIcon,
+            date: Date.now(),
+            timeStart: timeStart,
+            avance: "25"
+
+        })
+        .then((docRef) => {
+            displayToast('Task Added');
+        })
+        .catch((error) => {
+            
+        });
+    }
+
+
+
  
