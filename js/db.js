@@ -68,5 +68,23 @@
     }
 
 
+    export async function insertCompletedTasksDB(taskName,exp,selectedIcon,date,dateFinished){
+            
+        db.collection("completedTasks").add({
+            taskName: taskName,
+            exp: exp,
+            selectedIcon, selectedIcon,
+            date: date,
+            dateFinished:dateFinished
+        })
+        .then((docRef) => {
+            
+        })
+        .catch((error) => {
+            
+        });
+    }
+
+
 
  
