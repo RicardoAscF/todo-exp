@@ -6,7 +6,7 @@
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
  import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
- import { getTask, insertDBStarted, insertCompletedTasksDB } from "./db.js";
+ import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted } from "./db.js";
 
 
 
@@ -246,46 +246,7 @@ datePick.addEventListener('change', (evt) =>{
             }//AddTask
 
 
-
             
-            async function taskCompleted(evt,dbDelete){
-            
-                let idTask = evt.target.id;
-
-                let taskName        = evt.target.getAttribute('taskName');
-                let exp             = evt.target.getAttribute('exp');
-                let selectedIcon    = evt.target.getAttribute('selectedIcon');
-                let date            = evt.target.getAttribute('date');
-                let dateFinshed     = evt.target.getAttribute('dateFinished'); //posible undefineded
-
-                
-                
-                await deleteDoc(doc(dbGet, dbDelete, idTask));
-                
-
-                insertCompletedTasksDB(taskName, exp, selectedIcon, date, dateFinshed);
-                //insertCompletedTasksDB*();
-
-            
-
-                displayToast('Congrats');
-
-                /*
-                setTimeout(function() { 
-                    reiniciarTaskToBeDone();
-                }, 1500);
-
-                setTimeout(function() { 
-                    reiniciarCompletedTask();
-                }, 1500);
-                */
-
-
-           
-
-            
-                
-            }/// taskCompleted
 
             async function taskCanceled(evt,db){
                 let idTask = evt.target.id;
@@ -986,27 +947,7 @@ datePick.addEventListener('change', (evt) =>{
 
             }// fillCompletedTasks
 
-            function reiniciarTaskToBeDone(){  // Cuando se Finaliza o Cancela una task
-                
-
-                let taskToBeDone            = document.getElementById('tasksToBeDone');
-                let domesticTaskToBeDone            = document.getElementById('DomesticTasksToBeDone');
-                while (taskToBeDone.firstChild) {
-                    taskToBeDone.removeChild(taskToBeDone.firstChild);
-                }
-
-                while (domesticTaskToBeDone.firstChild) {
-                    domesticTaskToBeDone.removeChild(domesticTaskToBeDone.firstChild);
-                }
-
-
-                setTimeout(function() { 
-                    getData();
-                }, 2000);
-
-
-                
-            }
+           
 
             function reiniciarCompletedTask(){  
                 let taskToBeDone            = document.getElementById('dateContainer');

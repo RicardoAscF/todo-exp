@@ -87,4 +87,31 @@
 
 
 
- 
+    export async function taskCompleted(evt,dbDelete){
+            
+        let idTask = evt.target.id;
+
+        let taskName        = evt.target.getAttribute('taskName');
+        let exp             = evt.target.getAttribute('exp');
+        let selectedIcon    = evt.target.getAttribute('selectedIcon');
+        let date            = evt.target.getAttribute('date');
+        let dateFinshed     = evt.target.getAttribute('dateFinished'); //posible undefineded
+
+                        
+        await deleteDoc(doc(dbGet, dbDelete, idTask));
+        
+
+        insertCompletedTasksDB(taskName, exp, selectedIcon, date, dateFinshed);
+        //insertCompletedTasksDB*();
+        displayToast('Congrats');
+           
+        
+    }/// taskCompleted
+
+
+
+    function displayToast(test){
+        //var toastHTML = `<span class="card-panel teal lighten-2">${test}</span>`;
+       
+        M.toast({html: test, class: "rounded"})
+    }
