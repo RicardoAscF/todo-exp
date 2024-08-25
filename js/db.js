@@ -155,3 +155,32 @@
 
 
     }
+
+
+    export async function completedTaskCanceled(evt){
+        let idTask = evt.target.id;
+        await deleteDoc(doc(dbGet, "completedTasks", idTask));
+
+        displayToast('Canceling');
+
+
+        setTimeout(function() { 
+            displayToast('Deleted');
+        }, 500);
+    }
+
+
+    export async function insertDailyTasks(taskName,exp,selectedIcon2,date2,table){
+        db.collection(table).add({
+            taskName: taskName,
+            exp: exp,
+            selectedIcon: selectedIcon2,
+            date: date2,
+            avance: 0
+        })
+        .then((docRef) => {
+            displayToast(`${taskName} Added`);
+        })
+        .catch((error) => {
+        });
+    }//insertDayliTaks

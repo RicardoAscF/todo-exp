@@ -6,7 +6,7 @@
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
  import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
- import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted, insertDB, taskCanceled } from "./db.js";
+ import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted, insertDB, taskCanceled, completedTaskCanceled, insertDailyTasks} from "./db.js";
 
 
 
@@ -251,17 +251,6 @@ datePick.addEventListener('change', (evt) =>{
             
 
             
-            async function completedTaskCanceled(evt){
-                let idTask = evt.target.id;
-                await deleteDoc(doc(dbGet, "completedTasks", idTask));
-
-                displayToast('Canceling');
-
-
-                setTimeout(function() { 
-                    displayToast('Deleted');
-                }, 500);
-            }
 
             async function taskStarted(evt,db){
                 let taskName = evt.target.getAttribute("taskname");
@@ -288,60 +277,11 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-            async function insertDB_Domestic(id,taskName,exp,selectedIcon){
-                db.collection("domesticTasks").add({
-                    id: id,
-                    taskName: taskName,
-                    exp: exp,
-                    selectedIcon, selectedIcon,
-                    date: Date.now(),
-                    avance: "0"
-                })
-                .then((docRef) => {
-                    displayToast('Task Added');
-                })
-                .catch((error) => {
-                    
-                });
-            }
-
-
-            async function insertDB_Job(id,taskName,exp,selectedIcon){
-                db.collection("jobTasks").add({
-                    id: id,
-                    taskName: taskName,
-                    exp: exp,
-                    selectedIcon, selectedIcon,
-                    date: Date.now(),
-                    avance: "0"
-                })
-                .then((docRef) => {
-                    displayToast('Task Added');
-                })
-                .catch((error) => {
-                    
-                });
-            }
+           
 
 
 
-
-
-
-            async function insertDailyTasks(taskName,exp,selectedIcon2,date2,table){
-                db.collection(table).add({
-                    taskName: taskName,
-                    exp: exp,
-                    selectedIcon: selectedIcon2,
-                    date: date2,
-                    avance: 0
-                })
-                .then((docRef) => {
-                    displayToast(`${taskName} Added`);
-                })
-                .catch((error) => {
-                });
-            }//insertDayliTaks
+            
 
 
 
