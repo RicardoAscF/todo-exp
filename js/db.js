@@ -134,3 +134,24 @@
             
         });
     }
+
+
+
+    export async function taskCanceled(evt,db){
+        let idTask = evt.target.id;
+        await deleteDoc(doc(dbGet, db, idTask));
+
+        displayToast('Canceling');
+
+
+        /*
+        
+        setTimeout(function() { 
+           // reiniciarTaskToBeDone();
+            displayToast('Canceled');
+        }, 1000);
+
+        */
+
+
+    }

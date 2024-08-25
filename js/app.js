@@ -6,7 +6,7 @@
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
  import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
- import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted, insertDB } from "./db.js";
+ import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted, insertDB, taskCanceled } from "./db.js";
 
 
 
@@ -248,24 +248,7 @@ datePick.addEventListener('change', (evt) =>{
 
             
 
-            async function taskCanceled(evt,db){
-                let idTask = evt.target.id;
-                await deleteDoc(doc(dbGet, db, idTask));
-
-                displayToast('Canceling');
-
-
-                /*
-                
-                setTimeout(function() { 
-                   // reiniciarTaskToBeDone();
-                    displayToast('Canceled');
-                }, 1000);
-
-                */
-
-
-            }
+            
 
             
             async function completedTaskCanceled(evt){
