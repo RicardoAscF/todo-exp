@@ -115,3 +115,22 @@
        
         M.toast({html: test, class: "rounded"})
     }
+
+
+    
+    export async function insertDB(id,taskName,exp,selectedIcon,tbaleName){
+        db.collection(tbaleName).add({
+            id: id,
+            taskName: taskName,
+            exp: exp,
+            selectedIcon, selectedIcon,
+            date: Date.now(),
+            avance: "0"
+        })
+        .then((docRef) => {
+            displayToast('Task Added');
+        })
+        .catch((error) => {
+            
+        });
+    }

@@ -6,7 +6,7 @@
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
  import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
- import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted } from "./db.js";
+ import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted, insertDB } from "./db.js";
 
 
 
@@ -233,13 +233,13 @@ datePick.addEventListener('change', (evt) =>{
              
                 ////Aquiiii para agregra domestic task
                 if(checkBtn.checked){
-                    insertDB_Domestic(id,taskName,exp,selectedIcon);
+                    insertDB(id,taskName,exp,selectedIcon,"domesticTasks");
                 }else if(checkBtnJob.checked){
-                    insertDB_Job(id,taskName,exp,selectedIcon);
+                    insertDB(id,taskName,exp,selectedIcon,"jobTasks");
                 }else{
                     fillTasksTobeDone(id,taskName,exp,selectedIcon);
                     //FuncionInsertar en la BD
-                    insertDB(id,taskName,exp,selectedIcon);
+                    insertDB(id,taskName,exp,selectedIcon,"tasks");
                     document.getElementById('icon_prefix').value='';
                     document.getElementById('icon_time-exp').value='';
                 } 
@@ -303,22 +303,6 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-            async function insertDB(id,taskName,exp,selectedIcon){
-                db.collection("tasks").add({
-                    id: id,
-                    taskName: taskName,
-                    exp: exp,
-                    selectedIcon, selectedIcon,
-                    date: Date.now(),
-                    avance: "0"
-                })
-                .then((docRef) => {
-                    displayToast('Task Added');
-                })
-                .catch((error) => {
-                    
-                });
-            }
 
 
             async function insertDB_Domestic(id,taskName,exp,selectedIcon){
