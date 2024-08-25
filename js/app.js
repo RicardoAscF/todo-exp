@@ -6,7 +6,7 @@
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
  import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
- import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted, insertDB, taskCanceled, completedTaskCanceled, insertDailyTasks} from "./db.js";
+ import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted, insertDB, taskCanceled, completedTaskCanceled, insertDailyTasks, addTask} from "./db.js";
 
 
 
@@ -208,42 +208,7 @@ datePick.addEventListener('change', (evt) =>{
             
             
 
-            function addTask(){
-                let id              =   Date.now();
-                let taskName        =   document.getElementById('icon_prefix').value;
-                let exp             =   document.getElementById('icon_time-exp').value;
-                let selectedIcon    =   document.getElementById('selectedIcon').value;
-                let frequentTasks   =   document.getElementById('frequentTasks');
-                let checkBtn        =   document.getElementById('isDomestic');
-                let checkBtnJob        =   document.getElementById('isJob');
-                
-                let icon_prefix = document.getElementById("icon_prefix");
-
-                icon_prefix.addEventListener("change", (evt) =>{
-                icon_prefix.value = frequentTasks.value;
-                });
-
-                if(frequentTasks.value!='0'){
-                    
-                    
-                    taskName =   icon_prefix.value
-                }
-
-                
-             
-                ////Aquiiii para agregra domestic task
-                if(checkBtn.checked){
-                    insertDB(id,taskName,exp,selectedIcon,"domesticTasks");
-                }else if(checkBtnJob.checked){
-                    insertDB(id,taskName,exp,selectedIcon,"jobTasks");
-                }else{
-                    fillTasksTobeDone(id,taskName,exp,selectedIcon);
-                    //FuncionInsertar en la BD
-                    insertDB(id,taskName,exp,selectedIcon,"tasks");
-                    document.getElementById('icon_prefix').value='';
-                    document.getElementById('icon_time-exp').value='';
-                } 
-            }//AddTask
+           
 
 
             
@@ -864,7 +829,7 @@ datePick.addEventListener('change', (evt) =>{
                 
             }
 
-            function fillTasksTobeDone(id,taskName,exp,selectedIcon,date,avance){
+            export function fillTasksTobeDone(id,taskName,exp,selectedIcon,date,avance){
 
                 
                 let taskToBeDone            = document.getElementById('tasksToBeDone');

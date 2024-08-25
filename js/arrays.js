@@ -58,3 +58,17 @@ export let arrayLastDone           = [
 ]
 
 export let arrayCompletedTasks     = [];
+
+
+
+export function sortArrayCompletedData(){
+
+    arrayCompletedTasks.sort(function (b, a) {
+        return a.date - b.date;
+    });
+
+     // Aqui se escoge si byMoth o todas
+    
+     getCompletedData();
+    
+}//sortArrayCompletedData

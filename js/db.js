@@ -23,7 +23,7 @@
 
 
   import {arrayCompletedTasks} from "./arrays.js";
-  import {sortArrayCompletedData} from "./app.js";
+  import {sortArrayCompletedData, fillTasksTobeDone} from "./app.js";
 
   export async function getTask(){
     console.log('get task');
@@ -184,3 +184,41 @@
         .catch((error) => {
         });
     }//insertDayliTaks
+
+
+    export function addTask(){
+        let id              =   Date.now();
+        let taskName        =   document.getElementById('icon_prefix').value;
+        let exp             =   document.getElementById('icon_time-exp').value;
+        let selectedIcon    =   document.getElementById('selectedIcon').value;
+        let frequentTasks   =   document.getElementById('frequentTasks');
+        let checkBtn        =   document.getElementById('isDomestic');
+        let checkBtnJob        =   document.getElementById('isJob');
+        
+        let icon_prefix = document.getElementById("icon_prefix");
+
+        icon_prefix.addEventListener("change", (evt) =>{
+        icon_prefix.value = frequentTasks.value;
+        });
+
+        if(frequentTasks.value!='0'){
+            
+            
+            taskName =   icon_prefix.value
+        }
+
+        
+     
+        ////Aquiiii para agregra domestic task
+        if(checkBtn.checked){
+            insertDB(id,taskName,exp,selectedIcon,"domesticTasks");
+        }else if(checkBtnJob.checked){
+            insertDB(id,taskName,exp,selectedIcon,"jobTasks");
+        }else{
+            fillTasksTobeDone(id,taskName,exp,selectedIcon);
+            //FuncionInsertar en la BD
+            insertDB(id,taskName,exp,selectedIcon,"tasks");
+            document.getElementById('icon_prefix').value='';
+            document.getElementById('icon_time-exp').value='';
+        } 
+    }//AddTask
