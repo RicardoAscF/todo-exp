@@ -23,7 +23,7 @@
 
 
   import {arrayCompletedTasks} from "./arrays.js";
-  import {sortArrayCompletedData, fillTasksTobeDone} from "./app.js";
+  import {fillTasksTobeDone, getCompletedData} from "./app.js";
 
   export async function getTask(){
     console.log('get task');
@@ -222,3 +222,37 @@
             document.getElementById('icon_time-exp').value='';
         } 
     }//AddTask
+
+
+
+    export async function taskStarted(evt,db){
+        let taskName = evt.target.getAttribute("taskname");
+        let exp = evt.target.getAttribute("exp");
+        let icon = evt.target.getAttribute("selectedIcon");
+        let date = evt.target.getAttribute("date");           
+        let idTask = evt.target.id;
+       
+        await deleteDoc(doc(dbGet, db, idTask));
+
+        
+        displayToast('Task started');
+        insertDBStarted(idTask,taskName,exp,icon,date,db);
+
+       
+    }
+
+
+
+
+    function sortArrayCompletedData(){
+
+        arrayCompletedTasks.sort(function (b, a) {
+            return a.date - b.date;
+        });
+    
+         // Aqui se escoge si byMoth o todas
+        
+         getCompletedData();
+        
+    }//sortArrayCompletedData
+

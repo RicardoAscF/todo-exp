@@ -6,7 +6,7 @@
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
  import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
- import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted, insertDB, taskCanceled, completedTaskCanceled, insertDailyTasks, addTask} from "./db.js";
+ import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted, insertDB, taskCanceled, completedTaskCanceled, insertDailyTasks, addTask, taskStarted} from "./db.js";
 
 
 
@@ -208,46 +208,10 @@ datePick.addEventListener('change', (evt) =>{
             
             
 
-           
-
-
-            
-
-            
-
-            
-
-            async function taskStarted(evt,db){
-                let taskName = evt.target.getAttribute("taskname");
-                let exp = evt.target.getAttribute("exp");
-                let icon = evt.target.getAttribute("selectedIcon");
-                let date = evt.target.getAttribute("date");           
-                let idTask = evt.target.id;
-               
-                await deleteDoc(doc(dbGet, db, idTask));
-
-                
-                displayToast('Task started');
-                insertDBStarted(idTask,taskName,exp,icon,date,db);
-
-               
-            }
-
-
+    
 
 // Fin Eventos Funciones eventos
 // **************************************************************** Funciones DB ****************************************** 
-
-
-
-
-
-           
-
-
-
-            
-
 
 
             async function insertNewDay(){
@@ -471,8 +435,7 @@ datePick.addEventListener('change', (evt) =>{
                 
             }
 
-        
-
+    
 
             function fillLastDone(id,taskName,exp,selectedIcon,dateStarted,date){
                 if(taskName=="Ejercicio"){
@@ -822,6 +785,7 @@ datePick.addEventListener('change', (evt) =>{
            
 
             function reiniciarCompletedTask(){  
+                alert('Here')
                 let taskToBeDone            = document.getElementById('dateContainer');
                 while (taskToBeDone.firstChild) {
                     taskToBeDone.removeChild(taskToBeDone.firstChild);
@@ -1316,20 +1280,10 @@ function getData(){
 
 
 //Codigo Ordenar Array
-export function sortArrayCompletedData(){
-
-    arrayCompletedTasks.sort(function (b, a) {
-        return a.date - b.date;
-    });
-
-     // Aqui se escoge si byMoth o todas
-    
-     getCompletedData();
-    
-}//sortArrayCompletedData
 
 
-function getCompletedData(month){
+
+export function getCompletedData(month){
     //byMonth trae el mes que mostrara
 
     let totalExp=0; // Este esta aqui por el momento pero deberia estar en su propio metodo porque calcula la EXP total
