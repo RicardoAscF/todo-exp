@@ -23,7 +23,7 @@
 
 
   import {arrayCompletedTasks} from "./arrays.js";
-  import {fillTasksTobeDone, getCompletedData} from "./app.js";
+  import {fillTasksTobeDone, getCompletedData, getData, getToday} from "./app.js";
 
   export async function getTask(){
     console.log('get task');
@@ -142,18 +142,6 @@
         await deleteDoc(doc(dbGet, db, idTask));
 
         displayToast('Canceling');
-
-
-        /*
-        
-        setTimeout(function() { 
-           // reiniciarTaskToBeDone();
-            displayToast('Canceled');
-        }, 1000);
-
-        */
-
-
     }
 
 
@@ -255,4 +243,17 @@
          getCompletedData();
         
     }//sortArrayCompletedData
+
+
+
+    export function sortArrayGetData(){
+   
+        arrayCompletedTasks.sort(function (a, b) {
+            return a.taskName - b.taskName;
+        });
+    
+       
+        getData();
+        getToday(); //Es la funcion para determinar un nuevo dia
+    }//
 

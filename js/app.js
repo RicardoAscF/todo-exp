@@ -6,7 +6,7 @@
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
  import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
- import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted, insertDB, taskCanceled, completedTaskCanceled, insertDailyTasks, addTask, taskStarted} from "./db.js";
+ import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted, insertDB, taskCanceled, completedTaskCanceled, insertDailyTasks, addTask, taskStarted, sortArrayGetData} from "./db.js";
 
 
 
@@ -319,7 +319,7 @@ datePick.addEventListener('change', (evt) =>{
             }
 
 
-            function getToday(){
+            export function getToday(){
              
                 let currentDay = new Date(Date.now());
                 let DBCurrentDay = new Date(Number(lastDay));
@@ -1217,18 +1217,9 @@ datePick.addEventListener('change', (evt) =>{
 
 
 sortArrayGetData();
-function sortArrayGetData(){
-   
-    arrayCompletedTasks.sort(function (a, b) {
-        return a.taskName - b.taskName;
-    });
 
-   
-    getData();
-    getToday(); //Es la funcion para determinar un nuevo dia
-}//
 
-function getData(){
+export function getData(){
     
     
     
