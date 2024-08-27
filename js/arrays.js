@@ -58,6 +58,9 @@ export let arrayLastDone           = [
 ]
 
 export let arrayCompletedTasks     = [];
+export let arrayTask               = [];
+export let arrayDomesticTask       = [];
+export let arrayJobTask       = [];
 
 
 
@@ -72,3 +75,4 @@ export function sortArrayCompletedData(){
      getCompletedData();
     
 }//sortArrayCompletedData
+
