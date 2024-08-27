@@ -35,6 +35,7 @@ export  let arrayDailyTasks = [
 export let arrayLastDone           = [
     {name: "Ejercicio", last:0},
     {name: "Lavar Baño", last:0},
+ 
     {name: "Lavar Dientes", last:0},
     {name: "Barrer", last:0},
     {name: "Trapear", last:0},

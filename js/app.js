@@ -227,11 +227,6 @@ datePick.addEventListener('change', (evt) =>{
                 });
             }
 
-
-
-
-            
-
             //Obtiene Task to do
             const querySnapshot = await getDocs(collection(dbGet, "tasks"));
                 querySnapshot.forEach((doc) => {
@@ -328,15 +323,10 @@ datePick.addEventListener('change', (evt) =>{
                 }else{
                     insertNewDay();//aqui mando los datos como argumento
                     
-
-                   
-
                     let arrayCursosTasks = [
                         
                        
                     ];
-
-
 
                     //taskName,exp,selectedIcon2,date2
                     arrayDailyTasks.forEach(element => {
