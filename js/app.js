@@ -426,9 +426,8 @@ datePick.addEventListener('change', (evt) =>{
             }
 
     
-
             function fillLastDone(id,taskName,exp,selectedIcon,dateStarted,date){
-                if(taskName=="Ejercicio"){
+                if(taskName=='Ejercicio'){
                     if(dateStarted>arrayLastDone[0].last){
                         arrayLastDone[0].last=dateStarted;
                     }
@@ -601,10 +600,6 @@ datePick.addEventListener('change', (evt) =>{
                 
                 }
 
-
-
-
-                
             }
 
             function fillCompletedTasks(id,taskName,exp,selectedIcon,dateStarted,date){
@@ -685,7 +680,7 @@ datePick.addEventListener('change', (evt) =>{
                                         pLight.innerText=`${exp} px`;
                                         
 
-
+                                        taskName.includes("Pensamiento F") && 
 
                                 divCard_content2.appendChild(pLight);
                                 divCard_content.appendChild(pTitles);
@@ -716,23 +711,32 @@ datePick.addEventListener('change', (evt) =>{
                                 divDate_Container.appendChild(h5White_texttitles);
                                 divDate_Container.appendChild(divColL6S12);
                             
-                                if(taskName=='x' || taskName=='X'){
-                                    pTitles.classList.add('red-text');
-                                    pPx.classList.add('red-text');
-                                    pLight.classList.add('red-text');
-                                    iMaterial_Icons.classList.add('red-text');
-                                }
-
+                            
                                 
+                                
+                                console.log('heer');
+                                
+                                console.log(selectedIcon);
                                 
                                 if(taskName=='Ejercicio'){
+                                  
                                     pTitles.classList.add('blue-text');
                                     pPx.classList.add('blue-text');
                                     pLight.classList.add('blue-text');
                                     iMaterial_Icons.classList.add('blue-text');
                                 }
 
-                                if(taskName=='Lavar Dientes'){
+
+                                if(Number(selectedIcon)==12){
+                                  
+                                    pTitles.classList.add('orange-text');
+                                    pPx.classList.add('orange-text');
+                                    pLight.classList.add('orange-text');
+                                    iMaterial_Icons.classList.add('orange-text');
+                                }
+
+                                if(Number(selectedIcon)==3){
+                                  
                                     pTitles.classList.add('green-text');
                                     pPx.classList.add('green-text');
                                     pLight.classList.add('green-text');
@@ -740,35 +744,18 @@ datePick.addEventListener('change', (evt) =>{
                                 }
 
 
-                                if(taskName.includes("X") && Number(exp)<0){
+
+
+                                if(Number(exp)<0){
+                                  
                                     pTitles.classList.add('red-text');
                                     pPx.classList.add('red-text');
                                     pLight.classList.add('red-text');
                                     iMaterial_Icons.classList.add('red-text');
                                 }
 
-
-                                if(taskName.includes("Levantarme") && Number(exp)<0){
-                                    pTitles.classList.add('red-text');
-                                    pPx.classList.add('red-text');
-                                    pLight.classList.add('red-text');
-                                    iMaterial_Icons.classList.add('red-text');
-                                }
-
-
-                                if(taskName.includes("Pensamiento F") && Number(exp)<0){
-                                    pTitles.classList.add('red-text');
-                                    pPx.classList.add('red-text');
-                                    pLight.classList.add('red-text');
-                                    iMaterial_Icons.classList.add('red-text');
-                                }
-
-                                if(taskName.includes("Pensamiento D") && Number(exp)<0){
-                                    pTitles.classList.add('red-text');
-                                    pPx.classList.add('red-text');
-                                    pLight.classList.add('red-text');
-                                    iMaterial_Icons.classList.add('red-text');
-                                }
+                         
+                   
 
             }// fillCompletedTasks
 

@@ -35,25 +35,28 @@ export  let arrayDailyTasks = [
 export let arrayLastDone           = [
     {name: "Ejercicio", last:0},
     {name: "Lavar Baño", last:0},
- 
     {name: "Lavar Dientes", last:0},
     {name: "Barrer", last:0},
     {name: "Trapear", last:0},
+
     {name: "Levantarme", last:0},
     {name: "Sin X", last:0},
     {name: "X Talk", last:0},
     {name: "Curso ONE", last:0},
     {name: "Curso Linux", last:0},
+
     {name: "Mas de 2 horas en el celular", last:0},
     {name: "Bañarme", last:0},
     {name: "Afeitarme", last:0},
     {name: "Lavar trapeador", last:0},
     {name: "Lavar Toalla Gris", last:0},
+
     {name: "Lavar Toalla Blanca", last:0},
     {name: "Tomar Pastilla", last:0},
     {name: "Meditar", last:0},
     {name: "Pensamiento X", last:0},
     {name: "Pensamiento F", last:0},
+    
     {name: "Pensamiento D", last:0},
 
 ]
