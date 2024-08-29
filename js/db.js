@@ -23,7 +23,7 @@
 
 
   import {arrayCompletedTasks} from "./arrays.js";
-  import {fillTasksTobeDone, getCompletedData, getData, getToday} from "./app.js";
+  import {fillTasksTobeDone, getCompletedData, getData, getToday, insertNewDay} from "./app.js";
 
   export async function getTask(){
     console.log('get task');
@@ -86,7 +86,6 @@
     }
 
 
-
     export async function taskCompleted(evt,dbDelete){
             
         let idTask = evt.target.id;
@@ -99,6 +98,9 @@
 
                         
         await deleteDoc(doc(dbGet, dbDelete, idTask));
+
+        let pTotalExp = Number(document.getElementById('logo-container').innerText);
+        insertNewDay(pTotalExp+Number(exp));
         
 
         insertCompletedTasksDB(taskName, exp, selectedIcon, date, dateFinshed);

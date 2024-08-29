@@ -39,11 +39,13 @@ let now                     = Date.now();
 let today                   = new Date(now)
 let lastDay                 = 0; // Se obtiene desde firebase 
 let lastDayId               = 0;
+
 let currentMonth            = today.getMonth().toString()+today.getFullYear().toString();
 let totalExpCurrentMonth    = 0;
 let arrayTask               = [];
 let arrayDomesticTask       = [];
 let arrayJobTask       = [];
+let todayExp                = 0;
 //
 
 
@@ -269,10 +271,11 @@ datePick.addEventListener('change', (evt) =>{
 // **************************************************************** Funciones DB ****************************************** 
 
 
-            async function insertNewDay(){
+            export async function insertNewDay(newExp){
                 await deleteDoc(doc(dbGet, "date", lastDayId));
                 db.collection("date").add({
-                    today: Date.now()
+                    today: Date.now(),
+                    todayExp: newExp
                 })
                 .then((docRef) => {
                     displayToast('Adding Daily Tasks');
@@ -344,8 +347,12 @@ datePick.addEventListener('change', (evt) =>{
                 queryGetDay.forEach((doc) => {
                     lastDay = doc.data().today;
                     lastDayId = doc.id;
+                    todayExp = doc.data().todayExp;
                 }
             );
+
+
+
 
            
 // Fin Funciones DB
@@ -376,7 +383,7 @@ datePick.addEventListener('change', (evt) =>{
                 if(currentDay.getDate() == DBCurrentDay.getDate()){
                   
                 }else{
-                    insertNewDay();//aqui mando los datos como argumento
+                    insertNewDay(0);//aqui mando los datos como argumento
                     
                     let arrayCursosTasks = [
                         
@@ -827,7 +834,10 @@ datePick.addEventListener('change', (evt) =>{
 
             export function fillTasksTobeDone(id,taskName,exp,selectedIcon,date,avance){
 
-                
+                let pTodayExp = document.getElementById("logo-container");
+                pTodayExp.innerText=todayExp;
+
+
                 let taskToBeDone            = document.getElementById('tasksToBeDone');
                 
 
