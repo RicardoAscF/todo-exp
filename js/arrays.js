@@ -24,8 +24,13 @@ export  let arrayDailyTasks = [
     {taskName: "Cumpli más de 2 días sin ejercicio",exp:"-50",icon:"3",date: Date.now()},
     {taskName: "Meditar",exp:"10",icon:"12",date: Date.now()},
     {taskName: "Cumpli más de 2 días sin meditar",exp:"-50",icon:"12",date: Date.now()},
-    {taskName: "REgaderazo Agua Fria",exp:"50",icon:"12",date: Date.now()},
-    
+    {taskName: "Regaderazo Agua Fria",exp:"50",icon:"12",date: Date.now()},
+    {taskName: "Regaderazo Agua Fria",exp:"50",icon:"12",date: Date.now()},
+    {taskName: "Leer Mantras",exp:"5",icon:"12",date: Date.now()},
+    {taskName: "¿Me levante en menos de 3 minutos?",exp:"10",icon:"12",date: Date.now()},
+
+   
+
     
 
     
@@ -56,7 +61,7 @@ export let arrayLastDone           = [
     {name: "Meditar", last:0},
     {name: "Pensamiento X", last:0},
     {name: "Pensamiento F", last:0},
-    
+
     {name: "Pensamiento D", last:0},
 
 ]
