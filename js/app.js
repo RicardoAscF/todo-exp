@@ -54,6 +54,7 @@ const addTaskBtn = document.getElementById('addTaskButton');
 let datePick = document.getElementById('datePicker');
 const getTaskBtn = document.getElementById('getTasks');
 let selectFrequent = document.getElementById('frequentTasks');
+let selectNegativeTasks = document.getElementById('negativeTasks');
 //  Fin Componentes 
 // **************************************************************** Eventos ****************************************** 
 document.addEventListener('DOMContentLoaded', function() {
@@ -100,19 +101,12 @@ selectFrequent.addEventListener( 'change', (evt) => {
             selectExp.value = '15';
         break;
 
-        case 'Curso Linux':
-            selectExp.value = '30';
-        break;
-
-
+    
         case 'Desayunar':
             selectExp.value = '20';
         break;
 
-        case 'Ejercicio':
-            selectExp.value = '60';
-        break;
-
+    
 
         case 'Ir A Aurrera':
             selectExp.value = '25';
@@ -130,6 +124,16 @@ selectFrequent.addEventListener( 'change', (evt) => {
         case 'Lavar Baño':
             selectExp.value = '10';
         break;
+
+
+        case 'Lavar Dientes':
+            selectExp.value = '5';
+        break;
+
+        case 'Lavar Ropa':
+            selectExp.value = '15';
+        break;
+
         
         case 'Preparar Desayuno':
             selectExp.value = '15';
@@ -143,10 +147,7 @@ selectFrequent.addEventListener( 'change', (evt) => {
             selectExp.value = '5';
         break;
 
-        case 'Lavar Dientes':
-            selectExp.value = '5';
-        break;
-
+      
         case 'Pensamiento X':
             selectExp.value = '-10';
         break;
@@ -189,6 +190,60 @@ selectFrequent.addEventListener( 'change', (evt) => {
 
         
 
+
+
+        default:
+        break;
+    }
+    
+
+
+});//Evento Select Frequent Task
+
+
+
+selectNegativeTasks.addEventListener( 'change', (evt) => {
+
+    let name = document.getElementById("icon_prefix");
+    name.value = evt.target.value;
+    
+    let selectExp = document.getElementById('icon_time-exp');
+    switch (evt.target.value    ) {
+       
+        
+        case 'Bebi Azucar':
+            selectExp.value = '-50';
+        break;
+
+        case 'Comi Azucar':
+            selectExp.value = '-50';
+        break;
+
+
+
+        case 'Comi Pan':
+            selectExp.value = '-50';
+        break;
+
+ 
+        case 'Pensamiento X':
+            selectExp.value = '-10';
+        break;
+
+        case 'Pensamiento F':
+            selectExp.value = '-10';
+        break;
+
+
+        case 'Pensamiento D':
+            selectExp.value = '-10';
+        break;
+
+    
+
+        case 'No tire':
+            selectExp.value = '-10';
+        break;
 
 
         default:
