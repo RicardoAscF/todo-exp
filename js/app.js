@@ -100,7 +100,7 @@ selectFrequent.addEventListener( 'change', (evt) => {
         break;
 
         case 'Comer':
-            selectExp.value = '15';
+            selectExp.value = '20';
         break;
 
     
@@ -115,7 +115,7 @@ selectFrequent.addEventListener( 'change', (evt) => {
         break;
 
         case 'Ir A Waldos':
-            selectExp.value = '20';
+            selectExp.value = '25';
         break;
 
         case 'Ir Al Mercado':
@@ -141,9 +141,15 @@ selectFrequent.addEventListener( 'change', (evt) => {
             selectExp.value = '15';
         break;
 
+        case 'Preparar Cena':
+            selectExp.value = '20';
+        break;
+
         case 'Preparar Comida':
             selectExp.value = '25';
         break;
+
+
 
         case 'Trapear':
             selectExp.value = '5';
@@ -489,9 +495,42 @@ datePick.addEventListener('change', (evt) =>{
 
     
             function fillLastDone(id,taskName,exp,selectedIcon,dateStarted,date){
-                if(taskName=='Ejercicio'){
+              
+              
+
+                if(taskName.includes("Afeitarme")){
                     if(dateStarted>arrayLastDone[0].last){
                         arrayLastDone[0].last=dateStarted;
+                    }
+                
+                }
+              
+                if(taskName.includes("Bañarme")){
+                    if(dateStarted>arrayLastDone[1].last){
+                        arrayLastDone[1].last=dateStarted;
+                    }
+                
+                }
+
+                if(taskName=="Barrer"){
+                    if(dateStarted>arrayLastDone[2].last){
+                        arrayLastDone[2].last=dateStarted;
+                    }
+                
+                }
+
+                if(taskName.includes("Curso Linux")){
+                    if(dateStarted>arrayLastDone[3].last){
+                        arrayLastDone[3].last=dateStarted;
+                    }
+                
+                }
+
+
+            
+                if(taskName=='Ejercicio'){
+                    if(dateStarted>arrayLastDone[4].last){
+                        arrayLastDone[4].last=dateStarted;
                     }
                 
                 }
@@ -500,83 +539,47 @@ datePick.addEventListener('change', (evt) =>{
                 //Aqui se agregan last done
                 //Hay un arreglo de objetos al inicio llenar tarea ahi tambien
                 if(taskName=="Lavar Baño"){
-                    if(dateStarted>arrayLastDone[1].last){
-                        arrayLastDone[1].last=dateStarted;
+                    if(dateStarted>arrayLastDone[5].last){
+                        arrayLastDone[5].last=dateStarted;
                     }
                 
                 }
 
                 if(taskName=="Lavar Dientes"){
-                    if(dateStarted>arrayLastDone[2].last){
-                        arrayLastDone[2].last=dateStarted;
-                    }
-                
-                }
-
-                if(taskName=="Barrer"){
-                    if(dateStarted>arrayLastDone[3].last){
-                        arrayLastDone[3].last=dateStarted;
-                    }
-                
-                }
-
-
-                if(taskName=="Trapear"){
-                    if(dateStarted>arrayLastDone[4].last){
-                        arrayLastDone[4].last=dateStarted;
-                    }
-                
-                }
-
-
-                            
-                if(taskName.includes("Levantarme")){
-                  
-                    let a = Number(exp);
-                
-            
-                    if(a<0){
-                        if(dateStarted>arrayLastDone[5].last){
-                            arrayLastDone[5].last=dateStarted;
-                        }
-                    }
-                    
-                
-                }
-
-
-                if(taskName.includes("X")){
                     if(dateStarted>arrayLastDone[6].last){
                         arrayLastDone[6].last=dateStarted;
                     }
+                
                 }
 
-                if(taskName.includes("X talk")){
+
+                if(taskName.includes("Lavar Toalla Blanca")){
                     if(dateStarted>arrayLastDone[7].last){
                         arrayLastDone[7].last=dateStarted;
                     }
+                
                 }
-            
-                if(taskName.includes("Curso ONE")){
+
+
+                if(taskName.includes("Lavar Toalla Gris")){
                     if(dateStarted>arrayLastDone[8].last){
                         arrayLastDone[8].last=dateStarted;
                     }
                 
                 }
 
-                if(taskName.includes("Curso Linux")){
+                if(taskName.includes("Lavar Trapeador")){
                     if(dateStarted>arrayLastDone[9].last){
                         arrayLastDone[9].last=dateStarted;
                     }
-                
+                    
                 }
 
 
-                            
-                if(taskName.includes("horas en el celular")){
-                   
-                    let a = Number(exp);
+                if(taskName.includes("Levantarme")){
                   
+                    let a = Number(exp);
+                
             
                     if(a<0){
                         if(dateStarted>arrayLastDone[10].last){
@@ -588,14 +591,15 @@ datePick.addEventListener('change', (evt) =>{
                 }
 
 
-                if(taskName.includes("Bañarme")){
+                if(taskName.includes("Meditar")){
                     if(dateStarted>arrayLastDone[11].last){
                         arrayLastDone[11].last=dateStarted;
                     }
                 
                 }
 
-                if(taskName.includes("Afeitarme")){
+
+                if(taskName.includes("Tomar Pastilla")){
                     if(dateStarted>arrayLastDone[12].last){
                         arrayLastDone[12].last=dateStarted;
                     }
@@ -603,61 +607,67 @@ datePick.addEventListener('change', (evt) =>{
                 }
 
 
-                if(taskName.includes("Lavar trapeador")){
+
+                if(taskName=="Trapear"){
                     if(dateStarted>arrayLastDone[13].last){
                         arrayLastDone[13].last=dateStarted;
                     }
-                    
+                
                 }
 
-                if(taskName.includes("Lavar Toalla Gris")){
+
+                            
+               
+
+
+                if(taskName.includes("X")){
                     if(dateStarted>arrayLastDone[14].last){
                         arrayLastDone[14].last=dateStarted;
                     }
-                
                 }
 
-
-                if(taskName.includes("Lavar Toalla Blanca")){
+                if(taskName.includes("X talk")){
                     if(dateStarted>arrayLastDone[15].last){
                         arrayLastDone[15].last=dateStarted;
                     }
-                
                 }
-
-
-                if(taskName.includes("Tomar Pastilla")){
-                    if(dateStarted>arrayLastDone[16].last){
-                        arrayLastDone[16].last=dateStarted;
+            
+            
+                            
+                if(taskName.includes("horas en el celular")){
+                   
+                    let a = Number(exp);
+                  
+            
+                    if(a<0){
+                        if(dateStarted>arrayLastDone[16].last){
+                            arrayLastDone[16].last=dateStarted;
+                        }
                     }
+                    
                 
                 }
 
-                if(taskName.includes("Meditar")){
+
+               
+                if(taskName.includes("Pensamiento X")){
                     if(dateStarted>arrayLastDone[17].last){
                         arrayLastDone[17].last=dateStarted;
                     }
                 
                 }
 
-                if(taskName.includes("Pensamiento X")){
+
+                if(taskName.includes("Pensamiento F")){
                     if(dateStarted>arrayLastDone[18].last){
                         arrayLastDone[18].last=dateStarted;
                     }
                 
                 }
 
-
-                if(taskName.includes("Pensamiento F")){
+                if(taskName.includes("Pensamiento D")){
                     if(dateStarted>arrayLastDone[19].last){
                         arrayLastDone[19].last=dateStarted;
-                    }
-                
-                }
-
-                if(taskName.includes("Pensamiento D")){
-                    if(dateStarted>arrayLastDone[20].last){
-                        arrayLastDone[20].last=dateStarted;
                     }
                 
                 }

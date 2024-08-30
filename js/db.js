@@ -100,6 +100,7 @@
         await deleteDoc(doc(dbGet, dbDelete, idTask));
 
         let pTotalExp = Number(document.getElementById('logo-container').innerText);
+        let pMonthExp = Number(document.getElementById('logo-container').innerText);
         insertNewDay(pTotalExp+Number(exp));
         
 
