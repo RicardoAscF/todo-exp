@@ -108,6 +108,10 @@ selectFrequent.addEventListener( 'change', (evt) => {
             selectExp.value = '20';
         break;
 
+
+        case 'Fui Productivo Llegando De Tandra':
+            selectExp.value = '50';
+        break;
     
 
         case 'Ir A Aurrera':
@@ -135,7 +139,6 @@ selectFrequent.addEventListener( 'change', (evt) => {
         case 'Lavar Ropa':
             selectExp.value = '15';
         break;
-
         
         case 'Preparar Desayuno':
             selectExp.value = '15';
@@ -178,24 +181,10 @@ selectFrequent.addEventListener( 'change', (evt) => {
         break;
 
 
-        case 'No tire':
-            selectExp.value = '-10';
-        break;
+       
 
 
-        case 'Comi Azucar':
-            selectExp.value = '-50';
-        break;
-
-
-        case 'Bebi Azucar':
-            selectExp.value = '-50';
-        break;
-
-        case 'Comi Pan':
-            selectExp.value = '-50';
-        break;
-
+      
         
 
 
@@ -233,6 +222,17 @@ selectNegativeTasks.addEventListener( 'change', (evt) => {
             selectExp.value = '-50';
         break;
 
+
+
+        case 'Mas De 1 Hora En El Celular':
+            selectExp.value = '-50';
+        break;
+
+        case 'No Tire Basura':
+            selectExp.value = '-50';
+        break;
+
+
  
         case 'Pensamiento X':
             selectExp.value = '-10';
@@ -249,10 +249,7 @@ selectNegativeTasks.addEventListener( 'change', (evt) => {
 
     
 
-        case 'No tire':
-            selectExp.value = '-10';
-        break;
-
+      
 
         default:
         break;
@@ -577,17 +574,9 @@ datePick.addEventListener('change', (evt) =>{
 
 
                 if(taskName.includes("Levantarme")){
-                  
-                    let a = Number(exp);
-                
-            
-                    if(a<0){
                         if(dateStarted>arrayLastDone[10].last){
                             arrayLastDone[10].last=dateStarted;
                         }
-                    }
-                    
-                
                 }
 
 
@@ -616,61 +605,83 @@ datePick.addEventListener('change', (evt) =>{
                 }
 
 
-                            
-               
-
-
-                if(taskName.includes("X")){
+                           
+                if(taskName=="Bebi Azucar"){
                     if(dateStarted>arrayLastDone[14].last){
                         arrayLastDone[14].last=dateStarted;
                     }
-                }
-
-                if(taskName.includes("X talk")){
-                    if(dateStarted>arrayLastDone[15].last){
-                        arrayLastDone[15].last=dateStarted;
-                    }
-                }
-            
-            
-                            
-                if(taskName.includes("horas en el celular")){
-                   
-                    let a = Number(exp);
-                  
-            
-                    if(a<0){
-                        if(dateStarted>arrayLastDone[16].last){
-                            arrayLastDone[16].last=dateStarted;
-                        }
-                    }
-                    
                 
                 }
 
+                if(taskName=="Comi Azucar"){
+                    if(dateStarted>arrayLastDone[15].last){
+                        arrayLastDone[15].last=dateStarted;
+                    }
+                
+                }
 
-               
-                if(taskName.includes("Pensamiento X")){
+                if(taskName=="Comi Pan"){
+                    if(dateStarted>arrayLastDone[16].last){
+                        arrayLastDone[16].last=dateStarted;
+                    }
+                
+                }
+
+                if(taskName=="Divagar"){
                     if(dateStarted>arrayLastDone[17].last){
                         arrayLastDone[17].last=dateStarted;
                     }
                 
                 }
 
-
-                if(taskName.includes("Pensamiento F")){
+                if(taskName=="No Tire Basura"){
                     if(dateStarted>arrayLastDone[18].last){
                         arrayLastDone[18].last=dateStarted;
                     }
                 
                 }
-
-                if(taskName.includes("Pensamiento D")){
+               
+                            
+                if(taskName.includes("Mas De 1 Hora En El Celular")){
+                   
+                    let a = Number(exp);
+                   
                     if(dateStarted>arrayLastDone[19].last){
                         arrayLastDone[19].last=dateStarted;
                     }
+            
                 
                 }
+
+
+                if(taskName.includes("Pensamiento F")){
+                    if(dateStarted>arrayLastDone[20].last){
+                        arrayLastDone[20].last=dateStarted;
+                    }
+                
+                }
+
+                if(taskName.includes("Pensamiento X")){
+                    if(dateStarted>arrayLastDone[21].last){
+                        arrayLastDone[21].last=dateStarted;
+                    }
+                
+                }
+
+
+              
+                if(taskName=="X"){
+                    if(dateStarted>arrayLastDone[22].last){
+                        arrayLastDone[22].last=dateStarted;
+                    }
+                }
+
+                if(taskName=="X-Talk"){
+                    if(dateStarted>arrayLastDone[23].last){
+                        arrayLastDone[23].last=dateStarted;
+                    }
+                }
+            
 
             }
 
@@ -895,6 +906,7 @@ datePick.addEventListener('change', (evt) =>{
                 pAvance.classList.add('light', 'tektur');
                 pAvance.innerText = `${avance}%`; 
 
+                
                 if(avance=="0"){
                     pAvance.classList.add("red-text");
                 }

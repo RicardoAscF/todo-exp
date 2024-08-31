@@ -22,7 +22,7 @@ export  let arrayDailyTasks = [
     {taskName: "Lavar Trapeador",exp:"15",icon:"4",date: Date.now()},
 
     {taskName: "Morning Routine",exp:"50",icon:"12",date: Date.now()},
-    {taskName: "MG - ¿Me levante en menos de 3 minutos?",exp:"5",icon:"12",date: Date.now()},
+    {taskName: "Empece MG en menos de 3 minutos?",exp:"5",icon:"12",date: Date.now()},
     
     {taskName: "Antes de agarrar Celular - Beber Agua",exp:"5",icon:"3",date: Date.now()},
     {taskName: "Antes de agarrar Celular - Cardio",exp:"15",icon:"3",date: Date.now()},
@@ -35,7 +35,7 @@ export  let arrayDailyTasks = [
     {taskName: "Antes de agarrar Celular - Tender cama",exp:"5",icon:"12",date: Date.now()},
 
     
-    {taskName: "No agregué Levantarme",exp:"-50",icon:"3",date: Date.now()},
+    {taskName: "No agregué Levantarme",exp:"-500",icon:"3",date: Date.now()},
 
     {taskName: "Preparar Ropa",exp:"15",icon:"12",date: Date.now()},
     {taskName: "Preparar Lista de pendientes de mañana",exp:"15",icon:"12",date: Date.now()},
@@ -74,12 +74,19 @@ export let arrayLastDone           = [
 
 
 
+    {name: "Bebi Azucar", last:0},
+    {name: "Comi Azucar", last:0},
+    {name: "Comi Pan", last:0},
+    {name: "Divagar", last:0},
+
+    {name: "No Tire Basura", last:0},
+    
+    {name: "Mas De 1 Hora En El Celular", last:0},
+
+    {name: "Pensamiento F", last:0},
+    {name: "Pensamiento X", last:0},
     {name: "X", last:0},
     {name: "X-Talk", last:0},
-    {name: "Mas de 2 horas en el celular", last:0},
-    {name: "Pensamiento X", last:0},
-    {name: "Pensamiento F", last:0},
-    {name: "Pensamiento D", last:0},
 
 ]
 
