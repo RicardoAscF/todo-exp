@@ -1,7 +1,7 @@
  // Import the functions you need from the SDKs you need
  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
- import { getFirestore,collection,addDoc,getDocs,doc,deleteDoc } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js'
+ import { getFirestore,collection,addDoc,getDocs,doc,deleteDoc,updateDoc } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js'
  
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
@@ -46,6 +46,8 @@ let arrayTask               = [];
 let arrayDomesticTask       = [];
 let arrayJobTask       = [];
 let todayExp                = 0;
+export let monthExp                = 0;
+
 //
 
 
@@ -274,21 +276,48 @@ datePick.addEventListener('change', (evt) =>{
 // **************************************************************** Funciones DB ****************************************** 
 
 
-            export async function insertNewDay(newExp){
-                await deleteDoc(doc(dbGet, "date", lastDayId));
-                db.collection("date").add({
-                    today: Date.now(),
-                    todayExp: newExp
-                })
+
+            //Obtiene Current Day
+            const queryGetDay = await getDocs(collection(dbGet, "date"));
+          //  alert('Get Date')
+                queryGetDay.forEach((doc) => {
+                    lastDay = doc.data().today;
+                    lastDayId = doc.id;
+                    todayExp = doc.data().todayExp;
+                    monthExp = doc.data().monthExp;
+                    
+                }
+            );
+
+        
+
+            
+            export async function insertNewDay(newTodayExp, newMonthExp){
+               //await deleteDoc(doc(dbGet, "date", lastDayId));
+                alert('Insert New Day')
+                alert(lastDayId)
+                let newInfo = {
+                    today: Date.now(), todayExp: newTodayExp, monthExp: newMonthExp
+                }
+                db.collection("date").doc(lastDayId).update(newInfo)
                 .then((docRef) => {
                     displayToast('Adding Daily Tasks');
                 })
                 .catch((error) => {
-                    
+                    alert(error)
                 });
-            }
 
+
+                
+            }
+            
+
+
+              
+  
             //Obtiene Task to do
+
+            /*
             const querySnapshot = await getDocs(collection(dbGet, "tasks"));
                 querySnapshot.forEach((doc) => {
                         let objTasks = {
@@ -336,7 +365,7 @@ datePick.addEventListener('change', (evt) =>{
                             taskName:       doc.data().taskName,
                             exp:            doc.data().exp,
                             selectedIcon:   doc.data().selectedIcon,
-                            timeStart:           doc.data().timeStart
+                            timeStart:      doc.data().timeStart
                         }
                     arrayDomesticTask.push(objTasks);
                     
@@ -344,18 +373,7 @@ datePick.addEventListener('change', (evt) =>{
                 
             );
 
-
-            //Obtiene Current Day
-            const queryGetDay = await getDocs(collection(dbGet, "date"));
-                queryGetDay.forEach((doc) => {
-                    lastDay = doc.data().today;
-                    lastDayId = doc.id;
-                    todayExp = doc.data().todayExp;
-                }
-            );
-
-
-
+            */
 
            
 // Fin Funciones DB
@@ -382,11 +400,13 @@ datePick.addEventListener('change', (evt) =>{
             export function getToday(){
              
                 let currentDay = new Date(Date.now());
-                let DBCurrentDay = new Date(Number(lastDay));
-                if(currentDay.getDate() == DBCurrentDay.getDate()){
+                let dateDB = new Date(Number(lastDay));
+              
+                if(currentDay.getDate() == dateDB.getDate()){
                   
                 }else{
-                    insertNewDay(0);//aqui mando los datos como argumento
+                    alert('Prueba')
+                    insertNewDay(0,monthExp);//aqui mando los datos como argumento
                     
                     let arrayCursosTasks = [
                         
@@ -394,6 +414,10 @@ datePick.addEventListener('change', (evt) =>{
                     ];
 
                     //taskName,exp,selectedIcon2,date2
+
+
+
+                    /*
                     arrayDailyTasks.forEach(element => {
                         let a = isAlreadyAdded(element.taskName);
                         let thisDate = new Date(Date.now());
@@ -440,6 +464,8 @@ datePick.addEventListener('change', (evt) =>{
 
                     });
 
+                    */
+
                     arrayCursosTasks.forEach(element => {
                         setTimeout(function() { 
                             insertDailyTasks(element.taskName, element.exp, element.icon, Date.now(),"tasks");
@@ -448,6 +474,11 @@ datePick.addEventListener('change', (evt) =>{
 
                     
                 }//ELSE
+
+
+
+
+
 
               
             }//GetToday
@@ -845,7 +876,7 @@ datePick.addEventListener('change', (evt) =>{
            
 
             function reiniciarCompletedTask(){  
-                alert('Here')
+                alert('Reiniciar completed Task')
                 let taskToBeDone            = document.getElementById('dateContainer');
                 while (taskToBeDone.firstChild) {
                     taskToBeDone.removeChild(taskToBeDone.firstChild);

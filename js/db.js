@@ -23,7 +23,7 @@
 
 
   import {arrayCompletedTasks} from "./arrays.js";
-  import {fillTasksTobeDone, getCompletedData, getData, getToday, insertNewDay} from "./app.js";
+  import {fillTasksTobeDone, getCompletedData, getData, getToday, insertNewDay, monthExp} from "./app.js";
 
   export async function getTask(){
     console.log('get task');
@@ -102,8 +102,8 @@
         await deleteDoc(doc(dbGet, dbDelete, idTask));
 
         let pTotalExp = Number(document.getElementById('logo-container').innerText);
-        let pMonthExp = Number(document.getElementById('logo-container').innerText);
-        insertNewDay(pTotalExp+Number(exp));
+   
+        insertNewDay(pTotalExp+Number(exp),monthExp);
         
 
         insertCompletedTasksDB(taskName, exp, selectedIcon, date, dateFinshed);
@@ -261,4 +261,5 @@
         getData();
         getToday(); //Es la funcion para determinar un nuevo dia
     }//
+
 
