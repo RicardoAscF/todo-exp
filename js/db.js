@@ -103,7 +103,7 @@
 
         let pTotalExp = Number(document.getElementById('logo-container').innerText);
    
-        insertNewDay(pTotalExp+Number(exp),monthExp);
+        insertNewDay(pTotalExp+Number(exp),monthExp+Number(exp));
         
 
         insertCompletedTasksDB(taskName, exp, selectedIcon, date, dateFinshed);

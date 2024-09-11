@@ -317,7 +317,7 @@ datePick.addEventListener('change', (evt) =>{
   
             //Obtiene Task to do
 
-            /*
+            
             const querySnapshot = await getDocs(collection(dbGet, "tasks"));
                 querySnapshot.forEach((doc) => {
                         let objTasks = {
@@ -337,7 +337,7 @@ datePick.addEventListener('change', (evt) =>{
             );
 
 
-
+            /*
             const querySnapshotJob = await getDocs(collection(dbGet, "jobTasks"));
             querySnapshotJob.forEach((doc) => {
                     let objTasks = {
@@ -398,14 +398,26 @@ datePick.addEventListener('change', (evt) =>{
 
 
             export function getToday(){
+
+                //Obtiene la 'Today Exp'
+                let todayExpDiv = document.getElementById('logo-container');
+                todayExpDiv.innerText=todayExp;
+
+                //Fin obtiene la 'Today Exp'
              
                 let currentDay = new Date(Date.now());
                 let dateDB = new Date(Number(lastDay));
+
+                if(currentDay.getMonth() == dateDB.getMonth()){
+                    
+                }else{
+                    monthExp=0;
+                }
               
                 if(currentDay.getDate() == dateDB.getDate()){
                   
                 }else{
-                    alert('Prueba')
+                
                     insertNewDay(0,monthExp);//aqui mando los datos como argumento
                     
                     let arrayCursosTasks = [
@@ -494,7 +506,7 @@ datePick.addEventListener('change', (evt) =>{
                 pTotalExp.innerText = ` ${totalExp} Exp`
 
                 let pTotalMonthExp = document.getElementById('completedMonthTask');
-                pTotalMonthExp.innerText = `Completed This Month - ${monthTotalExp} XP`;
+                pTotalMonthExp.innerText = `Completed This Month ] ${monthTotalExp} XP`;
                 
             }
 
@@ -876,7 +888,7 @@ datePick.addEventListener('change', (evt) =>{
            
 
             function reiniciarCompletedTask(){  
-                alert('Reiniciar completed Task')
+            
                 let taskToBeDone            = document.getElementById('dateContainer');
                 while (taskToBeDone.firstChild) {
                     taskToBeDone.removeChild(taskToBeDone.firstChild);
