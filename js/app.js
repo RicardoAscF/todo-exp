@@ -48,6 +48,20 @@ let arrayJobTask       = [];
 let todayExp                = 0;
 export let monthExp                = 0;
 
+
+
+let bebiAzucar = 0;
+let comiAzucar = 0;
+let comiPan = 0;
+let divage = 0;
+let masDeUnaHoraEnElCelular = 0;
+let tuvePensamientoF = 0;
+let tuvePensamientoX = 0;
+let hiceX =0 ;
+let hiceX_talk = 0;
+
+
+
 //
 
 
@@ -286,6 +300,7 @@ datePick.addEventListener('change', (evt) =>{
                     todayExp = doc.data().todayExp;
                     monthExp = doc.data().monthExp;
                     
+                    
                 }
             );
 
@@ -317,6 +332,7 @@ datePick.addEventListener('change', (evt) =>{
   
             //Obtiene Task to do
 
+
             
             const querySnapshot = await getDocs(collection(dbGet, "tasks"));
                 querySnapshot.forEach((doc) => {
@@ -335,9 +351,9 @@ datePick.addEventListener('change', (evt) =>{
                 }
                 
             );
+            
 
-
-            /*
+            
             const querySnapshotJob = await getDocs(collection(dbGet, "jobTasks"));
             querySnapshotJob.forEach((doc) => {
                     let objTasks = {
@@ -357,7 +373,7 @@ datePick.addEventListener('change', (evt) =>{
         );
 
 
-
+            
             const querySnapshotDomestic = await getDocs(collection(dbGet, "domesticTasks"));
                 querySnapshotDomestic.forEach((doc) => {
                         let objTasks = {
@@ -373,7 +389,9 @@ datePick.addEventListener('change', (evt) =>{
                 
             );
 
-            */
+            
+
+            
 
            
 // Fin Funciones DB
@@ -429,7 +447,7 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-                    /*
+                    
                     arrayDailyTasks.forEach(element => {
                         let a = isAlreadyAdded(element.taskName);
                         let thisDate = new Date(Date.now());
@@ -476,7 +494,7 @@ datePick.addEventListener('change', (evt) =>{
 
                     });
 
-                    */
+                    
 
                     arrayCursosTasks.forEach(element => {
                         setTimeout(function() { 
@@ -506,7 +524,7 @@ datePick.addEventListener('change', (evt) =>{
                 pTotalExp.innerText = ` ${totalExp} Exp`
 
                 let pTotalMonthExp = document.getElementById('completedMonthTask');
-                pTotalMonthExp.innerText = `Completed This Month ] ${monthTotalExp} XP`;
+                pTotalMonthExp.innerText = `Completed This Month | ${monthTotalExp} XP`;
                 
             }
 
@@ -515,21 +533,99 @@ datePick.addEventListener('change', (evt) =>{
                 let i = 0;
                 arrayLastDone.forEach(element => {
                   
-                    let today = Date.now();
+                    let today = new Date(Date.now());
+                   
+                    
                     
                     //Aqui se soluciona el bug para las fechas que se repiten en la lista
                     let last = new Date(Number(arrayLastDone[i].last));
+                    
+                    //alert('Trying')
+                   
+                    let mesHoy = today.getMonth()
+                    let mesFechaActividad = last.getMonth()
+
+                    let diaHoy= today.getDate();
+                    let diaFechaActividad=last.getDate();
+
+                  
+                    let mismoDia = false;
+                    let ayer=false;
+                  
+                    if(mesHoy==mesFechaActividad && diaHoy==diaFechaActividad){
+                        mismoDia=true;
+                    }
+
+                    let dif = diaHoy-diaFechaActividad;
+                  
+                    if(dif==1){
+                        ayer=true;
+                    }
+
+
+
+
+                    
+                    
+                   // alert(typeof a1.toString())
+                    //alert(typeof a2.toString())
+
                     let totalDiasSin = today - Number(arrayLastDone[i].last);   //es para sacar la resta de fechas entre last done y today
                     totalDiasSin /= 86400000;
                     let li = document.createElement("li");
                     li.classList.add("titles", "daysWD");
                    
-                    console.log(element.name + totalDiasSin);
-                    li.innerText=`${element.name} - ${last.getDate()} ${getMonthString(last.getMonth())} ${last.getFullYear()} ${getHMString(last.getHours())}:${getHMString(last.getMinutes())}     -------------     || ${ Math.floor(totalDiasSin) == 0 ? "Hoy" : Math.floor(totalDiasSin) == 1 ? "Ayer" : "Hace " + Math.ceil(totalDiasSin)+ " Dias"}`;
+                    
+
+                    //(Math.round(totalDiasSin) == 0 || Math.round(totalDiasSin) == 1) 
+                    li.innerText=`${element.name} - ${last.getDate()} ${getMonthString(last.getMonth())} ${last.getFullYear()} ${getHMString(last.getHours())}:${getHMString(last.getMinutes())}     -------------     || ${ mismoDia ? "Hoy" : (Math.floor(totalDiasSin == 1) || ayer) ? "Ayer" : "Hace " + Math.ceil(totalDiasSin)+ " Dias"}`;
                     let listDaysWD = document.getElementById("listDaysWD");
                     listDaysWD.appendChild(li);
                     i++;
                 });
+
+                let contenedorConteoActividadesNegativas = document.getElementById('');
+                let contenedorConteoActividadesPostivas = document.getElementById('');
+
+                let contenedorBebiAzucar = document.getElementById('bebiAzucar');
+                contenedorBebiAzucar.innerText=bebiAzucar;
+
+
+                let contenedorComiAzucar = document.getElementById('comiAzucar');
+                contenedorComiAzucar.innerText=comiAzucar;
+
+                let contenedorComiPan = document.getElementById('comiPan');
+                contenedorComiPan.innerText=comiPan;
+
+                let contenedorDivage = document.getElementById('divage');
+                contenedorDivage.innerText=comiPan;
+
+
+                let contenedorMasDeUnaHora = document.getElementById('masDeUnaHoraEnElCelular');
+                contenedorMasDeUnaHora.innerText=masDeUnaHoraEnElCelular;
+
+                let contenedortuvePensamientoX = document.getElementById('pensamientoX');
+                contenedortuvePensamientoX.innerText=tuvePensamientoX;
+
+                let contenedortuvePensamientoF = document.getElementById('pensamientoF');
+                contenedortuvePensamientoF.innerText=tuvePensamientoF;
+                console.log('PENSAMINETO F');
+                console.log(tuvePensamientoF);
+                
+                
+
+
+                let contenedorHiceX = document.getElementById('hiceX');
+                contenedorHiceX.innerText=hiceX;
+
+                let contenedorHiceXTalk = document.getElementById('hiceXTalk');
+                contenedorHiceXTalk.innerText=hiceX_talk;
+
+
+
+           
+
+
                 
             }
 
@@ -719,7 +815,7 @@ datePick.addEventListener('change', (evt) =>{
                     }
                 }
 
-                if(taskName=="X-Talk"){
+                if(taskName.includes("X-Talk")){
                     if(dateStarted>arrayLastDone[23].last){
                         arrayLastDone[23].last=dateStarted;
                     }
@@ -840,14 +936,12 @@ datePick.addEventListener('change', (evt) =>{
                             
                                 
                                 
-                                console.log('heer');
-                                
-                                console.log(selectedIcon);
+                               
                                 
                                 if(taskName=='Ejercicio'){
                                   
-                                    pTitles.classList.add('blue-text');
-                                    pPx.classList.add('blue-text');
+                                    //pTitles.classList.add('blue-text');
+                                    //pPx.classList.add('blue-text');
                                     pLight.classList.add('blue-text');
                                     iMaterial_Icons.classList.add('blue-text');
                                 }
@@ -855,16 +949,16 @@ datePick.addEventListener('change', (evt) =>{
 
                                 if(Number(selectedIcon)==12){
                                   
-                                    pTitles.classList.add('orange-text');
-                                    pPx.classList.add('orange-text');
+                                    //pTitles.classList.add('orange-text');
+                                    //pPx.classList.add('orange-text');
                                     pLight.classList.add('orange-text');
                                     iMaterial_Icons.classList.add('orange-text');
                                 }
 
                                 if(Number(selectedIcon)==3){
                                   
-                                    pTitles.classList.add('green-text');
-                                    pPx.classList.add('green-text');
+                                    //pTitles.classList.add('green-text');
+                                    //pPx.classList.add('green-text');
                                     pLight.classList.add('green-text');
                                     iMaterial_Icons.classList.add('green-text');
                                 }
@@ -874,8 +968,8 @@ datePick.addEventListener('change', (evt) =>{
 
                                 if(Number(exp)<0){
                                   
-                                    pTitles.classList.add('red-text');
-                                    pPx.classList.add('red-text');
+                                    //pTitles.classList.add('red-text');
+                                   // pPx.classList.add('red-text');
                                     pLight.classList.add('red-text');
                                     iMaterial_Icons.classList.add('red-text');
                                 }
@@ -908,8 +1002,7 @@ datePick.addEventListener('change', (evt) =>{
                 let divColS12M4             = document.createElement('div');
                 divColS12M4.classList.add('col', 's12', 'm4');
                 
-
-
+              
 
                 let divIcon_BlockCard_Task  = document.createElement('div');
                 divIcon_BlockCard_Task.classList.add('icon-block', 'card-task');  
@@ -1348,8 +1441,7 @@ export function getData(){
 
     
     arrayTask.forEach(element => {
-        console.log("-------------- Tasks******* -----");
-        console.log(element.taskName);
+     
         
         
         fillTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart,element.avance);
@@ -1365,8 +1457,7 @@ export function getData(){
 
 
     arrayJobTask.forEach(element => {
-        console.log("-------------- JOB ******* -----");
-        console.log(element.taskName);
+      
         
         
         fillJobTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart);
@@ -1387,12 +1478,38 @@ export function getCompletedData(month){
     let totalExp=0; // Este esta aqui por el momento pero deberia estar en su propio metodo porque calcula la EXP total
     if(month===undefined){
         arrayCompletedTasks.forEach(element => {
+        
+            let lookingForNan = Number(element.exp);
+            if(isNaN(lookingForNan)){
+                console.error(element.dateFinished);
+            } 
+
+
+
+           
+
+    
+            
+            
             totalExp+=Number(element.exp); //Aqui hace la suma independientemente del mes
             let taskMonth = new Date(Number(element.date));
             fillLastDone(element.id, element.taskName, element.exp, element.selectedIcon, element.date, element.dateFinished);
             if(currentMonth==taskMonth.getMonth().toString()+taskMonth.getFullYear().toString()){
                 totalExpCurrentMonth+=Number(element.exp);
                 fillCompletedTasks(element.id, element.taskName, element.exp, element.selectedIcon, element.date, element.dateFinished);
+            
+        
+                if(element.taskName=='Bebi Azucar') bebiAzucar++;
+                if(element.taskName=='Comi Azucar') comiAzucar++;
+                if(element.taskName=='Comi Pan') comiPan++;
+                if(element.taskName=='Divagar') divage++;
+                if(element.taskName=='Mas De 1 Hora En El Celular') masDeUnaHoraEnElCelular++;
+                if(element.taskName=='Pensamiento F') tuvePensamientoF++;
+                if(element.taskName=='Pensamiento X') tuvePensamientoX++;
+                if(element.taskName=='X')hiceX++;
+                if(element.taskName.includes('X-Talk')) hiceX_talk++;
+                
+            
             }
         });
     }else{
@@ -1409,6 +1526,8 @@ export function getCompletedData(month){
 
     }
 
+    console.log(totalExp);
+    console.log(totalExpCurrentMonth);
     
     displayExp(totalExp,totalExpCurrentMonth);
     totalExpCurrentMonth=0;

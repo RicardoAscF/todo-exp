@@ -85,6 +85,21 @@ div.card-stacked{
   color: dimgrey!important;
 }
 
+.gray-text{
+  color: #777;
+}
+
+
+.moon-text{
+  color: rgb(212, 154, 28)
+}
+
+.star-text{
+  color: rgb(106, 89, 199)
+}
+
+
+
 .start-task{
   font-size: 2rem!important;
 }
@@ -245,3 +260,30 @@ h1.title-h5{
 .margin-b{
   border: 1px solid red;
 }
+
+
+h5.center{
+  text-transform: capitalize
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
