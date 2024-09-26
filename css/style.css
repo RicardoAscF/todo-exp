@@ -267,7 +267,19 @@ h5.center{
 }
 
 
+.collection{
+  border: 1px solid;
+}
 
+.collection-item{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btnNegativeTasks{
+  width: 250px;
+}
 
 
 

@@ -41,11 +41,13 @@
         <ul class="right hide-on-med-and-down">
           <li><a href="historico.html">Historico</a></li>
           <li><a href="#">Total Exp</a></li>
+          <li><a href="atajos.html">Atajos</a></li>
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
           <li><a href="historico.html">Historico</a></li>
           <li><a href="#">Total EXP</a></li>
+          <li><a href="atajos.html">Atajos</a></li>
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
@@ -1158,13 +1160,95 @@
         
         <div class="row" id="DomesticTasksToBeDone">        
         </div>
+
+
+        <div class="row center">
+          <h3 class="header col s12 titles"><span>Quick Negative</span><span id="totalPendingDomesticTask"></span><span></span></h3>
+        </div>
+
+        <ul class="collection">
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks">
+              Bebi Azucar
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanBA"></span>
+          </li>
+
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks">
+              Comi Azucar
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanCA"></span>
+          </li>
           
-       
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks">
+              Comi Pan
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanCP"></span>
+          </li>
+        
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks" onclick="updateSpan(event)">
+              Divagar
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanDiv"></span>
+          </li>
+        
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks" onclick="updateSpan(event)">
+              +1 Hora en el celular
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanMcel"></span>
+          </li>
+        
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks" onclick="updateSpan(event)">
+              Pensamiento F
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanTPF"></span>
+          </li>
+        
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks" onclick="updateSpan(event)">
+              Pensamiento X
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanTPX"></span>
+          </li>
+        
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks" onclick="updateSpan(event)">
+              X
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanHX"></span>
+          </li>
+        
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks" onclick="updateSpan(event)">
+              X-Talk
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanHXT"></span>
+          </li>
+        </ul>
+         
+
+
+        </ul>
+          
+       NO AVANZAR TAMBIEN ES RETROCEDER 
           
 
 
         </div><!--Fin Row-->
-
       </div>
 
 
@@ -1192,28 +1276,59 @@
 
                 <ul class="titles daysWD black-text" id="contenedorConteoActividadesNegativas">
                   <li class="">Postivas:</li>
-                  <li>Dias seguidos manteniendo ejercicio:  <span id=""></span></li>
-                  <li>Dias seguidos manteniendo ejercicio:  <span id=""></span></li>
-
-
+                  <li>Dias Seguidos Manteniendo Duolinguo:      <span id="dsduolinguo"></span></li>
+                  <li>Dias Seguidos Manteniendo Ejercicio: <span id="dsejercicio"></span></li>
+                  <li>Dias Seguidos Manteniendo Juego Mind: <span id="dsjuegomind"></span></li>
+                  <li>Dias Seguidos Manteniendo Meditacion Despertar: <span id="dsmeditardesp"></span></li>
+                  <li>Dias Seguidos Manteniendo Meditacion Dormir: <span id="dsmeditardormir"></span></li>
                 </ul>
 
 
-                <ul class="titles daysWD black-text" id="contenedorConteoActividadesNegativas">
-                  <li class="">Negativas:</li>
-                  <p>Total de veces este mes que he hecho:</p>
-                  <li>Bebi Azucar:  <span id="bebiAzucar"></span></li>
-                  <li>Comi Azucar:  <span id="comiAzucar"></span></li>
-                  <li>Comi Pan:  <span id="comiPan"></span></li>
-                  <li>Divage:  <span id="divage"></span></li>
-                  <li>Dure Mas De Una Hora En El Celular:  <span id="masDeUnaHoraEnElCelular"></span></li>
-                  <li>Tuve Pensamiento X:  <span id="pensamientoX"></span></li>
-                  <li>Tuve Pensamiento F:  <span id="pensamientoF"></span></li>
-                  <li>Hice X:  <span id="hiceX"></span></li>
-                  <li>Hice X-Talk:  <span id="hiceXTalk"></span></li>
-
-                  
-                </ul>
+                <table class="titles daysWD black-text striped centered" id="contenedorConteoActividadesNegativas">
+                  <thead>
+                      <tr>
+                          <th>Negativas:</th>
+                          <th>Total de veces este mes que he hecho:</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>Bebi Azúcar:</td>
+                          <td><span id="bebiAzucar"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Comí Azúcar:</td>
+                          <td><span id="comiAzucar"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Comí Pan:</td>
+                          <td><span id="comiPan"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Divage:</td>
+                          <td><span id="divage"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Duré Más De Una Hora En El Celular:</td>
+                          <td><span id="masDeUnaHoraEnElCelular"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Tuve Pensamiento X:</td>
+                          <td><span id="pensamientoX"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Tuve Pensamiento F:</td>
+                          <td><span id="pensamientoF"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Hice X:</td>
+                          <td><span id="hiceX"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Hice X-Talk:</td>
+                          <td><span id="hiceXTalk"></span></td>
+                      </tr>
+                  </tbody>
 
 
 

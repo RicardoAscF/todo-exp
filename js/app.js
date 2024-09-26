@@ -6,7 +6,7 @@
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
  import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
- import { getTask, insertDBStarted, insertCompletedTasksDB, taskCompleted, insertDB, taskCanceled, completedTaskCanceled, insertDailyTasks, addTask, taskStarted, sortArrayGetData} from "./db.js";
+ import { addNegativeTask, getTask, taskCompleted,taskCanceled, completedTaskCanceled, insertDailyTasks, addTask, taskStarted, sortArrayGetData} from "./db.js";
 
 
 
@@ -61,6 +61,13 @@ let hiceX =0 ;
 let hiceX_talk = 0;
 
 
+let dsduolinguo = 0;
+let dsejercicio = 0;
+let dsjuegomind = 0;
+let dsmeditardesp = 0;
+let dsmeditardormir = 0;
+
+
 
 //
 
@@ -73,6 +80,18 @@ let datePick = document.getElementById('datePicker');
 const getTaskBtn = document.getElementById('getTasks');
 let selectFrequent = document.getElementById('frequentTasks');
 let selectNegativeTasks = document.getElementById('negativeTasks');
+
+const btnNegativeTasks = document.getElementsByClassName('btnNegativeTasks');
+
+
+for (let i = 0; i < btnNegativeTasks.length; i++) {
+    btnNegativeTasks[i].onclick = function(evt) { 
+      addNegativeTask(evt);
+    };
+  }
+
+
+
 //  Fin Componentes 
 // **************************************************************** Eventos ****************************************** 
 document.addEventListener('DOMContentLoaded', function() {
@@ -90,6 +109,9 @@ document.addEventListener('DOMContentLoaded', function() {
 addTaskBtn.addEventListener('click', ()=>{
     addTask();
 });
+
+
+
 
 
 getTaskBtn.addEventListener('click', ()=>{
@@ -304,13 +326,25 @@ datePick.addEventListener('change', (evt) =>{
                 }
             );
 
+
+            const queryGetDiasSeguidos = await getDocs(collection(dbGet, "diasSeguidos"));
+            //  alert('Get Date')
+                  queryGetDiasSeguidos.forEach((doc) => {
+                      dsduolinguo = 1;
+                      dsejercicio = doc.data().dsejercicio;
+                      dsjuegomind = doc.data().dsjuegomind;
+                      dsmeditardesp = doc.data().dsmeditardesp;
+                      dsmeditardormir = doc.data().dsmeditardormir;  
+                  }
+              );
+
+
         
 
             
             export async function insertNewDay(newTodayExp, newMonthExp){
                //await deleteDoc(doc(dbGet, "date", lastDayId));
-                alert('Insert New Day')
-                alert(lastDayId)
+              
                 let newInfo = {
                     today: Date.now(), todayExp: newTodayExp, monthExp: newMonthExp
                 }
@@ -584,9 +618,12 @@ datePick.addEventListener('change', (evt) =>{
                     i++;
                 });
 
-                let contenedorConteoActividadesNegativas = document.getElementById('');
-                let contenedorConteoActividadesPostivas = document.getElementById('');
+               
 
+        
+            }
+
+            function negativeTasksLog(){
                 let contenedorBebiAzucar = document.getElementById('bebiAzucar');
                 contenedorBebiAzucar.innerText=bebiAzucar;
 
@@ -598,7 +635,7 @@ datePick.addEventListener('change', (evt) =>{
                 contenedorComiPan.innerText=comiPan;
 
                 let contenedorDivage = document.getElementById('divage');
-                contenedorDivage.innerText=comiPan;
+                contenedorDivage.innerText=divage;
 
 
                 let contenedorMasDeUnaHora = document.getElementById('masDeUnaHoraEnElCelular');
@@ -609,8 +646,7 @@ datePick.addEventListener('change', (evt) =>{
 
                 let contenedortuvePensamientoF = document.getElementById('pensamientoF');
                 contenedortuvePensamientoF.innerText=tuvePensamientoF;
-                console.log('PENSAMINETO F');
-                console.log(tuvePensamientoF);
+           
                 
                 
 
@@ -620,15 +656,25 @@ datePick.addEventListener('change', (evt) =>{
 
                 let contenedorHiceXTalk = document.getElementById('hiceXTalk');
                 contenedorHiceXTalk.innerText=hiceX_talk;
-
-
-
-           
-
-
-                
             }
 
+            function positiveTasksLog(){
+                let contenedorDsduolinguo = document.getElementById('dsduolinguo');
+contenedorDsduolinguo.innerText = dsduolinguo;
+
+
+let contenedorDsejercicio = document.getElementById('dsejercicio');
+contenedorDsejercicio.innerText = dsejercicio;
+
+let contenedorDsjuegomind = document.getElementById('dsjuegomind');
+contenedorDsjuegomind.innerText = dsjuegomind;
+
+let contenedorDsmeditardesp = document.getElementById('dsmeditardesp');
+contenedorDsmeditardesp.innerText = dsmeditardesp;
+
+let contenedorDsmeditardormir = document.getElementById('dsmeditardormir');
+contenedorDsmeditardormir.innerText = dsmeditardormir;
+            }
     
             function fillLastDone(id,taskName,exp,selectedIcon,dateStarted,date){
               
@@ -781,7 +827,7 @@ datePick.addEventListener('change', (evt) =>{
                 }
                
                             
-                if(taskName.includes("Mas De 1 Hora En El Celular")){
+                if(taskName.includes("+1 Hora en el celular")){
                    
                     let a = Number(exp);
                    
@@ -1532,6 +1578,42 @@ export function getCompletedData(month){
     displayExp(totalExp,totalExpCurrentMonth);
     totalExpCurrentMonth=0;
     taskActivityLog();
+    negativeTasksLog();
+    positiveTasksLog();
+    fillListBtnNegativeTasks();
+
     
    
 }//GetcompletedData
+
+function fillListBtnNegativeTasks(){
+    let ba = document.getElementById('bebiAzucar').innerText;
+    document.getElementById('spanBA').innerText=ba*-100;
+
+    let ca = document.getElementById('comiAzucar').innerText;
+    document.getElementById('spanCA').innerText=ca*-100;
+
+    let cp = document.getElementById('comiPan').innerText;
+    document.getElementById('spanCP').innerText = cp * -100;
+
+    let div = document.getElementById('divage').innerText;
+    document.getElementById('spanDiv').innerText = div * -10;
+
+    let mDC = document.getElementById('masDeUnaHoraEnElCelular').innerText;
+    document.getElementById('spanMcel').innerText = mDC * -10;
+
+    let pensamientoF = document.getElementById('pensamientoF').innerText;
+    document.getElementById('spanTPF').innerText = pensamientoF * -10;
+
+    let pensamientoX = document.getElementById('pensamientoX').innerText;
+    document.getElementById('spanTPX').innerText = pensamientoX * -10;
+
+    let hiceX = document.getElementById('hiceX').innerText;
+    document.getElementById('spanHX').innerText = hiceX * -100;
+
+    let hiceX_talk = document.getElementById('hiceXTalk').innerText;
+    document.getElementById('spanHXT').innerText = hiceX_talk * -10;
+
+
+
+}

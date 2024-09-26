@@ -88,6 +88,39 @@
     }
 
 
+    export function addNegativeTask(evt){
+        let taskName = evt.target.textContent.trim();
+        let exp = evt.target.nextElementSibling.innerText;
+        let now = Date.now().toString();
+        insertCompletedTasksDB(taskName, exp, 8, now, now);
+        displayToast(taskName)
+    }
+
+
+
+
+
+
+    export async function insertNegativeCompletedTasksDB(taskName,exp,selectedIcon,date,dateFinished){
+            
+        db.collection("completedTasks").add({
+            taskName: taskName,
+            exp: exp,
+            selectedIcon, selectedIcon,
+            date: date,
+            dateFinished:dateFinished
+        })
+        .then((docRef) => {
+            
+        })
+        .catch((error) => {
+            
+        });
+
+        
+    }
+
+
     export async function taskCompleted(evt,dbDelete){
             
         let idTask = evt.target.id;
@@ -195,16 +228,13 @@
         });
 
         if(frequentTasks.value!='0'){
-            
-            
             taskName =   icon_prefix.value
         }
 
         
-     
         ////Aquiiii para agregra domestic task
         if(checkBtn.checked){
-            insertDB(id,taskName,exp,selectedIcon,"domesticTasks");
+             insertDB(id,taskName,exp,selectedIcon,"domesticTasks");
         }else if(checkBtnJob.checked){
             insertDB(id,taskName,exp,selectedIcon,"jobTasks");
         }else{
@@ -215,6 +245,15 @@
             document.getElementById('icon_time-exp').value='';
         } 
     }//AddTask
+
+
+   
+
+
+
+    
+
+
 
 
 
