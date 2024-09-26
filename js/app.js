@@ -562,7 +562,7 @@ datePick.addEventListener('change', (evt) =>{
                 
             }
 
-
+            /*
             function taskActivityLog(){
                 let i = 0;
                 arrayLastDone.forEach(element => {
@@ -606,6 +606,7 @@ datePick.addEventListener('change', (evt) =>{
 
                     let totalDiasSin = today - Number(arrayLastDone[i].last);   //es para sacar la resta de fechas entre last done y today
                     totalDiasSin /= 86400000;
+                    
                     let li = document.createElement("li");
                     li.classList.add("titles", "daysWD");
                    
@@ -622,6 +623,60 @@ datePick.addEventListener('change', (evt) =>{
 
         
             }
+            */
+
+            function taskActivityLog() {
+                let i = 0;
+                // Limpia la tabla antes de llenarla
+                const table = document.getElementById("listDaysWD");
+                let tbody =  document.createElement('tbody');
+
+                arrayLastDone.forEach(element => {
+                    let today = new Date(Date.now());
+                    let last = new Date(Number(arrayLastDone[i].last));
+        
+                    let mesHoy = today.getMonth();
+                    let mesFechaActividad = last.getMonth();
+                    let diaHoy = today.getDate();
+                    let diaFechaActividad = last.getDate();
+        
+                    let mismoDia = false;
+                    let ayer = false;
+        
+                    if (mesHoy == mesFechaActividad && diaHoy == diaFechaActividad) {
+                        mismoDia = true;
+                    }
+        
+                    let dif = diaHoy - diaFechaActividad;
+                    if (dif == 1) {
+                        ayer = true;
+                    }
+        
+                    let totalDiasSin = today - Number(arrayLastDone[i].last);
+                    totalDiasSin /= 86400000;
+        
+               
+                    let row = document.createElement("tr"); // Crea una nueva fila
+        
+                    // Crea las celdas
+                    let cellName = document.createElement("td");
+                    let cellStatus = document.createElement("td");
+        
+                    // Llena las celdas
+                    cellName.innerText = `${element.name} - ${last.getDate()} ${getMonthString(last.getMonth())} ${last.getFullYear()} ${getHMString(last.getHours())}:${getHMString(last.getMinutes())}`;
+                    cellStatus.innerText = mismoDia ? "Hoy" : (Math.floor(totalDiasSin == 1) || ayer) ? "Ayer" : "Hace " + Math.ceil(totalDiasSin) + " Días";
+        
+                    row.appendChild(cellName); // Agrega la celda del nombre a la fila
+                    row.appendChild(cellStatus); // Agrega la celda del estado a la fila
+        
+
+                    tbody.appendChild(row); // Agrega la fila a la tabla
+                    i++;
+                   
+                });
+                table.appendChild(tbody);
+            }
+
 
             function negativeTasksLog(){
                 let contenedorBebiAzucar = document.getElementById('bebiAzucar');
