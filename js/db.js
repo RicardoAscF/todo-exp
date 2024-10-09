@@ -23,7 +23,7 @@
 
 
   import {arrayCompletedTasks} from "./arrays.js";
-  import {fillTasksTobeDone, getCompletedData, getData, getToday, insertNewDay, monthExp} from "./app.js";
+  import {fillTasksTobeDone, getCompletedData, getData, getToday, insertNewDay, monthExp, insertIwon} from "./app.js";
 
   export async function getTask(){
     console.log('get task');
@@ -94,6 +94,16 @@
         let now = Date.now().toString();
         insertCompletedTasksDB(taskName, exp, 8, now, now);
         displayToast(taskName)
+    }
+
+
+    export function addIwon(evt){
+        let taskName = evt.target.textContent.trim();
+        let times = evt.target.nextElementSibling.innerText;
+        times = Number(times);
+        times++;
+        insertIwon(taskName, times);
+        displayToast("Felicidades")
     }
 
 

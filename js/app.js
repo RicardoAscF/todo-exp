@@ -6,7 +6,7 @@
  
  import {getDayString,getSelectedIcon, getMonthString} from "./classSwitch.js";
  import { arrayDailyTasks, arrayLastDone, arrayCompletedTasks } from "./arrays.js";
- import { addNegativeTask, getTask, taskCompleted,taskCanceled, completedTaskCanceled, insertDailyTasks, addTask, taskStarted, sortArrayGetData} from "./db.js";
+ import { addNegativeTask, addIwon ,getTask, taskCompleted,taskCanceled, completedTaskCanceled, insertDailyTasks, addTask, taskStarted, sortArrayGetData} from "./db.js";
 
 
 
@@ -39,6 +39,7 @@ let now                     = Date.now();
 let today                   = new Date(now)
 let lastDay                 = 0; // Se obtiene desde firebase 
 let lastDayId               = 0;
+let diasSeguidosId               = 0;
 
 let currentMonth            = today.getMonth().toString()+today.getFullYear().toString();
 let totalExpCurrentMonth    = 0;
@@ -67,6 +68,9 @@ let dsjuegomind = 0;
 let dsmeditardesp = 0;
 let dsmeditardormir = 0;
 
+let spanIWonNoMa = 0;
+let spanIwonChat = 0;
+
 
 
 //
@@ -83,12 +87,21 @@ let selectNegativeTasks = document.getElementById('negativeTasks');
 
 const btnNegativeTasks = document.getElementsByClassName('btnNegativeTasks');
 
+const btnIWon = document.getElementsByClassName('btnIwon');
+
 
 for (let i = 0; i < btnNegativeTasks.length; i++) {
     btnNegativeTasks[i].onclick = function(evt) { 
       addNegativeTask(evt);
     };
-  }
+}
+
+
+for (let i = 0; i < btnIWon.length; i++) {
+    btnIWon[i].onclick = function(evt) { 
+        addIwon(evt);
+    };
+}
 
 
 
@@ -322,19 +335,32 @@ datePick.addEventListener('change', (evt) =>{
                     todayExp = doc.data().todayExp;
                     monthExp = doc.data().monthExp;
                     
-                    
+
                 }
             );
+           
 
+
+            const queryGetDiasSeguidosID = await getDocs(collection(dbGet, "diasSeguidos"));
+            //  alert('Get Date')
+                  queryGetDiasSeguidosID.forEach((doc) => {
+                   
+                      diasSeguidosId = doc.id;
+                    
+                  }
+              );
 
             const queryGetDiasSeguidos = await getDocs(collection(dbGet, "diasSeguidos"));
             //  alert('Get Date')
                   queryGetDiasSeguidos.forEach((doc) => {
-                      dsduolinguo = 1;
+                      dsduolinguo = doc.data().dsduolinguo;
                       dsejercicio = doc.data().dsejercicio;
                       dsjuegomind = doc.data().dsjuegomind;
                       dsmeditardesp = doc.data().dsmeditardesp;
                       dsmeditardormir = doc.data().dsmeditardormir;  
+                      spanIWonNoMa =  doc.data().eviteMastur;
+                      spanIwonChat = doc.data().eviteAbrirChat;
+                      
                   }
               );
 
@@ -355,10 +381,33 @@ datePick.addEventListener('change', (evt) =>{
                 .catch((error) => {
                     alert(error)
                 });
-
-
-                
             }
+
+
+
+            export async function insertIwon(taskName, times){
+                //await deleteDoc(doc(dbGet, "date", lastDayId));
+              
+
+                let newInfo = {};
+                if(taskName=="Evite Mastur..."){
+                    newInfo.eviteMastur = times
+                }
+
+                if(taskName=="Evite Abrir Chat"){
+                    newInfo.eviteAbrirChat=times;
+                }
+
+            
+               
+                 db.collection("diasSeguidos").doc(diasSeguidosId).update(newInfo)
+                 .then((docRef) => {
+                     displayToast('Adding Daily Tasks');
+                 })
+                 .catch((error) => {
+                     alert(error)
+                 });
+             }
             
 
 
@@ -714,21 +763,33 @@ datePick.addEventListener('change', (evt) =>{
             }
 
             function positiveTasksLog(){
-                let contenedorDsduolinguo = document.getElementById('dsduolinguo');
-contenedorDsduolinguo.innerText = dsduolinguo;
+            let contenedorDsduolinguo = document.getElementById('dsduolinguo');
+            contenedorDsduolinguo.innerText = dsduolinguo;
 
 
-let contenedorDsejercicio = document.getElementById('dsejercicio');
-contenedorDsejercicio.innerText = dsejercicio;
+            let contenedorDsejercicio = document.getElementById('dsejercicio');
+            contenedorDsejercicio.innerText = dsejercicio;
 
-let contenedorDsjuegomind = document.getElementById('dsjuegomind');
-contenedorDsjuegomind.innerText = dsjuegomind;
+            let contenedorDsjuegomind = document.getElementById('dsjuegomind');
+            contenedorDsjuegomind.innerText = dsjuegomind;
 
-let contenedorDsmeditardesp = document.getElementById('dsmeditardesp');
-contenedorDsmeditardesp.innerText = dsmeditardesp;
+            let contenedorDsmeditardesp = document.getElementById('dsmeditardesp');
+            contenedorDsmeditardesp.innerText = dsmeditardesp;
 
-let contenedorDsmeditardormir = document.getElementById('dsmeditardormir');
-contenedorDsmeditardormir.innerText = dsmeditardormir;
+            let contenedorDsmeditardormir = document.getElementById('dsmeditardormir');
+            contenedorDsmeditardormir.innerText = dsmeditardormir;
+
+            }
+
+            function iWon(){
+                let contenedorIwonNoMas = document.getElementById('spanIWonNoMa');
+                contenedorIwonNoMas.innerText = spanIWonNoMa;
+
+                let contenedorIwonNoAbri = document.getElementById('spanIWonNoWAF');
+                contenedorIwonNoAbri.innerText = spanIwonChat;
+
+                
+
             }
     
             function fillLastDone(id,taskName,exp,selectedIcon,dateStarted,date){
@@ -1636,10 +1697,16 @@ export function getCompletedData(month){
     negativeTasksLog();
     positiveTasksLog();
     fillListBtnNegativeTasks();
-
+    fillListBtnIWon();
+    iWon();
     
-   
+
 }//GetcompletedData
+
+
+function fillListBtnIWon(){
+   
+}
 
 function fillListBtnNegativeTasks(){
     let ba = document.getElementById('bebiAzucar').innerText;
