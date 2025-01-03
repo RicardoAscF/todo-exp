@@ -1,0 +1,301 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 18px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+p{
+  color: black;
+}
+
+.card-exp p.titles {
+ 
+  margin-bottom: 0;
+  font-weight: normal;
+  
+}
+
+
+
+@media only screen and (min-width: 600px) {
+  .card-content p.titles{
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+  }
+
+}
+
+
+#datePicker{
+  color: #03a9f4!important;
+  background: teal;
+}
+
+.datepicker-day-button{
+  color: black;
+}
+
+.picker__day.picker__day--today{
+  color: red;
+}
+
+
+div.card-stacked{
+  color: red;
+  background-color: white;
+}
+
+.green-text{
+  color: #26a69a;
+}
+
+
+.yellow-text{
+  color: rgb(194, 194, 22)!important;
+}
+
+
+.blue-text{
+  color: #03a9f4!important;
+}
+
+
+.red-text{
+  color: red!important;
+}
+
+
+.black-text{
+  color: #000!important;
+}
+
+
+.white-text{
+  color: dimgrey!important;
+}
+
+.gray-text{
+  color: #777;
+}
+
+
+.moon-text{
+  color: rgb(212, 154, 28)
+}
+
+.star-text{
+  color: rgb(106, 89, 199)
+}
+
+
+
+.start-task{
+  font-size: 2rem!important;
+}
+
+.start-task:hover{
+  cursor: pointer;
+}
+
+
+
+.card-task{
+  border: 1px solid teal;
+  box-shadow: 3.5px 2px teal;
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-task{
+    border: 1px solid teal;
+    margin-bottom: 2rem;
+  }
+}
+
+.titles-completed{
+  display: flex;
+  color: #03a9f4!important;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+}
+
+
+
+
+.card-task-buttons{
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+
+
+
+
+.card-task p{
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.fw-bold{
+  font-weight: bold;
+}
+
+.px{
+  margin-right: 1rem;
+}
+
+.card .card-content{
+  padding: 0;
+  padding-left: 5px;
+  margin: 0;
+ 
+}
+
+
+
+div.card-content p{
+  margin-left: 1rem!important;
+}
+
+
+div.col.l6.s12, div.col.s12.m7{
+  padding-left: 0;
+}
+
+.card-exp.icon-block p i{
+  color: blue;
+  font-size: 1.2rem;
+  border: 10px solid #03a9f4;
+}
+
+
+
+        
+
+
+/*Fonts*/
+
+.tektur{
+  font-family: "Tektur", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+}
+
+#getTasks{
+  border: 3px solid teal;
+  color: #ff9800 ;
+  background-color: white!important;
+  font-weight: bold;
+}
+
+
+
+.titles {
+  font-family: "Madimi One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+h5.header.center.col.s12.light.titles{
+  width: auto;
+  margin: 0 auto;
+}
+
+
+
+.title-h5{
+ 
+  display: flex;
+  text-align: center;
+}
+
+h1.title-h5{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.icon-delete-completed-task:hover{
+  cursor: pointer;
+}
+
+
+
+.daysWD li:first-of-type{
+  font-size: 2rem;
+}
+
+.daysWD{
+  font-size: 1.4rem;
+}
+
+.icons{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.div-title{
+  
+  display: flex;
+  justify-content: space-around;
+}
+
+.input-title{
+  width: 30px!important;
+}
+
+.margin-b{
+  border: 1px solid red;
+}
+
+
+h5.center{
+  text-transform: capitalize
+}
+
+
+.collection{
+  border: 1px solid;
+}
+
+.collection-item{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btns{
+  width: 250px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+if(selectedIcon == '1'){
+        return 'restaurant'; //COMER
+    }
+
+
+    if(selectedIcon == '2'){
+        return 'insert_emoticon';//exercise  
+    }
+
+
+    if(selectedIcon == '3'){
+        return 'favorite';//Havin fun
+    }
+
+    
+    if(selectedIcon == '4'){ //HOUSEWORK
+        return 'home';
+    }
+
+    if(selectedIcon == '5'){ //personal projects
+        return 'computer';
+    }
+
+
+    if(selectedIcon == '6'){ //Shopping
+        return 'shopping_cart';
+    }
+
+
+    if(selectedIcon == '7'){ //job
+        return 'attach_money';
+    }

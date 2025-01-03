@@ -1,0 +1,38 @@
+{
+    "name": "Todo - Exp",
+    "short_name": "Todo - Exp",
+    "description": "App that gives you Exp by completing your tasks/shores",
+    "background_color": "#03a9f4",
+    "theme_color": "#03a9f4",
+    "orientation": "portrait",
+    "display": "standalone",
+    "start_url": "./?utm_source=web_app_manifest",
+    "scope": "./",
+    "lang": "es-MX",
+
+
+    "screenshots": [
+        {
+          "src": "./img/xp.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "form_factor": "narrow",
+          "label": "Wonder Widgets"
+        }
+    ],
+
+    
+    "icons": [
+      {
+        "src": "./img/xp.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+      
+    ]
+
+  }
+
+  
+
+  

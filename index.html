@@ -1,0 +1,1460 @@
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>To do</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <!--Titulos-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+
+
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <title>Just Do It</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" href="img/hour.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  
+  
+  
+  </head>
+  <body>
+
+
+    <!-- Nav -->
+
+
+    <nav class="light-blue lighten-1" role="navigation">
+      <div class="nav-wrapper container"><a href=""></a><a id="logo-container" href="index.html" class="brand-logo"></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="historico.html">Historico</a></li>
+          <li><a href="#">Total Exp</a></li>
+          <li><a href="atajos.html">Atajos</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="historico.html">Historico</a></li>
+          <li><a href="#">Total EXP</a></li>
+          <li><a href="atajos.html">Atajos</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+
+    <!-- Nav -->
+
+
+    <div class="section no-pad-bot" id="index-banner">
+    
+      <div class="container">
+        <div class="total-exp">
+          <p id="completedTask"></p>
+        </div>
+        <br><br>
+        <h1 class="header center orange-text titles title-h5">Get Exp</h1>
+        <div class="row center title-h5">
+          <h5 class="header center col s12 light titles">By Completing Misions</h5>
+        </div>
+
+
+        <div class="row center">
+          <h5 class="header col s12 light">New Task:</h5>
+        </div>
+
+
+
+        <!--Inputs -->
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+
+
+              
+
+
+
+              <div class="input-field col s12 m8">
+                <i class="material-icons prefix">edit</i>
+                <input id="icon_prefix"  type="text" class="validate" autocomplete="off" autofocus>
+                <label for="icon_prefix">Task</label>
+              </div>
+
+              <div class="input-field col s12 m2">  
+                <i class="material-icons prefix">access_time</i>
+                <input id="icon_time-exp" type="tel" class="validate" autocomplete="off" required value="0">
+                <label for="icon_telephone">Exp</label>
+              </div>
+
+              
+              
+              <div class="input-field col s12 m4">
+                <select required id="selectedIcon">
+                  <option value="0"  selected>It is for</option>
+                  <option value="1">Cooking</option>
+                  <option value="2">Having Fun</option>
+                  <option value="3">Healthcare</option>
+                  <option value="4">House Work</option>
+                  <option value="12">Mental Health</option>
+                  <option value="5">Personal Projects</option>
+                  <option value="6">Shopping</option>
+                  <option value="7">Job</option>
+                  <option value="8">X</option>
+                  
+                </select>
+
+
+                <select required id="frequentTasks">
+
+                  <option value="0"  selected>Frequent Task</option>
+                  
+                  
+                  
+                  <option value="Bañarme">Bañarme</option>                      <!--10-->
+                  <option value="Barrer">Barrer</option>             
+                  <option value="Cenar">Cenar</option>
+                  <option value="Comer">Comer</option>
+                  <option value="Desayunar">Desayunar</option> 
+                  <option value="Fui Productivo Llegando De Tandra">Fui Productivo Llegando De Tandra</option>
+                  
+                   
+
+                  <option value="Ir A Aurrera">Ir A Aurrera</option>            <!--25-->
+                  <option value="Ir Al Mercado">Ir Al Mercado</option>          <!--25-->       
+                  <option value="Ir A Waldos">Ir A Waldos</option>             <!--20-->
+                  <option value="Lavar Baño">Lavar Baño</option>      
+                  <option value="Lavar Dientes">Lavar Dientes</option>              <!--5-->
+
+                
+                
+                  <option value="Lavar Ropa">Lavar Ropa</option>   
+                  <option value="Lavar Toalla">Lavar Toalla</option>   
+                  <option value="Lavar Trastes">Lavar Trastes</option>   
+
+                  
+                  <option value="Preparar Desayuno">Preparar Desayuno</option>  
+                  <option value="Preparar Cena">Preparar Cena</option>             
+                  <option value="Preparar Comida">Preparar Comida</option>                
+                  <option value="Trapear">Trapear</option>  
+                </select>
+
+
+                <select required id="negativeTasks">
+                  <option value="0"  selected>Negative Actions</option>
+                  <option value="Bebi Azucar">Bebi Azucar</option>
+                  <option value="Comi Azucar">Comi Azucar</option> 
+                  <option value="Comi Pan">Comi Pan</option>   
+                  <option value="Divagar">Divagar por mas de 3seg</option>
+                  <option value="No Tire Basura">No Tire Basura</option>    
+                  <option value="Mas De 1 Hora En El Celular">Mas De 1 Hora En El Celular</option>
+
+                  <option value="Pensamiento F">Pensamiento F por mas de 3seg</option>
+                  <option value="Pensamiento X">Pensamiento X por mas de 3seg</option>
+                 
+                  <option value="X">X</option> 
+                  <option value="X-Talk">X-Talk</option>
+
+                   
+                </select>
+              </div>
+
+              <div>
+                <p>
+                  <label>
+                    <input type="checkbox" id="isDomestic"/>
+                    <span>Domestic  </span>
+                  </label>
+                </p>
+                <p>
+                  <label>
+                    <input type="checkbox" id="isJob"/>
+                    <span>Job</span>
+                  </label>
+                  
+                </p>
+              </div>
+            </div><!--Fin Form Rpw-->
+          </form>
+        </div>
+        <!--Inputs -->
+
+
+        <!--Button AddTask-->
+        <div class="row center">
+          <a
+            id="addTaskButton"
+            class="btn-large waves-effect waves-light orange">Add task</a>
+        </div>
+        <!--Button AddTask-->
+        <br><br>
+
+      </div>
+    </div>
+
+
+
+
+    <div class="container">
+      <div class="section">
+
+
+
+        <div class="row center">
+          <h3 class="header col s12 titles"><span>Diarias 2</span></h3>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center red-text"><i class="fa-solid fa-clock"></i></h2>
+                <h2 class="center green-text"><i class="fa-solid fa-arrow-right"></i></h2>
+                <h2 class="center blue-text"><i class="fa-solid fa-dove"></i></h2>
+              </div>
+              <h5 class="center">El Tiempo Vuela</h5>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center red-text"><i class="material-icons fas fa-thumbs-down"></i></h2>
+                <h2 class="center green-text"><i class="material-icons fas fa-check"></i></h2>
+                <h2 class="center green-text"><i class="material-icons fas fa-arrow-right"></i></h2>
+                <h2 class="center red-text"><i class="material-icons fas fa-recycle"></i></h2>
+              </div>
+              <h5 class="center">Lo Que Se Permite Se Repite</h5>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center blue-text"><i class="fas fa-running"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-up"></i></h2>
+                <h2 class="center gray-text"><i class="fas fa-dumbbell"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-line-chart"></i></h2>
+              </div>
+              <h5 class="center">Debo Superar Mis Limites</h5>
+            </div>
+          </div>
+
+
+
+
+          <h3 class="header col s12 titles"><span>Mantras</span></h3>
+
+       
+
+      
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center red-text"><i class="material-icons fas fa-fire"></i></h2>
+                <h2 class="center green-text"><i class="material-icons fas fa-dragon"></i></h2>
+              </div>
+              <h5 class="center">Chala Head Chala</h5>
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center red-text"><i class="material-icons fas fa-fire"></i></h2>
+                <h2 class="center green-text"><i class="material-icons fas fa-arrow-right"></i></h2>
+                <h2 class="center orange-text"><i class="material-icons fas fa-dragon"></i></h2>
+                <h2 class="center orange-text"><i class="fa-solid fa-sun"></i></h2>
+                
+              </div>
+              <h5 class="center">Debo Volver A Brillar</h5>
+    
+            </div>
+          </div>
+
+
+          Yo decido si el dolor me construye o me destruye
+          HUIR DE LA OSCURIDAD
+          MI HORMONA VENCE MI FEROMONA
+          otra vez la burra ak trigo
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center blue-text"><i class="fas fa-running"></i></h2>
+                <h2 class="center brown-text"><i class="fas fa-mountain"></i></h2>
+                <h2 class="center moon-text"><i class="fas fa-trophy"></i></h2>
+              </div>
+              <h5 class="center">Tsuyoki De Ikou</h5>
+            </div>
+          </div>
+
+          
+
+
+      
+
+          
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center blue-text"><i class="fas fa-running"></i></h2>
+                <h2 class="center brown-text"><i class="fas fa-mountain"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-door-open"></i></h2>
+              </div>
+              <h5 class="center">I Wanna scaoe this life</h5>
+            </div>
+          </div>
+
+
+
+
+       
+
+          
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center gray-text"><i class="fa-solid fa-cogs"></i></h2>
+                <h2 class="center yellow-text"><i class="fa-solid fa-bolt"></i></h2>
+              </div>
+              <h5 class="center">No pienso, solo actuo</h5>
+            </div>
+          </div>
+
+         
+
+
+
+
+
+          
+          
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center moon-text"><i class="fas fa-moon"></i></h2>
+                <h2 class="center star-text"><i class="fas fa-star-half-alt"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center orange-text"><i class="fas fa-sun"></i></h2>
+              </div>
+              <h5 class="center">El Sol volvera a salir</h5>
+            </div>
+          </div>
+
+
+
+
+          
+   
+
+
+
+
+       
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center black-text"><i class="fas fa-dumbbell"></i></h2>
+                <h2 class="center blue-text"><i class="fas fa-running"></i></h2>
+                <h2 class="center brown-text"><i class="fas fa-mountain"></i></h2>
+                <h2 class="center moon-text"><i class="fas fa-star"></i></h2>
+              </div>
+              <h5 class="center">Debo Vencer Mis Demonios</h5>
+            </div>
+          </div>  
+
+
+         
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center moon-text"><i class="fas fa-seedling"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-apple-alt"></i></h2>
+              </div>
+              <h5 class="center">Cosecho Lo Que Siembro</h5>
+    
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+
+              <div class="icons">
+                <h2 class="center green-text"><i class="fas fa-play"></i></h2>
+                <h2 class="center moon-text"><i class="fas fa-hourglass-half"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center moon-text"><i class="fas fa-moon"></i></h2>
+                <h2 class="center star-text"><i class="fas fa-star-half-alt"></i></h2>
+              </div>
+              <h5 class="center">Start before it gets Dark</h5>
+    
+            </div>
+          </div>
+
+         
+
+        
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+
+              <div class="icons">
+                <h2 class="center blue-text"><i class="fas fa-running"></i></h2>
+                <h2 class="center black-text"><i class="fas fa-dumbbell"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center moon-text"><i class="fas fa-hand-rock"></i></h2>
+              </div>
+              <h5 class="center">Nos volveremos más fuertes</h5>
+    
+            </div>
+          </div>
+
+
+   
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center black-text"><i class="fas fa-eye"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center moon-text"><i class="fas fa-exclamation-triangle"></i></h2>
+                <h2 class="center pink-text"><i class="fas fa-theater-masks"></i></h2>
+              </div>
+              <h5 class="center">Nothing is as bas as it seems</h5>
+    
+            </div>
+          </div>
+
+        
+       
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center blue-text"><i class="fas fa-forward"></i></h2>
+                <h2 class="center star-text"><i class="fas fa-star-half-alt"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-trophy"></i></h2>
+                <h2 class="center star-text"><i class="fas fa-star-half-alt"></i></h2>
+              </div>
+              <h5 class="center">No Te Rindas, Sigue Adelante</h5>
+            </div>
+          </div>
+
+
+        
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center red-text"><i class="fas fa-times"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center black-text"><i class="fas fa-bomb"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-fire"></i></h2>
+              </div>
+              <h5 class="center">Los errores tienen consecuencias</h5>
+    
+            </div>
+          </div>
+
+          
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center blue-text"><i class="fas fa-dumbbell"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-recycle"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center moon-text"><i class="fas fa-star"></i></h2>
+              </div>
+              <h5 class="center">Yo Seguire Tratando De Ser Mejor</h5>
+    
+            </div>
+          </div>
+
+
+
+
+        
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center pink-text"><i class="fas fa-brain"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-person"></i></h2>
+                <h2 class="center black-text"><i class="fas fa-tools"></i></h2>
+              </div>
+              <h5 class="center">Domina tu mente y dominaras tus problemas</h5>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center blue-text"><i class="fas fa-person"></i></h2>
+                <h2 class="center black-text"><i class="fas fa-tools"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center orange-text"><i class="fas fa-sun"></i></h2>
+              </div>
+              <h5 class="center">Tengo la oportunidad de un mejor manana</h5>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center moon-text"><i class="fas fa-sync"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-ban"></i></h2>
+              </div>
+              <h5 class="center">No siempre aparecen mas oportunidades</h5>
+            </div>
+          </div>
+
+        
+      
+
+
+    
+      
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center pink-text"><i class="fas fa-brain"></i></h2>
+                <h2 class="center light-blue-text"><i class="material-icons">local_library</i></h2>
+                <h2 class="center black-text"><i class="fas fa-tools"></i></h2>
+              </div>
+              <h5 class="center">Mente ocupada no extraña a nadie</h5>
+            </div>
+          </div>
+
+       
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center blue-text"><i class="fa-solid fa-person"></i></h2>
+                <h2 class="center gray-text"><i class="fa-solid fa-gamepad"></i></h2>
+                <h2 class="center green-text"><i class="fa-solid fa-arrow-right"></i></h2>
+                <h2 class="center pink-text"><i class="fa-solid fa-brain"></i></h2>
+              </div>
+              <h5 class="center">Yo controlo mi mente y mis pensamientos</h5>
+            </div>
+          </div>
+
+
+
+    
+      
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center pink-text"><i class="fas fa-brain"></i></h2>
+                <h2 class="center moon-text"><i class="fas fa-thumbs-down"></i></h2>
+           
+                <h2 class="center blue-text"><i class="fas fa-recycle"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-trash"></i></h2>
+             
+              </div>
+              <h5 class="center">No desperdiciar el tiempo con pensamientos negativos</h5>
+            </div>
+          </div>
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center pink-text"><i class="fas fa-brain"></i></h2>
+                <h2 class="center gray-text"><i class="fas fa-cogs"></i></h2>        
+              </div>
+              <h5 class="center">Recuerda la promesa que te hiciste a ti mismo</h5>
+            </div>
+          </div>
+
+
+         
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center gray-txt"><i class="fa-solid fa-stopwatch"></i></h2>
+                <h2 class="center green-text"><i class="fa-solid fa-arrow-right"></i></h2>
+                <h2 class="center blue-text"><i class="fa-solid fa-clock"></i></h2>
+                
+              </div>
+              <h5 class="center">Mi pasado me convirtio en el hombre que soy hoy</h5>
+    
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center light-blue-text"><i class="material-icons fas fa-running"></i></h2>
+                <h2 class="center gray-text"><i class="material-icons fas fa-dumbbell"></i></h2>
+              </div>
+              <h5 class="center">Se fuerte para que nadie te derrote</h5>
+            </div>
+          </div>
+
+
+           
+        
+
+        
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center moon-text"><i class="fas fa-face-smile"></i></h2>
+                <h2 class="center blue-text"><i class="fas fa-microphone"></i></h2>
+                <h2 class="center pink-text"><i class="fas fa-comments"></i></h2>
+               
+              </div>
+              <h5 class="center">Los suenos se muestran no se cuentan</h5>
+    
+            </div>
+          </div>
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+            <div class="icons">
+              <h2 class="center red-text"><i class="fa-solid fa-times"></i></h2>
+              <h2 class="center gray-txt"><i class="fa-solid fa-briefcase"></i></h2>
+              <h2 class="center blue-text"><i class="fas fa-dumbbell"></i></h2>
+              <h2 class="center red-text"><i class="fa-solid fa-times"></i></h2>
+              <h2 class="center green-text"><i class="fa-solid fa-arrow-right"></i></h2>
+              <h2 class="center red-text"><i class="material-icons">error</i></h2>
+            </div> 
+            <h5 class="center">Sin Trabajo, Ejercicio Ni Meditación Richie pierde la cabeza</h5>
+    
+            </div>
+          </div>
+
+    
+    
+
+    
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center light-green-text"><i class="material-icons fas fa-play"></i></h2>
+                <h2 class="center light-black-text"><i class="material-icons">rocket_launch</i></h2>
+                <h2 class="center light-green-text"><i class="material-icons fas fa-check"></i></h2>
+              </div>
+              <h5 class="center">Empezar Ya, si es fácil que bueno, si es díficil, "Ey, tengo tiempo"</h5>
+    
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center moon-text"><i class="material-icons fas fa-face-dizzy"></i></h2>
+                <h2 class="center blue-text"><i class="material-icons fas fa-clock"></i></h2>
+                <h2 class="center green-text"><i class="material-icons fas fa-arrow-right"></i></h2>
+                <h2 class="center red-text"><i class="material-icons fas fa-star"></i></h2>
+                <h2 class="center pink-text"><i class="material-icons fas fa-brain"></i></h2>
+                
+             
+              </div>
+              <h5 class="center">  El dolor y el fracaso son temporales, siempre podemos volver a brillar</h5>
+    
+            </div>
+          </div>
+
+        
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center orange-text"><i class="material-icons fas fa-sun"></i></h2>
+                <h2 class="center light-green-text"><i class="material-icons fas fa-recycle"></i></h2>
+                <h2 class="center light-green-text"><i class="material-icons fas fa-arrow-right"></i></h2>
+                <h2 class="center light-blue-text"><i class="material-icons fas fa-running"></i></h2>
+              </div>
+              <h5 class="center">Cada dia es una nueva oportunidad para dar lo mejor de nosotros</h5>
+    
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center orange-text"><i class="material-icons fas fa-sun"></i></h2>
+                <h2 class="center light-green-text"><i class="material-icons fas fa-recycle"></i></h2>
+                <h2 class="center light-green-text"><i class="material-icons fas fa-arrow-right"></i></h2>
+                <h2 class="center light-blue-text"><i class="material-icons fas fa-running"></i></h2>
+              </div>
+              <h5 class="center">Este anio es tu ultima oportunidad para empezar a ser el hombre que quieres ser</h5>
+    
+            </div>
+          </div>
+
+
+        
+
+
+
+        
+
+       
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center orange-text"><i class="material-icons fas fa-sun"></i></h2>
+              
+                <h2 class="center gray-text"><i class="material-icons fas fa-gamepad"></i></h2>
+                <h2 class="center light-blue-text"><i class="material-icons fas fa-arrow-right"></i></h2>
+                <h2 class="center pink-text"><i class="material-icons fas fa-brain"></i></h2>
+           
+              </div>
+              <h5 class="center">Recien levantado domina tu subconsciente: Consciente > Subconsciente</h5>
+    
+            </div>
+          </div>
+
+
+       
+          
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center red-text"><i class="material-icons fas fa-recycle"></i></h2>
+                <h2 class="center pink-text"><i class="material-icons fas fa-brain"></i></h2>
+                <h2 class="center red-text"><i class="material-icons fas fa-arrow-right"></i></h2>
+                <h2 class="center moon-text"><i class="material-icons fas fa-face-dizzy"></i></h2>
+              </div>
+              <h5 class="center">El pensamiento excesivo roba vida, roba felicidad, y roba sonrisas</h5>
+    
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center moon-text"><i class="fas fa-seedling"></i></h2>
+                <h2 class="center yellow-text"><i class="fas fa-bolt"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center green-text"><i class="material-icons">eco</i></h2>
+              </div>
+              <h5 class="center">La flor que florece en la adversidad es la mas rara y hermosa de todas</h5>
+            </div>
+          </div>
+   
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+
+              <div class="icons">
+                <h2 class="center gray-text"><i class="fas fa-cogs"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-chart-line"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center moon-text"><i class="fa fa-bolt"></i></h2> 
+              </div>
+              <h5 class="center">El poder viene en respuesta a una necesidad, no a un deseo. Tienes que crear esa necesidads</h5>
+    
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                  <h2 class="center moon-text"><i class="fas fa-moon"></i></h2>
+                  <h2 class="center pink-text"><i class="fas fa-brain"></i></h2>
+                  <h2 class="center star-text"><i class="fas fa-star-half-alt"></i></h2>
+              </div>
+              <h5 class="center">Los suenos no es lo que ves al dormir, los suenos son lo que no nos deja dormir
+              </h5>
+    
+            </div>
+          </div>
+
+         
+          <div class="col s12 m4">
+            <div class="icon-block">
+
+              <div class="icons">
+                <h2 class="center red-text"><i class="fas fa-heart-broken"></i></h2>
+                <h2 class="center gray-text"><i class="fas fa-search"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-heart"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center moon-text"><i class="fas fa-sad-tear"></i></h2>
+                <h2 class="center red-text"><i class="fa fa-fire"></i></h2> 
+              </div>
+              <h5 class="center"> Querer curar el dolor de un corazón destrozado, puede llevar a un dolor aun más grande</h5>
+
+              
+    
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                  <h2 class="center blue-text"><i class="material-icons">local_library</i></h2>
+                  <h2 class="center pink-text"><i class="fas fa-brain"></i></h2>
+                  <h2 class="center gray-text"><i class="fas fa-cogs"></i></h2>
+                  <h2 class="center green-text"><i class="fas fa-level-up-alt"></i></h2>
+               
+              </div>
+              <h5 class="center">Dedicarse AL 100% para alcanzar el nivel que quiero, todo esta en la Mentetodo esta en la Mente
+                </h5>
+          
+            </div>
+          </div>
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center moon-text"><i class="fas fa-sad-tear"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-history"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-heart-broken"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+                <h2 class="center yellow-text"><i class="fas fa-bolt"></i></h2>
+              </div>
+              <h5 class="center">El recuerdo de un pasado lamentable es lo mas beneficioso para la reforma de una persona</h5>
+    
+            </div>
+          </div>
+
+
+        
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center red-text"><i class="fas fa-ban"></i></h2>
+                  <h2 class="center pink-text"><i class="fas fa-brain"></i></h2>
+                  <h2 class="center blue-text"><i class="fas fa-recycle"></i></h2>
+                  <h2 class="center red-text"><i class="fas fa-ban"></i></h2>
+              </div>
+              <h5 class="center">A veces, lo mejor que puedo hacer es no pensar, no preguntarme, no imaginar, no obsesionarme. Solo respirar y tener fe que todo saldra bien</h5>
+    
+            </div>
+          </div>
+
+
+
+      
+
+
+        
+
+    
+
+
+
+
+      
+
+
+
+                 
+         
+
+          <h3 class="header col s12 titles"><span>Consejos</span></h3>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center light-green-text"><i class="material-icons fas fa-play"></i></h2>
+                <h2 class="center light-black-text"><i class="material-icons">rocket_launch</i></h2>
+              </div>
+              <h5 class="center">Solo Empieza</h5>
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center green-text"><i class="fa-solid fa-arrow-right"></i></h2>
+                <h2 class="center blue-text"><i class="fa-solid fa-bullseye"></i></h2>
+              </div>
+              <h5 class="center">Dirige Tu Atención</h5>
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+
+              <div class="icons">
+               <h2 class="center green-text"><i class="fas fa-arrow-right"></i></h2>
+               <h2 class="center red-text"><i class="fas fa-heart"></i></h2>
+               <h2 class="center blue-text"><i class="fas fa-gears"></i></h2>
+              </div>
+              <h5 class="center">Enamorate del proceso</h5>
+    
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center blue-text"><i class="fas fa-eye-slash"></i></h2>
+                <h2 class="center black-text"><i class="fas fa-mobile-alt"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-exclamation-triangle"></i></h2>
+               
+              </div>
+              <h5 class="center">Tener cuidado al agarrar el cel de no distraerse</h5>
+            </div>
+          </div>
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center green-text"><i class="fas fa-tasks"></i></h2>
+                <h2 class="center gray-text"><i class="fas fa-gears"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-chart-line"></i></h2>
+              </div>
+              <h5 class="center">Cada Accion Que haga Me debe aportar valor</h5>
+    
+            </div>
+          </div>
+
+
+
+            
+
+         <!----->x
+
+          <h3 class="header col s12 titles"><span>Recordatorios</span></h3>
+
+          
+
+    
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+               
+                <h2 class="center red-text"><i class="fas fa-ban"></i></h2>
+                <h2 class="center moon-text"><i class="fas fa-sad-tear"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-heart-broken"></i></h2>
+              </div>
+              <h5 class="center">No ser toxico</h5>
+    
+            </div>
+          </div>
+
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center gray-text"><i class="fas fa-gear"></i></h2>
+                <h2 class="center blue-text"><i class="material-icons">local_library</i></h2>
+                <h2 class="center pink-text"><i class="fas fa-brain"></i></h2>
+              </div>
+              <h5 class="center">Estudiar HANA</h5>
+    
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center blue-text"><i class="fas fa-dumbbell"></i></h2>
+                <h2 class="center black-text"><i class="fas fa-eye"></i></h2>
+              </div>
+              <h5 class="center">Ejercicios Visuales</h5>
+    
+            </div>
+          </div>
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center blue-text"><i class="fas fa-glass-water"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-lemon"></i></h2>
+                <h2 class="center orange-text"><i class="fas fa-bolt"></i></h2>
+              </div>
+              <h5 class="center">Agua con Limon</h5>
+    
+            </div>
+          </div>
+
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center blue-text"><i class="material-icons">local_library</i></h2>
+                <h2 class="center gray-text"><i class="fas fa-cogs"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-chart-line"></i></h2>
+                <h2 class="center gray-text"><i class="fas fa-database"></i></h2>
+
+              </div>
+              <h5 class="center">Ser Analista de Datos</h5>
+    
+            </div>
+          </div>
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center orange-text"><i class="fas fa-bolt"></i></h2>
+                <h2 class="center blue-text"><i class="fas fa-capsules"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-heart"></i></h2>
+              </div>
+              <h5 class="center">La pastilla funciona, tómatela</h5>
+    
+            </div>
+          </div>
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+
+              <div class="icons">
+                <h2 class="center red-text"><i class="fas fa-stopwatch"></i></h2>
+                <h2 class="center blue-text"><i class="fas fa-laptop"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-power-off"></i></h2>
+              </div>
+              <h5 class="center">Agregar temporizador si desconectas PC</h5>
+    
+            </div>
+          </div>
+
+
+
+             
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center black-text"><i class="fas fa-stopwatch"></i></h2>
+                <h2 class="center gray-text"><i class="fas fa-cogs"></i></h2>
+                <h2 class="center green-text"><i class="fas fa-chart-line"></i></h2>
+              </div>
+              <h5 class="center">Usar cronometro para ser mas eficiente</h5>
+    
+            </div>
+          </div>
+
+          
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center orange-text"><i class="fas fa-meh"></i></h2>
+                <h2 class="center orange-text"><i class="fas fa-sad-tear"></i></h2>
+                <h2 class="center orange-text"><i class="fas fa-tired"></i></h2>
+                <h2 class="center white-text"><i class="material-icons">mail_outline</i></h2>
+              </div>
+              <h5 class="center">Si tienes flojera, empieza leyendo correos de Shell</h5>
+            </div>
+          </div>
+
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+                <h2 class="center green-text"><i class="fas fa-list-check"></i></h2>
+                <h2 class="center moon-txt"><i class="fas fa-moon"></i></h2>
+                <h2 class="center star-text"><i class="fas fa-star-half-alt"></i></h2>
+                <h2 class="center blue-text"><i class="fas fa-bed"></i></h2>
+              </div>
+              <h5 class="center">Preparar lista de pendientes un dia antes, para tener propósito de levantarme</h5>
+    
+            </div>
+          </div>
+
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <div class="icons">
+               
+                <h2 class="center red-text"><i class="fas fa-ban"></i></h2>
+                <h2 class="center moon-text"><i class="fas fa-sad-tear"></i></h2>
+                <h2 class="center red-text"><i class="fas fa-heart-broken"></i></h2>
+              </div>
+              <h5 class="center">Perdi la verguenza le dia que le llame a mi jefe para pedirle prestado</h5>
+    
+            </div>
+          </div>
+
+
+
+
+
+         
+
+
+
+        
+        
+
+        </div> <!---->
+
+
+        <h1>Actualmente en</h1>
+        <p>Logo
+        <div class="row center">
+          <h3 class="header col s12 titles"><span>I Have </span><span id="totalPendingJobTask"></span><span> Job Tasks To Do</span></h3>
+        </div>
+        
+        <div class="row" id="JobTasksToBeDone">
+
+        </div>
+       
+
+     
+
+        <div class="row center">
+          <h3 class="header col s12 titles"><span>I Have </span><span id="totalPendingTask"></span><span> Tasks To Do</span></h3>
+        </div>
+
+        <div class="row" id="tasksToBeDone">
+
+        </div>
+        
+        <!--   Icon Section   -->
+      
+        </div><!--Fin Row-->
+
+
+      
+      
+        <div class="row center">
+          <h3 class="header col s12 titles"><span>I Have </span><span id="totalPendingDomesticTask"></span><span> Daily/Domestics Tasks To Do</span></h3>
+        </div>
+        
+        <div class="row" id="DomesticTasksToBeDone">        
+        </div>
+
+
+        <div class="row center">
+          <h3 class="header col s12 titles"><span>I won</span><span id=""></span><span></span></h3>
+        </div>
+
+
+        <ul class="collection">
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnIwon btns">
+              Evite Mastur...
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanIWonNoMa"></span>
+          </li>
+
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnIwon btns">
+              Evite Abrir Chat
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanIWonNoWAF"></span>
+          </li>
+
+
+
+         
+        </ul>
+        AGregar VI FACE
+        Agregar vbi insta
+
+        <div class="row center">
+          <h3 class="header col s12 titles"><span>Quick Negative</span><span id=""></span><span></span></h3>
+        </div>
+
+        <ul class="collection">
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks btns">
+              Bebi Azucar
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanBA"></span>
+          </li>
+
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks  btns">
+              Comi Azucar
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanCA"></span>
+          </li>
+          
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks btns">
+              Comi Pan
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanCP"></span>
+          </li>
+        
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks btns" onclick="updateSpan(event)">
+              Divagar
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanDiv"></span>
+          </li>
+        
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks btns" onclick="updateSpan(event)">
+              +1 Hora en el celular
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanMcel"></span>
+          </li>
+        
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks btns" onclick="updateSpan(event)">
+              Pensamiento F
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanTPF"></span>
+          </li>
+        
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks btns" onclick="updateSpan(event)">
+              Pensamiento X
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanTPX"></span>
+          </li>
+        
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks btns " onclick="updateSpan(event)">
+              X
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanHX"></span>
+          </li>
+        
+          <li class="collection-item">
+            <a class="waves-effect waves-light btn red btnNegativeTasks btns" onclick="updateSpan(event)">
+              X-Talk
+              <i class="fas fa-heart-broken"></i>
+            </a>
+            <span class="daysWD titles" id="spanHXT"></span>
+          </li>
+        </ul>
+         
+
+
+        </ul>
+          
+      NO AVANZAR TAMBIEN ES RETROCEDER 
+      SI estas en el infirerno avanaza, porque te detendrias en el infierno
+      TU PODER DEBES REUNIR TU PUEDES LOGRAR CAMBIAR
+      LA ENERGIA ES RECUPERADA  
+      Estar hablando de lo que hago me ayuda  hacerlo mas facil 
+          
+
+
+        </div><!--Fin Row-->
+      </div>
+
+
+     
+
+
+
+      <br><br>
+
+      
+    </div>
+
+
+    <footer class="page-footer orange">
+
+
+      <div class="container">
+        <div class="row">
+
+              <div class="activity-log">
+                <!--
+                <ul class="titles daysWD black-text" id="listDaysWD">
+                  <li class="">Last Day, I:</li>
+                  <li></li>
+                </ul>
+                -->
+
+                <table class="titles daysWD black-text striped centered" id="listDaysWD">
+                <thead id="ejemplo">
+                    <tr>
+                        <th>Actividad</th>
+                        <th>Fue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+                <ul class="titles daysWD black-text" id="contenedorConteoActividadesNegativas">
+                  <li class="">Postivas:</li>
+                  <li>Dias Seguidos Manteniendo Duolinguo:      <span id="dsduolinguo"></span></li>
+                  <li>Dias Seguidos Manteniendo Ejercicio: <span id="dsejercicio"></span></li>
+                  <li>Dias Seguidos Manteniendo Juego Mind: <span id="dsjuegomind"></span></li>
+                  <li>Dias Seguidos Manteniendo Meditacion Despertar: <span id="dsmeditardesp"></span></li>
+                  <li>Dias Seguidos Manteniendo Meditacion Dormir: <span id="dsmeditardormir"></span></li>
+                </ul>
+
+
+                <table class="titles daysWD black-text striped centered" id="contenedorConteoActividadesNegativas">
+                  <thead>
+                      <tr>
+                          <th>Negativas:</th>
+                          <th>Total de veces este mes que he hecho:</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>Bebi Azúcar:</td>
+                          <td><span id="bebiAzucar"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Comí Azúcar:</td>
+                          <td><span id="comiAzucar"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Comí Pan:</td>
+                          <td><span id="comiPan"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Divage:</td>
+                          <td><span id="divage"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Duré Más De Una Hora En El Celular:</td>
+                          <td><span id="masDeUnaHoraEnElCelular"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Tuve Pensamiento X:</td>
+                          <td><span id="pensamientoX"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Tuve Pensamiento F:</td>
+                          <td><span id="pensamientoF"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Hice X:</td>
+                          <td><span id="hiceX"></span></td>
+                      </tr>
+                      <tr>
+                          <td>Hice X-Talk:</td>
+                          <td><span id="hiceXTalk"></span></td>
+                      </tr>
+                  </tbody>
+
+
+
+              </div>
+              <input type="text" class="datepicker" id="datePicker" placeholder="Select Month">
+              <h2 class="titles black-text" id="completedMonthTask">Completed</h2>
+              <div class="row center">
+                <a
+                  id="getTasks"
+                  class="btn-large waves-effect waves-light orange">Get Tasks</a>
+              </div>
+              <div class="date-container" id="dateContainer">
+                <!--
+
+                  <h5 class="white-text titles">Date Lunes</h5>
+                <div class="col l6 s12">
+                  <div class="col s12 m7">
+                    <div class="card horizontal">
+                      <div class="card-stacked">
+                        <div class="card-exp icon-block">
+                          <p class="px tektur">51 px <i class="material-icons">attach_money</i></p>
+                        </div>
+                        <div class="card-content">
+                          <p class="titles">Buy milkss</p>
+                        </div>
+                        <div class="card-content">
+                          <p class="light">Date</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!col 6 s12>-->
+
+
+
+
+
+
+
+                
+              <div class="date-container"><!--date-container-->
+        </div><!--Row-->
+      </div><!--COntainer-->
+    </footer>
+
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+
+    
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    
+    <script type="module" src="js/db.js"></script>
+    <script type="module" src="js/arrays.js"></script>
+    <script type="module" src="js/app.js"></script>
+    
+    
+    
+
+    
+    </body>
+  </html>
