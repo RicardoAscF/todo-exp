@@ -283,6 +283,26 @@ h5.center{
 
 
 
+#DomesticTasksToBeDone {
+  display: grid; /* Activar grid layout */
+  grid-template-columns: 1fr 1fr;
+  gap: 20px; /* Espacio entre elementos */
+  padding: 20px; /* Espaciado interno para el contenedor */
+  justify-items: center; /* Centrar botones horizontalmente */
+  align-items: center; /* Centrar botones verticalmente */
+}
+
+.waves-effect.waves-light.btn {
+  width: 100%; /* Botones ocupan toda la celda */
+  max-width: 400px; /* Limitar el ancho máximo */
+  text-align: center; /* Centrar texto e icono */
+  font-size: 1.1  rem;
+  font-weight: bold;
+}
+
+
+
+
 
 
 

@@ -131,8 +131,9 @@
     }
 
 
-    export async function taskCompleted(evt,dbDelete){
-            
+    export async function taskCompleted(evt,dbDelete,isDomestic){
+        console.log(evt.target);
+        
         let idTask = evt.target.id;
 
         let taskName        = evt.target.getAttribute('taskName');
@@ -141,8 +142,13 @@
         let date            = evt.target.getAttribute('date');
         let dateFinshed     = evt.target.getAttribute('dateFinished'); //posible undefineded
 
+        if(isDomestic){
+
+        }else{
+            await deleteDoc(doc(dbGet, dbDelete, idTask));
+        }
                         
-        await deleteDoc(doc(dbGet, dbDelete, idTask));
+       
 
         let pTotalExp = Number(document.getElementById('logo-container').innerText);
    
@@ -268,6 +274,8 @@
 
 
     export async function taskStarted(evt,db){
+        console.log(db);
+        alert('click jeer')
         let taskName = evt.target.getAttribute("taskname");
         let exp = evt.target.getAttribute("exp");
         let icon = evt.target.getAttribute("selectedIcon");

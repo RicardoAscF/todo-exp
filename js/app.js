@@ -44,7 +44,49 @@ let diasSeguidosId               = 0;
 let currentMonth            = today.getMonth().toString()+today.getFullYear().toString();
 let totalExpCurrentMonth    = 0;
 let arrayTask               = [];
-let arrayDomesticTask       = [];
+let arrayDomesticTask       = [
+
+
+
+    {taskName: "Afeitarme",exp:"10",selectedIcon:"3",date: Date.now()},
+    {taskName: "Bañarme",exp:"5",selectedIcon:"3",date: Date.now()},
+    {taskName: "Clase Flauta",exp:"30",selectedIcon:"12",date: Date.now()},
+
+    {taskName: "Cumpli más de 2 días sin ejercicio",exp:"-50",selectedIcon:"3",date: Date.now()},
+    {taskName: "Cumpli más de 2 días sin meditar",exp:"-50",selectedIcon:"12",date: Date.now()},
+
+    {taskName: "Curso Linux 30 minutos",exp:"30",selectedIcon:"5",date: Date.now()},
+    {taskName: "Curso Francés 30 minutos",exp:"30",selectedIcon:"5",date: Date.now()},
+    {taskName: "Curso Portugues 30 minutos",exp:"30",selectedIcon:"5",date: Date.now()}, 
+
+    {taskName: "Ejercicio",exp:"60",selectedIcon:"3",date: Date.now()},
+    {taskName: "Ejercicios Visuales",exp:"15",selectedIcon:"3",date: Date.now()},
+
+
+    
+    {taskName: "Antes de agarrar Celular - Beber Agua",exp:"5",selectedIcon:"3",date: Date.now()},
+    {taskName: "Antes de agarrar Celular - Cardio",exp:"15",selectedIcon:"3",date: Date.now()},
+    {taskName: "Antes de agarrar Celular - Duolinguo Frances",exp:"10",selectedIcon:"12",date: Date.now()},
+    {taskName: "Antes de agarrar Celular - Juego Mind",exp:"5",selectedIcon:"12",date: Date.now()},
+    {taskName: "Antes de agarrar Celular - Leer Mantras",exp:"5",selectedIcon:"12",date: Date.now()},
+    {taskName: "Antes de agarrar Celular - Lavar Dientes",exp:"5",selectedIcon:"3",date: Date.now()},
+    {taskName: "Antes de agarrar Celular - Meditar",exp:"10",selectedIcon:"12",date: Date.now()},
+    {taskName: "Antes de agarrar Celular - Regaderazo Agua Fria",exp:"10",selectedIcon:"12",date: Date.now()},
+    {taskName: "Antes de agarrar Celular - Tender cama",exp:"5",selectedIcon:"12",date: Date.now()},
+
+    
+    {taskName: "No agregué Levantarme",exp:"-500",selectedIcon:"3",date: Date.now()},
+
+    {taskName: "Preparar Ropa",exp:"15",selectedIcon:"12",date: Date.now()},
+    {taskName: "Preparar Lista de pendientes de mañana",exp:"15",selectedIcon:"12",date: Date.now()},
+
+    {taskName: "Tirar Basura",exp:"10",selectedIcon:"4",date: Date.now()},
+    {taskName: "Tomar Pastilla",exp:"5",selectedIcon:"3",date: Date.now()},
+
+
+
+
+];
 let arrayJobTask       = [];
 let todayExp                = 0;
 export let monthExp                = 0;
@@ -457,6 +499,8 @@ datePick.addEventListener('change', (evt) =>{
 
 
             
+
+            /*
             const querySnapshotDomestic = await getDocs(collection(dbGet, "domesticTasks"));
                 querySnapshotDomestic.forEach((doc) => {
                         let objTasks = {
@@ -471,6 +515,7 @@ datePick.addEventListener('change', (evt) =>{
                 }
                 
             );
+            */
 
             
 
@@ -530,8 +575,9 @@ datePick.addEventListener('change', (evt) =>{
 
 
 
-                    
+                    /* Este array me permitia llenar la tabla domesticTask y es atabla llenaba el array domesticktasks
                     arrayDailyTasks.forEach(element => {
+                       
                         let a = isAlreadyAdded(element.taskName);
                         let thisDate = new Date(Date.now());
 
@@ -576,6 +622,7 @@ datePick.addEventListener('change', (evt) =>{
                         }, 50);
 
                     });
+                    */
 
                     
 
@@ -1250,7 +1297,7 @@ datePick.addEventListener('change', (evt) =>{
                 aDone.setAttribute('date', Date.now());
                 aDone.setAttribute('dateFinished', date);
                 aDone.addEventListener('click', (evt) =>{
-                    taskCompleted(evt,"tasks");
+                    taskCompleted(evt,"tasks",false);
                 });
 
                 let iDone = document.createElement('i');
@@ -1310,7 +1357,7 @@ datePick.addEventListener('change', (evt) =>{
             }//fillTasksTobeDone
 
 
-
+            /*
             function fillDomesticTasksTobeDone(id,taskName,exp,selectedIcon,date,dateStarted){
 
                 
@@ -1437,6 +1484,41 @@ datePick.addEventListener('change', (evt) =>{
                 taskToBeDone.appendChild(divColS12M4);
             }//fillTasksTobeDone
 
+            */
+
+            function fillDomesticTasksTobeDone(id, taskName, exp, selectedIcon, date, dateStarted) {
+                let taskToBeDone = document.getElementById('DomesticTasksToBeDone');
+            
+                // Crear botón de Materialize
+                let aTaskButton = document.createElement('a');
+                aTaskButton.classList.add('waves-effect', 'waves-light', 'btn');
+                aTaskButton.setAttribute('id', id);
+                aTaskButton.setAttribute('taskName', taskName);
+                aTaskButton.setAttribute('exp', exp);
+                aTaskButton.setAttribute('selectedIcon', selectedIcon);
+                aTaskButton.setAttribute('date', Date.now());
+            
+                // Añadir evento al botón
+                aTaskButton.addEventListener('click', (evt) => {
+                    taskCompleted(evt, "domesticTasks",true);
+                });
+            
+                // Crear icono de Materialize
+                let iIcon = document.createElement('i');
+                iIcon.classList.add('material-icons', 'right');
+                iIcon.innerText = getSelectedIcon(selectedIcon);
+            
+                // Asignar texto (nombre de la tarea)
+                aTaskButton.innerText = taskName + ' ' + exp + 'XP';
+            
+                // Agregar icono al botón
+                aTaskButton.appendChild(iIcon);
+            
+                // Agregar el botón al contenedor principal
+                taskToBeDone.appendChild(aTaskButton);
+            }
+            
+
 
 
 
@@ -1515,7 +1597,7 @@ datePick.addEventListener('change', (evt) =>{
                 aDone.setAttribute('date', Date.now());
                 aDone.setAttribute('dateFinished', date);
                 aDone.addEventListener('click', (evt) =>{
-                    taskCompleted(evt,"jobTasks");
+                    taskCompleted(evt,"jobTasks",false);
                 });
 
                 let iDone = document.createElement('i');
@@ -1612,7 +1694,9 @@ export function getData(){
 
 
     arrayDomesticTask.forEach(element => {
-   
+       
+        
+        
         fillDomesticTasksTobeDone(element.id, element.taskName, element.exp, element.selectedIcon,element.timeStart);
         
     });
@@ -1646,12 +1730,6 @@ export function getCompletedData(month){
                 console.error(element.dateFinished);
             } 
 
-
-
-           
-
-    
-            
             
             totalExp+=Number(element.exp); //Aqui hace la suma independientemente del mes
             let taskMonth = new Date(Number(element.date));
@@ -1690,6 +1768,13 @@ export function getCompletedData(month){
 
     console.log(totalExp);
     console.log(totalExpCurrentMonth);
+
+
+
+    /*AQuiiiiiiiiiiiiiiii puedo obtener el total exp*/
+    let todayExpDiv = document.getElementById('logo-container');
+    todayExpDiv.innerText=totalExp;
+
     
     displayExp(totalExp,totalExpCurrentMonth);
     totalExpCurrentMonth=0;

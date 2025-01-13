@@ -15,14 +15,6 @@ export  let arrayDailyTasks = [
     {taskName: "Ejercicios Visuales",exp:"15",icon:"3",date: Date.now()},
 
 
-    {taskName: "Lavar Baño",exp:"15",icon:"3",date: Date.now()},
-    {taskName: "Lavar Ropa",exp:"20",icon:"4",date: Date.now()},
-    {taskName: "Lavar Toalla Blanca",exp:"15",icon:"4",date: Date.now()},
-    {taskName: "Lavar Toalla Gris",exp:"15",icon:"4",date: Date.now()},
-    {taskName: "Lavar Trapeador",exp:"15",icon:"4",date: Date.now()},
-
-    {taskName: "Morning Routine",exp:"50",icon:"12",date: Date.now()},
-    {taskName: "Empece MG en menos de 3 minutos?",exp:"5",icon:"12",date: Date.now()},
     
     {taskName: "Antes de agarrar Celular - Beber Agua",exp:"5",icon:"3",date: Date.now()},
     {taskName: "Antes de agarrar Celular - Cardio",exp:"15",icon:"3",date: Date.now()},
