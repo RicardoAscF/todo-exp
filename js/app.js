@@ -52,11 +52,11 @@ let arrayDomesticTask       = [
     {taskName: "Bañarme",exp:"5",selectedIcon:"3",date: Date.now()},
     {taskName: "Clase Flauta",exp:"30",selectedIcon:"12",date: Date.now()},
 
-    {taskName: "Cumpli más de 2 días sin ejercicio",exp:"-50",selectedIcon:"3",date: Date.now()},
-    {taskName: "Cumpli más de 2 días sin meditar",exp:"-50",selectedIcon:"12",date: Date.now()},
+    {taskName: "Cumpli + de 2 días sin ejercicio",exp:"-50",selectedIcon:"3",date: Date.now()},
+    {taskName: "Cumpli + de 2 días sin meditar",exp:"-50",selectedIcon:"12",date: Date.now()},
 
     {taskName: "Curso Linux 30 minutos",exp:"30",selectedIcon:"5",date: Date.now()},
-    {taskName: "Curso Francés 30 minutos",exp:"30",selectedIcon:"5",date: Date.now()},
+    
     {taskName: "Curso Portugues 30 minutos",exp:"30",selectedIcon:"5",date: Date.now()}, 
 
     {taskName: "Ejercicio",exp:"60",selectedIcon:"3",date: Date.now()},
@@ -64,15 +64,14 @@ let arrayDomesticTask       = [
 
 
     
-    {taskName: "Antes de agarrar Celular - Beber Agua",exp:"5",selectedIcon:"3",date: Date.now()},
-    {taskName: "Antes de agarrar Celular - Cardio",exp:"15",selectedIcon:"3",date: Date.now()},
-    {taskName: "Antes de agarrar Celular - Duolinguo Frances",exp:"10",selectedIcon:"12",date: Date.now()},
-    {taskName: "Antes de agarrar Celular - Juego Mind",exp:"5",selectedIcon:"12",date: Date.now()},
-    {taskName: "Antes de agarrar Celular - Leer Mantras",exp:"5",selectedIcon:"12",date: Date.now()},
-    {taskName: "Antes de agarrar Celular - Lavar Dientes",exp:"5",selectedIcon:"3",date: Date.now()},
-    {taskName: "Antes de agarrar Celular - Meditar",exp:"10",selectedIcon:"12",date: Date.now()},
-    {taskName: "Antes de agarrar Celular - Regaderazo Agua Fria",exp:"10",selectedIcon:"12",date: Date.now()},
-    {taskName: "Antes de agarrar Celular - Tender cama",exp:"5",selectedIcon:"12",date: Date.now()},
+    {taskName: "Antes de Cel - Beber Agua",exp:"5",selectedIcon:"3",date: Date.now()},
+    {taskName: "Antes de Cel - Duolinguo Portugues",exp:"10",selectedIcon:"12",date: Date.now()},
+    {taskName: "Antes de Cel - Juego Mind",exp:"5",selectedIcon:"12",date: Date.now()},
+    {taskName: "Antes de Cel - Leer Mantras",exp:"5",selectedIcon:"12",date: Date.now()},
+    {taskName: "Antes de Cel - Lavar Dientes",exp:"5",selectedIcon:"3",date: Date.now()},
+    {taskName: "Antes de Cel - Meditar",exp:"10",selectedIcon:"12",date: Date.now()},
+    {taskName: "Antes de Cel - Regaderazo Agua Fria",exp:"10",selectedIcon:"12",date: Date.now()},
+    {taskName: "Antes de Cel - Tender cama",exp:"5",selectedIcon:"12",date: Date.now()},
 
     
     {taskName: "No agregué Levantarme",exp:"-500",selectedIcon:"3",date: Date.now()},
