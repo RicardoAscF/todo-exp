@@ -1133,7 +1133,7 @@ datePick.addEventListener('change', (evt) =>{
                                         let timestamp = new Date(Number(dateStarted));
                                         pPx.innerText=`${getDayString(timestamp.getDay())} ${timestamp.getDate()} ${ getMonthString(timestamp.getMonth())} ${timestamp.getFullYear()} - ${getHMString(timestamp.getHours())}:${getHMString(timestamp.getMinutes())}h`;
                                         //Date
-                                            let iMaterial_Icons                         = document.createElement('i');
+                                            let iMaterial_Icons= document.createElement('i');
                                             iMaterial_Icons.classList.add('material-icons');
                                             iMaterial_Icons.innerText=getSelectedIcon(selectedIcon);
 
@@ -1158,10 +1158,12 @@ datePick.addEventListener('change', (evt) =>{
                                         let pTitles                                     = document.createElement('p');
                                         pTitles.classList.add('titles');
 
+                          
+
                                         let startDate = new Date(Number(date));
                                        
                                         pTitles.innerText=`${taskName} -- ${startDate.getDate()} at ${getHMString(startDate.getHours())}: ${getHMString(startDate.getMinutes())}h`;
-
+                                    
 
                                     let divCard_content2                  = document.createElement('div');
                                     divCard_content2.classList.add('card-content', 'titles-completed');
@@ -1171,13 +1173,14 @@ datePick.addEventListener('change', (evt) =>{
                                     
                                     
                                         
-                                        pLight.innerText=`${exp} px`;
+                                        
                                         
 
                                         taskName.includes("Pensamiento F") && 
 
                                 divCard_content2.appendChild(pLight);
                                 divCard_content.appendChild(pTitles);
+                                divCard_content.appendChild(pLight);
                                 
                                 //divCard_content.appendChild(pTitles);
 
@@ -1186,8 +1189,12 @@ datePick.addEventListener('change', (evt) =>{
                                 //pLight.appendChild(iMaterial_Icons);
                                 divCard_expIcon_block.appendChild(pPx);
 
+                                let pExp=document.createElement("p");
+                                pExp.innerText=`${exp} exp`;
+
 
                                 divCard_content2.appendChild(iMaterial_IconsX);
+                                divCard_content2.appendChild(pExp);
                                 divCard_content2.appendChild(iMaterial_Icons);
                                 
 
