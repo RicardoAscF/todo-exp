@@ -1162,8 +1162,9 @@ datePick.addEventListener('change', (evt) =>{
 
                                         let startDate = new Date(Number(date));
                                        
-                                        pTitles.innerText=`${taskName} -- ${startDate.getDate()} at ${getHMString(startDate.getHours())}: ${getHMString(startDate.getMinutes())}h`;
-                                    
+                                        //pTitles.innerText=`${taskName} -- ${startDate.getDate()} at ${getHMString(startDate.getHours())}: ${getHMString(startDate.getMinutes())}
+                                        pTitles.innerText=`${taskName}`;
+ 
 
                                     let divCard_content2                  = document.createElement('div');
                                     divCard_content2.classList.add('card-content', 'titles-completed');
