@@ -49,21 +49,8 @@ let arrayDomesticTask       = [
 
 
     {taskName: "Afeitarme",exp:"10",selectedIcon:"3",date: Date.now()},
-    {taskName: "Bañarme",exp:"5",selectedIcon:"3",date: Date.now()},
-    {taskName: "Clase Flauta",exp:"30",selectedIcon:"12",date: Date.now()},
 
-    {taskName: "Cumpli + de 2 días sin ejercicio",exp:"-50",selectedIcon:"3",date: Date.now()},
-    {taskName: "Cumpli + de 2 días sin meditar",exp:"-50",selectedIcon:"12",date: Date.now()},
-
-    {taskName: "Curso Linux 30 minutos",exp:"30",selectedIcon:"5",date: Date.now()},
-    
-    {taskName: "Curso Portugues 30 minutos",exp:"30",selectedIcon:"5",date: Date.now()}, 
-
-    {taskName: "Ejercicio",exp:"60",selectedIcon:"3",date: Date.now()},
-    {taskName: "Ejercicios Visuales",exp:"15",selectedIcon:"3",date: Date.now()},
-
-
-    
+     
     {taskName: "Antes de Cel - Beber Agua",exp:"5",selectedIcon:"3",date: Date.now()},
     {taskName: "Antes de Cel - Duolinguo Portugues",exp:"10",selectedIcon:"12",date: Date.now()},
     {taskName: "Antes de Cel - Juego Mind",exp:"5",selectedIcon:"12",date: Date.now()},
@@ -73,11 +60,25 @@ let arrayDomesticTask       = [
     {taskName: "Antes de Cel - Regaderazo Agua Fria",exp:"10",selectedIcon:"12",date: Date.now()},
     {taskName: "Antes de Cel - Tender cama",exp:"5",selectedIcon:"12",date: Date.now()},
 
-    
-    {taskName: "No agregué Levantarme",exp:"-500",selectedIcon:"3",date: Date.now()},
+
+    {taskName: "Bañarme",exp:"5",selectedIcon:"3",date: Date.now()},
+    {taskName: "Clase Flauta",exp:"30",selectedIcon:"12",date: Date.now()},
+
+   
+
+    {taskName: "Curso Linux 30 minutos",exp:"30",selectedIcon:"5",date: Date.now()},
+    {taskName: "Curso Portugues 30 minutos",exp:"30",selectedIcon:"5",date: Date.now()}, 
+
+    {taskName: "Ejercicio",exp:"60",selectedIcon:"3",date: Date.now()},
+    {taskName: "Ejercicios Visuales",exp:"15",selectedIcon:"3",date: Date.now()},
+
+
+    {taskName: "Lavar Dientes",exp:"60",selectedIcon:"3",date: Date.now()},
+    {taskName: "Lavar Toalla Azul",exp:"10",selectedIcon:"3",date: Date.now()},
+    {taskName: "Lavar Toalla Gris",exp:"10",selectedIcon:"3",date: Date.now()},
 
     {taskName: "Preparar Ropa",exp:"15",selectedIcon:"12",date: Date.now()},
-    {taskName: "Preparar Lista de pendientes de mañana",exp:"15",selectedIcon:"12",date: Date.now()},
+    {taskName: "Preparar Lista de pendientes",exp:"15",selectedIcon:"12",date: Date.now()},
 
     {taskName: "Tirar Basura",exp:"10",selectedIcon:"4",date: Date.now()},
     {taskName: "Tomar Pastilla",exp:"5",selectedIcon:"3",date: Date.now()},
@@ -112,6 +113,8 @@ let dsmeditardormir = 0;
 let spanIWonNoMa = 0;
 let spanIwonChat = 0;
 
+let dsId = 0;
+
 
 
 //
@@ -127,6 +130,8 @@ let selectFrequent = document.getElementById('frequentTasks');
 let selectNegativeTasks = document.getElementById('negativeTasks');
 
 const btnNegativeTasks = document.getElementsByClassName('btnNegativeTasks');
+const btnTrue = document.getElementsByClassName('btn-true');
+const btnFalse = document.getElementsByClassName('btn-false');
 
 const btnIWon = document.getElementsByClassName('btnIwon');
 
@@ -165,8 +170,18 @@ addTaskBtn.addEventListener('click', ()=>{
 });
 
 
+for (let i = 0; i < btnTrue.length; i++) {
+    btnTrue[i].onclick = function(evt) { 
+        updateDiasSeguidos(evt.target.id,true);
+    };
+}
 
 
+for (let i = 0; i < btnFalse.length; i++) {
+    btnFalse[i].onclick = function(evt) { 
+        updateDiasSeguidos(evt.target.id,false);
+    };
+}
 
 getTaskBtn.addEventListener('click', ()=>{
     getTask();
@@ -379,6 +394,14 @@ datePick.addEventListener('change', (evt) =>{
 
                 }
             );
+
+
+            const queryGetDS = await getDocs(collection(dbGet, "diasSeguidos"));
+          //  alert('Get Date')
+                queryGetDS.forEach((doc) => {
+                    dsId = doc.id;
+                }
+            );
            
 
 
@@ -423,6 +446,47 @@ datePick.addEventListener('change', (evt) =>{
                     alert(error)
                 });
             }
+
+
+
+
+            function updateDiasSeguidos(ds,trueORfalse){
+                //await deleteDoc(doc(dbGet, "date", lastDayId));
+                 
+                  
+                 let days = getDiasSeguidos(ds, trueORfalse);
+                 let newInfo = {};
+                 newInfo[ds] = days; // Usa la variable ds como el nombre del campo
+
+                
+                 db.collection("diasSeguidos").doc(dsId).update(newInfo)
+                 .then((docRef) => {
+                     displayToast(' ');
+                 })
+                 .catch((error) => {
+                     alert(error)
+                 });
+             }
+
+             function getDiasSeguidos(ds, trueORfalse){
+                if(trueORfalse){
+                    switch (ds) {
+                        case "dsduolinguo": return parseInt(dsduolinguo)+1;
+                        case "dsejercicio": return parseInt(dsejercicio)+1;
+                        case "dsjuegomind": return parseInt(dsjuegomind)+1;
+                        case "dsmeditardesp": return parseInt(dsmeditardesp)+1;
+                        case "dsmeditardormir": return parseInt(dsmeditardormir)+1;
+                        
+                    
+                        default:
+                            break;
+                    }
+                }else{
+                    return 0;
+                }
+
+
+             } //getDiasSeguidos
 
 
 
@@ -1490,7 +1554,7 @@ datePick.addEventListener('change', (evt) =>{
             
                 // Crear botón de Materialize
                 let aTaskButton = document.createElement('a');
-                aTaskButton.classList.add('waves-effect', 'waves-light', 'btn');
+                aTaskButton.classList.add('waves-effect', 'waves-light', 'btn', 'btn-dom');
                 aTaskButton.setAttribute('id', id);
                 aTaskButton.setAttribute('taskName', taskName);
                 aTaskButton.setAttribute('exp', exp);

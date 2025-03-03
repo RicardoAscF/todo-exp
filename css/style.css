@@ -285,7 +285,7 @@ h5.center{
 
 #DomesticTasksToBeDone {
   display: grid; /* Activar grid layout */
-  grid-template-columns: 1fr 1fr;
+  
   gap: 20px; /* Espacio entre elementos */
   padding: 20px; /* Espaciado interno para el contenedor */
   justify-items: center; /* Centrar botones horizontalmente */
@@ -300,22 +300,17 @@ h5.center{
   font-weight: bold;
 }
 
+.btn-true{
+ 
+}
 
+.btn-false{
+  
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.btn-dom{
+  border: 2px solid teal;
+  background-color: white;
+  color: #000;
+}
 
